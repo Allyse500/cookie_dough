@@ -315,7 +315,7 @@ font-weight: bold;
 font-size: 200%;
 font-family: Arial, Helvetica, sans-serif; 
 text-align: center;
-color: white;
+color: orange;
 }
 
 .formInput{
@@ -359,11 +359,11 @@ margin-left: 66%;
   }
   
 #loginInputContents{
-margin-left: 17.5%;
+margin-left: 27.5%;
 margin-top: 5%;
 }
 
-.loginFormLabel{
+/* .loginFormLabel{
 font-family: Arial, Helvetica, sans-serif;
 color: orange;
 font-weight: bold; 
@@ -371,4 +371,4 @@ font-weight: bold;
 
 #loginPasswordBlock{
 margin-left: .5%;
-}
+} */

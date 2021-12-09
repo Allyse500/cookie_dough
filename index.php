@@ -13,7 +13,13 @@
 <!--=======================NAVBAR==================================================-->
 <div id="navbar">
     <div id="headerGrid">
-        <div id="homeBtn">Home</div><div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div><div id="buttonsGrid"><div id="aboutBtn" class="homeButtons" onclick="aboutPromptBox()">About</div><div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">Sign Up</div><div id="loginBtn" class="homeButtons" onclick="loginPromptBox()">Log In</div></div><!--end of id="buttonsGrid"-->
+        <div id="homeBtn">Home</div>
+        <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
+        <div id="buttonsGrid">
+          <div id="aboutBtn" class="homeButtons" onclick="aboutPromptBox()">About</div>
+          <div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">Sign Up</div>
+          <div id="loginBtn" class="homeButtons" onclick="loginPromptBox()">Log In</div>
+        </div><!--end of id="buttonsGrid"-->
     </div><!--end of id="headerGrid"-->
 </div><!--end of id="navbar"-->
 
@@ -40,7 +46,7 @@
     <div id="signupFormContainer">
         <div id="signupFormSecondaryContainer">
             <div id="signupFormTitle">Sign Up</div>
-            <form id="signupForm" action ="/sign_up" method="POST">
+            <form id="signupForm" action ="sign_up.inc.php" method="POST">
                 <div id="signupInputContents">
                   <input class="formInput" type="text" id="newUsername" name="newUsername" placeholder ="Username..."><br>
                   <input class="formInput" type="email" id="newUserEmail" name="newUserEmail" placeholder ="Email..."><br>
@@ -64,12 +70,8 @@
                     <div id="loginFormTitle">Login</div>
                     <form id="loginForm" action="/login" method="POST">
                         <div id="loginInputContents">
-                            <label for="username" class="loginFormLabel">Username: </label>
-                            <input class="formInput" type="text" id="username" name="username"><br>
-                            <div id="loginPasswordBlock">
-                                <label for="password" class="loginFormLabel">Password: </label>
-                                <input class="formInput" type="password" id="password" name="password">
-                            </div><!--end of id="loginPasswordBlock"-->
+                            <input class="formInput" type="text" id="username" name="username" placeholder ="Email or Username..."><br>
+                            <input class="formInput" type="password" id="password" name="password" placeholder="Password...">
                         </div><!--end of id="loginInputContents" -->
                         <br>
                         <div id="loginBtnsGrid">
@@ -99,6 +101,8 @@ function signupPromptBox(){
 document.getElementById("signupModal").style.display ="block";
 document.getElementById("newUsername").value ="";
 document.getElementById("newPassword").value ="";
+document.getElementById("newUserEmail").value ="";
+document.getElementById("confirmNewPassword").value="";
 }//end of signupPromptBox()
 
 //close signup prompt box-------------------------------------------------------------
