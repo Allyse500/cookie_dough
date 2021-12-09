@@ -6,7 +6,7 @@
 <body>
 
 <?php
-echo "My first PHP script! 123.";
+echo "<h1>Cookie Dough</h1>";
 ?> 
 
 </body>
