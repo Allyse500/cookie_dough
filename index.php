@@ -42,12 +42,10 @@
             <div id="signupFormTitle">Sign Up</div>
             <form id="signupForm" action ="/sign_up" method="POST">
                 <div id="signupInputContents">
-                    <label for="newUsername" class="signupFormLabel">Username: </label>
-                    <input class="formInput" type="text" id="newUsername" name="newUsername"><br>
-                    <div id="signupPasswordBlock">
-                        <label for="newPassword" class="signupFormLabel">Password: </label>
-                        <input class="formInput" type="password" id="newPassword" name="newPassword">
-                    </div><!--end of id="signupPasswordBlock"-->
+                  <input class="formInput" type="text" id="newUsername" name="newUsername" placeholder ="Username..."><br>
+                  <input class="formInput" type="email" id="newUserEmail" name="newUserEmail" placeholder ="Email..."><br>
+                  <input class="formInput" type="password" id="newPassword" name="newPassword" placeholder="Password..."><br>
+                  <input class="formInput" type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password...">
                 </div><!--end of id="signupInputContents" -->
                 <br>
                 <div id="signupBtnsGrid">

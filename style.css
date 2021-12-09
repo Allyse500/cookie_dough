@@ -215,7 +215,7 @@ font-weight: bold;
 font-size: 200%;
 font-family: Arial, Helvetica, sans-serif; 
 text-align: center;
-color: white;
+color: orange;
 }
 
 .formInput{
@@ -258,19 +258,23 @@ margin-left: 66%;
   }
   
 #signupInputContents{
-margin-left: 17.5%;
+margin-left: 27.5%;
 margin-top: 5%;
 }
 
-.signupFormLabel{
+/* .signupFormLabel{
 font-family: Arial, Helvetica, sans-serif;
 color: orange;
 font-weight: bold;  
 }
 
-#signupPasswordBlock{
+.signupPasswordBlock{
 margin-left: .5%;
 }
+
+#confirmNewPWBlock{
+    margin-left: -10%;
+} */
 
 /*=========================LOGIN PROMPT BOX===============================*/
 #loginModal{
