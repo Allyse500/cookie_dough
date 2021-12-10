@@ -47,9 +47,10 @@ padding-top: 1%;
 #buttonsGrid{
     display: grid;
     grid-template-columns: 25% 25% 25%;
-    width: 70%;
+    grid-gap:0 3.5%;
+    width: 80%;
     height: 100px;
-    margin-left: 52.5%;
+    margin-left: 39%;
 }
 
 #searchLabel{
@@ -71,10 +72,10 @@ padding-top: 1%;
     cursor: pointer;
 }
 
-#homeBtn{
+#userTitle{
     font-size: 200%;
     font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+    width: fit-content;
 }
 
 .homeButtons{
@@ -94,8 +95,8 @@ padding-top: 1%;
     background-color: rgb(60, 60, 60);
 }
 
-#aboutBtn{
-    transform: translateX(25%);
+#accountBtn{
+    transform: translateX(32%);
 }
 
 /*=========================CENTRAL PAGE TITLE=============================*/
@@ -111,8 +112,8 @@ display: block;
 -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
-/*=========================ABOUT PROMPT BOX===============================*/
-#aboutModal{
+/*=========================ACCOUNT PROMPT BOX===============================*/
+#accountModal{
   display: none;
   position: fixed; 
   z-index: 1;
@@ -125,7 +126,7 @@ display: block;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#aboutContainer{
+#accountContainer{
  margin-left: auto;
  margin-right: auto;
  width: 400px;
@@ -136,23 +137,23 @@ display: block;
  padding: .75%;
 }
 
-#aboutSecondaryContainer{
+#accountSecondaryContainer{
 background-color: rgba(145, 88, 41, 0.75);
 margin-left: auto;
 margin-right: auto;
 padding: 2%;
 }
 
-#aboutTitle{
+#accountTitle{
 font-style: italic;
 font-weight: bold;
 font-size: 200%;
 font-family: Arial, Helvetica, sans-serif; 
 text-align: center;
-color: white;
+color: orange;
 }
 
- #aboutCloseButton{
+ #accountCloseButton{
     background-color: rgb(0, 0, 0);
     color: white;
     font-family: Arial, Helvetica, sans-serif; 
@@ -165,17 +166,136 @@ color: white;
     margin-left: 85%;
   }
 
-#aboutCloseButton:hover {
+#accountCloseButton:hover {
     background-color:rgb(60, 60, 60);
   }
   
-#aboutContents{
+#accountContents{
 padding-left: 5%;
 padding-right: 5%;
 margin-top: 5%;
 font-family: Arial, Helvetica, sans-serif;
 color: white;
 }
+
+/*--------------Edit Acct Info---------------------*/
+.editUsernamePasswordGrid{
+    display: grid;
+    grid-template-columns: 25% 50% 20%;
+    grid-gap: 10% 2%;
+    }
+    
+    #editpasswordbtn, #editusernamebtn, #saveUsernameBtn, #savePasswordBtn{
+       cursor: pointer;
+       border-radius: 10px;
+       background-color: rgb(0, 0, 0);
+       border: 2px double white;
+       color: white;
+   }
+    
+    
+   #editusernamebtn, #editpasswordbtn{
+       text-align: center;
+       font-family: arial;
+       font-size: 85%;
+       padding-top: 2%;
+       padding-bottom: 3%;
+   }
+   
+   #saveUsernameBtn, #savePasswordBtn{
+   display: none;
+   }
+   
+   #editpasswordbtn:hover, #editusernamebtn:hover, #saveUsernameBtn:hover, #savePasswordBtn:hover{
+       background-color: rgb(60, 60, 60);
+   }
+   
+   #editedusername{
+   display:none;
+   }
+   
+   .userInput{
+   border-radius: 10px;
+   padding: 2px;
+   }
+   
+   #editPassowrdForm{
+   margin-top: 2%;
+   }
+   
+   #newPasswordContainer{
+   display: none;
+   margin-left: 22.5%;
+   }
+   
+   .inputSpace{
+   margin-bottom: 2%; 
+   }
+   
+   #oldPasswordLabel{
+   margin-left: 17%;
+   }
+   
+   #newPasswordLabel{
+   margin-left: 15%;
+   }
+   
+   #reEnteredNewPWDLabel{
+   margin-left: 2%;
+   }
+   
+   /*------Edit Account Username Lower Half----------------*/
+   #uNeditStatusMsg{
+   padding-top: 4%;
+   padding-bottom: 4%;
+   }
+   
+   #editUNLowerHalf{
+   display: none;
+   }
+   
+   /*-------Edit Account: Delete Account--------------*/
+   #orNote{
+   padding-top: 4%;
+   padding-bottom: 4%;
+   text-align: center;
+   font-weight: bold;
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   }
+   
+   #deleteAcctGrid{
+   display: grid;
+   grid-template-columns: 10% 70%
+   }
+   
+   #deleteAcctForm{
+   display: grid;
+   grid-template-columns: 60% 30%;
+   grid-gap: 0 5%;
+   }
+   
+   #deleteAcctBtn{
+   cursor: pointer;
+       border-radius: 10px;
+       background-color: rgb(0, 0, 0);
+       border: 2px double white;
+       width: 80%;
+       color: white;
+   }
+   
+   #deleteAcctBtn:hover{
+   background-color: orange;
+   }
+   
+   #deleteMsgAndConfirmSect{
+   display: none;
+   }
+
+   .editAcctFieldLabel{
+       color: orange;
+       font-weight: bold;
+   }
 
 /*=========================SIGN UP PROMPT BOX===============================*/
 #signupModal{
@@ -218,12 +338,6 @@ text-align: center;
 color: orange;
 }
 
-.formInput{
-    border-radius: 5px;
-    border: 1px solid black;
-    margin-bottom: 3%;
-}
-
 #signupBtnsGrid{
 display: grid;
 grid-template-columns: 30% 30%;
@@ -238,8 +352,7 @@ margin-left: 66%;
     border: white 1px solid;
     border-radius: 5px;
     cursor: pointer;
-    /*margin-left: 85%;*/
-  }
+   }
   
  #signupCloseButton{
     background-color: rgb(0, 0, 0);
@@ -262,24 +375,9 @@ margin-left: 27.5%;
 margin-top: 5%;
 }
 
-/* .signupFormLabel{
-font-family: Arial, Helvetica, sans-serif;
-color: orange;
-font-weight: bold;  
-}
-
-.signupPasswordBlock{
-margin-left: .5%;
-}
-
-#confirmNewPWBlock{
-    margin-left: -10%;
-} */
-
 /*=========================LOGIN PROMPT BOX===============================*/
 #loginModal{
   display: none;
-  /* position: relative; */
   position: fixed; 
   z-index: 1;
   padding-top: 150px;
@@ -318,12 +416,6 @@ text-align: center;
 color: orange;
 }
 
-.formInput{
-    border-radius: 5px;
-    border: 1px solid black;
-    margin-bottom: 3%;
-}
-
 #loginBtnsGrid{
 display: grid;
 grid-template-columns: 30% 30%;
@@ -338,7 +430,6 @@ margin-left: 66%;
     border: white 1px solid;
     border-radius: 5px;
     cursor: pointer;
-    /*margin-left: 85%;*/
   }
   
  #loginCloseButton{
@@ -351,7 +442,6 @@ margin-left: 66%;
     border-radius: 5px;
     cursor: pointer;
     padding-top: 1px;
-    /*margin-left: 85%;*/
   }
 
 #loginSubmitBtn:hover, #loginCloseButton:hover {
@@ -362,13 +452,3 @@ margin-left: 66%;
 margin-left: 27.5%;
 margin-top: 5%;
 }
-
-/* .loginFormLabel{
-font-family: Arial, Helvetica, sans-serif;
-color: orange;
-font-weight: bold; 
-}
-
-#loginPasswordBlock{
-margin-left: .5%;
-} */
