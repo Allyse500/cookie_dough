@@ -18,7 +18,7 @@
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
           <div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">My Recipes</div>
-          <div id="loginBtn" class="homeButtons" onclick="loginPromptBox()">Log Out</div>
+          <form id="loginForm" action="/logout" method="POST"><button name="logoutBtn" class="homeButtons">Log Out</button></form>
         </div><!--end of id="buttonsGrid"-->
     </div><!--end of id="headerGrid"-->
 </div><!--end of id="navbar"-->
@@ -115,26 +115,6 @@
         </div><!--end of id="signupFormSecondaryContainer-->
     </div><!--end of id="signupFormContainer"-->
 </div><!--end of id="signupModal"-->
-
-<!--========================LOGIN PROMPT BOX===========================================-->
-
-        <div id="loginModal">
-            <div id="loginFormContainer">
-                <div id="loginFormSecondaryContainer">
-                    <div id="loginFormTitle">Login</div>
-                    <form id="loginForm" action="includes/login.inc.php" method="POST">
-                        <div id="loginInputContents">
-                            <input class="userInput inputSpace" type="text" id="username" name="username" placeholder ="Email or Username..."><br>
-                            <input class="userInput inputSpace" type="password" id="password" name="pwd" placeholder="Password...">
-                        </div><!--end of id="loginInputContents" -->
-                        <br>
-                        <div id="loginBtnsGrid">
-                            <button id="loginSubmitBtn" name="loginSubmit">Submit</button><div id="loginCloseButton" onclick="closelogin()">Close</div>
-                        </div><!--end of id="loginBtnsGrid"-->
-                    </form><!--end of id="loginForm"-->
-                </div><!--end of id="loginFormSecondaryContainer-->
-            </div><!--end of id="loginFormContainer"-->
-        </div><!--end of id="loginModal"-->
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
@@ -291,19 +271,6 @@ function closesignup(){
 document.getElementById("signupModal").style.display ="none";
 }//end of closesignup()
 
-//===========================LOGIN PROMPT BOX====================================//
-//display login prompt box-------------------------------------------------------------
-function loginPromptBox(){
-document.getElementById("loginModal").style.display ="block";
-document.getElementById("username").value ="";
-document.getElementById("password").value ="";
-}//end of loginPromptBox()
-
-//close login prompt box-------------------------------------------------------------
-function closelogin(){
-document.getElementById("loginModal").style.display ="none";
-}//end of closelogin()
-       
 </script>
 
 </body>
