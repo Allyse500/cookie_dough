@@ -34,47 +34,59 @@
             <div id="accountTitle">Account</div>
             <div id="accountContents">
             <!--edit username section ----------------->
-    <form action="/editUsername" method="POST" >
-    <div class="editUsernamePasswordGrid">
-    <div class="editAcctFieldLabel">username: </div><div id="currentUserName"><%= name %></div><input id="editedusername" name="editedusername" class="userInput"><div id="editusernamebtn" onclick="editusername()">Edit</div><button id="saveUsernameBtn">Save</button>
-    </div><!--end of username upper half class="editUsernamePasswordGrid"-->
-    <div id="editUNLowerHalf">
-    <div id="uNeditStatusMsg">Please enter password to confirm.</div>
-    <div class="editUsernamePasswordGrid">
-    <div>password: </div><input id="currentPWEditUN" type="password" name="currentPWEditUN" class="userInput">
-    </div><!--end of username lower half class="editUsernamePasswordGrid"-->
-    </div><!--end of id="editUNLowerHalf" -->
-    </form>
+                <form action="/editUsername" method="POST" >
+                    <div class="editUserAcctGrid">
+                    <div class="editAcctFieldLabel">username: </div><div id="currentUserName"><%= name %></div><input id="editedusername" name="editedusername" class="userInput"><div id="editusernamebtn" onclick="editusername()">Edit</div><button id="saveUsernameBtn">Save</button>
+                    </div><!--end of username upper half class="editUserAcctGrid"-->
+                    <div id="editUNLowerHalf">
+                    <div id="uNeditStatusMsg">Please enter password to confirm.</div>
+                    <div class="editUserAcctGrid">
+                    <div>password: </div><input id="currentPWEditUN" type="password" name="currentPWEditUN" class="userInput">
+                    </div><!--end of username lower half class="editUserAcctGrid"-->
+                    </div><!--end of id="editUNLowerHalf" -->
+                </form>
+            <!--edit email section ----------------->
+                <form class="editAcctForm" action="/editEmail" method="POST" >
+                    <div class="editUserAcctGrid">
+                    <div class="editAcctFieldLabel">email: </div><div id="currentEmail"><%= email %></div><input id="editedEmail" name="editedEmail" class="userInput"><div id="editEmailBtn" onclick="editEmail()">Edit</div><button id="saveEmailBtn">Save</button>
+                    </div><!--end of email upper half class="editUserAcctGrid"-->
+                    <div id="editEmailLowerHalf">
+                    <div id="eMeditStatusMsg">Please enter password to confirm.</div>
+                    <div class="editUserAcctGrid">
+                    <div>password: </div><input id="currentPWEditEM" type="password" name="currentPWEditEM" class="userInput">
+                    </div><!--end of email lower half class="editUserAcctGrid"-->
+                    </div><!--end of id="editEmailLowerHalf" -->
+                </form>
     
-    <!--edit passowrd section--------------->
-    <form id ="editPassowrdForm" action="/editPassword" method="POST">
-    <div class="editUsernamePasswordGrid">
-    <div class="editAcctFieldLabel">password: </div><div id="currentPassword">****</div><div id="editpasswordbtn" onclick="editpassword()">Edit</div><button id="savePasswordBtn">Save</button>
-    </div><!--end of password class="editUsernamePasswordGrid"-->
+            <!--edit passowrd section--------------->
+                <form id ="editPassowrdForm" class="editAcctForm" action="/editPassword" method="POST">
+                    <div class="editUserAcctGrid">
+                    <div class="editAcctFieldLabel">password: </div><div id="currentPassword">****</div><div id="editpasswordbtn" onclick="editpassword()">Edit</div><button id="savePasswordBtn">Save</button>
+                    </div><!--end of password class="editUserAcctGrid"-->
+                    
+                    <div id="newPasswordContainer">
+                    <br>
+                    <input id="oldPassword" name="oldPassword" type="password" class="userInput inputSpace" placeholder="Old Password..."><br>
+                    <input id="newPassword" name="newPassword" type="password" class="userInput inputSpace" placeholder="New Password..."><br>
+                    <input id="reEnteredNewPWD" name="reEnteredNewPWD" type="password" class="userInput inputSpace" placeholder="Confifrm New Password...">
+                    <!--<div id="submissionStatusMsg"></div>-->
+                    </div><!--end of id="newPasswordContainer"-->
+                    
+                </form><!--end of id ="editPassowrdForm" -->
+            <div id="orNote">OR</div>
     
-    <div id="newPasswordContainer">
-    <br>
-    <input id="oldPassword" name="oldPassword" type="password" class="userInput inputSpace" placeholder="Old Password..."><br>
-    <input id="newPassword" name="newPassword" type="password" class="userInput inputSpace" placeholder="New Password..."><br>
-    <input id="reEnteredNewPWD" name="reEnteredNewPWD" type="password" class="userInput inputSpace" placeholder="Confifrm New Password...">
-    <!--<div id="submissionStatusMsg"></div>-->
-    </div><!--end of id="newPasswordContainer"-->
-    
-    </form><!--end of id ="editPassowrdForm" -->
-    <div id="orNote">OR</div>
-    
-    <!--delete account section------------------------------------------->
-    <div id="deleteAcctSection">
-    <div id="deleteAcctGrid">
-    <input id="deleteAccountCheckBox" type="checkbox" onclick="deleteAcct()"><div class="editAcctFieldLabel">Delete Account</div>
-    </div><!--end of id="deleteAcctGrid" -->
-    <div id="deleteMsgAndConfirmSect">
-    <div>*This will delete all records of this user account. Please enter password to acknowledge this message and submit.</div>
-    <form id="deleteAcctForm" method="POST" action="/deleteAcct">
-    <input type="password" id="deleteAcctuserPW" name="deleteAcctuserPW" class="userInput inputSpace"><button id="deleteAcctBtn">Delete</button>
-    </form><!--end of id="deleteAcctForm"-->
-    </div><!--end of id="deleteMsgAndConfirmSect" -->
-    </div><!--end of id="deleteAcctSection" -->
+            <!--delete account section------------------------------------------->
+            <div id="deleteAcctSection">
+                <div id="deleteAcctGrid">
+                    <input id="deleteAccountCheckBox" type="checkbox" onclick="deleteAcct()"><div class="editAcctFieldLabel">Delete Account</div>
+                </div><!--end of id="deleteAcctGrid" -->
+                <div id="deleteMsgAndConfirmSect">
+                    <div>*This will delete all records of this user account. Please enter password to acknowledge this message and submit.</div>
+                    <form id="deleteAcctForm" method="POST" action="/deleteAcct">
+                        <input type="password" id="deleteAcctuserPW" name="deleteAcctuserPW" class="userInput inputSpace"><button id="deleteAcctBtn">Delete</button>
+                    </form><!--end of id="deleteAcctForm"-->
+                </div><!--end of id="deleteMsgAndConfirmSect" -->
+            </div><!--end of id="deleteAcctSection" -->
     
             </div><!--end of id="accountContents" -->
             <div id="accountCloseButton" onclick="closeaccount()">Close</div>
@@ -143,6 +155,12 @@ document.getElementById("currentUserName").style.display ="block";
 document.getElementById("saveUsernameBtn").style.display = "none";
 document.getElementById("editUNLowerHalf").style.display = "none";
 
+document.getElementById("editedEmail").style.display = "none";
+document.getElementById("editEmailBtn").style.display = "block";
+document.getElementById("currentEmail").style.display ="block";
+document.getElementById("saveEmailBtn").style.display = "none";
+document.getElementById("editEmailLowerHalf").style.display = "none";
+
 document.getElementById("newPasswordContainer").style.display ="none";
 document.getElementById("savePasswordBtn").style.display="none";
 document.getElementById("editpasswordbtn").style.display="block";
@@ -163,6 +181,12 @@ document.getElementById("editedusername").value = currentUserName;
 document.getElementById("currentPWEditUN").value = "";
 document.getElementById("editUNLowerHalf").style.display = "block";
 
+document.getElementById("editedEmail").style.display = "none";
+document.getElementById("editEmailBtn").style.display = "block";
+document.getElementById("currentEmail").style.display ="block";
+document.getElementById("saveEmailBtn").style.display = "none";
+document.getElementById("editEmailLowerHalf").style.display = "none";
+
 document.getElementById("newPasswordContainer").style.display ="none";
 document.getElementById("savePasswordBtn").style.display="none";
 document.getElementById("editpasswordbtn").style.display="block";
@@ -171,6 +195,34 @@ document.getElementById("deleteAccountCheckBox").checked = false;
 document.getElementById("deleteMsgAndConfirmSect").style.display="none";
 
 }//end of editusername()
+
+//display to edit email--------------------------
+function editEmail(){
+var currentEmail = document.getElementById("currentEmail").innerText;
+
+document.getElementById("editEmailBtn").style.display = "none";
+document.getElementById("currentEmail").style.display ="none";
+document.getElementById("saveEmailBtn").style.display = "block";
+document.getElementById("editedEmail").style.display = "block";
+document.getElementById("editedEmail").value = currentEmail;
+document.getElementById("currentPWEditEM").value = "";
+document.getElementById("editEmailLowerHalf").style.display = "block";
+
+document.getElementById("editedusername").style.display = "none";
+document.getElementById("editusernamebtn").style.display = "block";
+document.getElementById("currentUserName").style.display ="block";
+document.getElementById("saveUsernameBtn").style.display = "none";
+document.getElementById("editUNLowerHalf").style.display = "none";
+
+document.getElementById("newPasswordContainer").style.display ="none";
+document.getElementById("savePasswordBtn").style.display="none";
+document.getElementById("editpasswordbtn").style.display="block";
+
+document.getElementById("deleteAccountCheckBox").checked = false;
+document.getElementById("deleteMsgAndConfirmSect").style.display="none";
+
+}//end of editEmail()
+
 
 //display to edit password---------------------------
 function editpassword(){
@@ -187,6 +239,12 @@ document.getElementById("currentUserName").style.display ="block";
 document.getElementById("saveUsernameBtn").style.display = "none";
 document.getElementById("editUNLowerHalf").style.display = "none";
 
+document.getElementById("editedEmail").style.display = "none";
+document.getElementById("editEmailBtn").style.display = "block";
+document.getElementById("currentEmail").style.display ="block";
+document.getElementById("saveEmailBtn").style.display = "none";
+document.getElementById("editEmailLowerHalf").style.display = "none";
+
 document.getElementById("deleteAccountCheckBox").checked = false;
 document.getElementById("deleteMsgAndConfirmSect").style.display="none";
 }//end of editpassword()
@@ -198,15 +256,21 @@ if(check == true){
 document.getElementById("deleteMsgAndConfirmSect").style.display="block";
 document.getElementById("deleteAcctuserPW").value ="";
 
-document.getElementById("editpasswordbtn").style.display ="block";
-document.getElementById("savePasswordBtn").style.display ="none";
-document.getElementById("newPasswordContainer").style.display ="none";
-
 document.getElementById("editedusername").style.display = "none";
 document.getElementById("editusernamebtn").style.display = "block";
 document.getElementById("currentUserName").style.display ="block";
 document.getElementById("saveUsernameBtn").style.display = "none";
 document.getElementById("editUNLowerHalf").style.display = "none";
+
+document.getElementById("editedEmail").style.display = "none";
+document.getElementById("editEmailBtn").style.display = "block";
+document.getElementById("currentEmail").style.display ="block";
+document.getElementById("saveEmailBtn").style.display = "none";
+document.getElementById("editEmailLowerHalf").style.display = "none";
+
+document.getElementById("editpasswordbtn").style.display ="block";
+document.getElementById("savePasswordBtn").style.display ="none";
+document.getElementById("newPasswordContainer").style.display ="none";
 }
 else{
 document.getElementById("deleteMsgAndConfirmSect").style.display="none";}
