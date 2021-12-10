@@ -17,7 +17,7 @@
         <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
-          <div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">My Recipes</div>
+          <div id="myRecipesBtn" class="homeButtons" onclick="myRecipesPromptBox()">My Recipes</div>
           <form id="loginForm" action="/logout" method="POST"><button name="logoutBtn" class="homeButtons">Log Out</button></form>
         </div><!--end of id="buttonsGrid"-->
     </div><!--end of id="headerGrid"-->
@@ -94,27 +94,23 @@
     </div><!--end of id="accountContainer"-->
 </div><!--end of id="accountModal"-->
 
-<!--========================SIGN UP PROMPT BOX===========================================-->       
+<!--========================MY RECIPES PROMPT BOX===========================================-->       
 
-<div id="signupModal">
-    <div id="signupFormContainer">
-        <div id="signupFormSecondaryContainer">
-            <div id="signupFormTitle">Sign Up</div>
-            <form id="signupForm" action ="includes/sign_up.inc.php" method="POST">
-                <div id="signupInputContents">
-                  <input class="userInput inputSpace" type="text" id="newUsername" name="newUsername" placeholder ="Username..."><br>
-                  <input class="userInput inputSpace" type="email" id="newUserEmail" name="newUserEmail" placeholder ="Email..."><br>
-                  <input class="userInput inputSpace" type="password" id="newPassword" name="newPassword" placeholder="Password..."><br>
-                  <input class="userInput inputSpace" type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password...">
-                </div><!--end of id="signupInputContents" -->
+<div id="myRecipesModal">
+    <div id="myRecipesListContainer">
+        <div id="myRecipesListSecondaryContainer">
+            <div id="myRecipesListTitle">My Recipes</div>
+            <div id="myRecipesList">
+                <div id="numLoggedRecipesMsg">No logged recipes.</div>
+                <div id="myRecipesInputContents"></div><!--end of id="myRecipesInputContents", empty array of recipes -->
                 <br>
-                <div id="signupBtnsGrid">
-                    <button id="signupSubmitBtn" name = "submitSignUp">Submit</button><div id="signupCloseButton" onclick="closesignup()">Close</div>
-                </div><!--end of id="signupBtnsGrid"-->
-            </form><!--end of id="signupForm"-->
-        </div><!--end of id="signupFormSecondaryContainer-->
-    </div><!--end of id="signupFormContainer"-->
-</div><!--end of id="signupModal"-->
+                <div id="myRecipesBtnsGrid">
+                    <div id="newRecipeForm"><button id="newRecipe" name="newRecipe" onclick="newRecipe()">New</button></div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
+                </div><!-- end of id="myRecipesBtnsGrid" -->
+            </div><!--end of id="myRecipesList"-->
+        </div><!--end of id="myRecipesListSecondaryContainer-->
+    </div><!--end of id="myRecipesListContainer"-->
+</div><!--end of id="myRecipesModal"-->
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
@@ -256,20 +252,20 @@ else{
 document.getElementById("deleteMsgAndConfirmSect").style.display="none";}
 }//end of deleteAcct()
 
-//==========================SIGN UP PROMPT BOX===================================//
-//display signup prompt box-------------------------------------------------------------
-function signupPromptBox(){
-document.getElementById("signupModal").style.display ="block";
+//==========================MY RECIPES PROMPT BOX===================================//
+//display myRecipes prompt box-------------------------------------------------------------
+function myRecipesPromptBox(){
+document.getElementById("myRecipesModal").style.display ="block";
 document.getElementById("newUsername").value ="";
 document.getElementById("newPassword").value ="";
 document.getElementById("newUserEmail").value ="";
 document.getElementById("confirmNewPassword").value="";
-}//end of signupPromptBox()
+}//end of myRecipesPromptBox()
 
-//close signup prompt box-------------------------------------------------------------
-function closesignup(){
-document.getElementById("signupModal").style.display ="none";
-}//end of closesignup()
+//close myRecipes prompt box-------------------------------------------------------------
+function closemyRecipes(){
+document.getElementById("myRecipesModal").style.display ="none";
+}//end of closemyRecipes()
 
 </script>
 

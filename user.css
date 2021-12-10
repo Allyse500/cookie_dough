@@ -308,7 +308,7 @@ color: white;
    }
 
 /*=========================SIGN UP PROMPT BOX===============================*/
-#signupModal{
+#myRecipesModal{
   display: none;
   position: fixed; 
   z-index: 1;
@@ -321,7 +321,7 @@ color: white;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#signupFormContainer{
+#myRecipesListContainer{
  margin-left: auto;
  margin-right: auto;
  width: 400px;
@@ -332,14 +332,14 @@ color: white;
  padding: .75%;
 }
 
-#signupFormSecondaryContainer{
+#myRecipesListSecondaryContainer{
 background-color: rgba(145, 88, 41, 0.75);
 margin-left: auto;
 margin-right: auto;
 padding: 2%;
 }
 
-#signupFormTitle{
+#myRecipesListTitle{
 font-style: italic;
 font-weight: bold;
 font-size: 200%;
@@ -348,23 +348,15 @@ text-align: center;
 color: orange;
 }
 
-#signupBtnsGrid{
-display: grid;
-grid-template-columns: 30% 30%;
-grid-gap: 0% 5%;
-width: 200px;
-margin-left: 66%;
-}
+#myRecipesBtnsGrid{
+    display: grid;
+    grid-template-columns: 25% 30%;
+    grid-gap: 0% 5%;
+    width: 200px;
+    margin-left: 69%;
+    }
 
-#signupSubmitBtn{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: white 1px solid;
-    border-radius: 5px;
-    cursor: pointer;
-   }
-  
- #signupCloseButton{
+ #myRecipesCloseButton{
     background-color: rgb(0, 0, 0);
     color: white;
     font-family: Arial, Helvetica, sans-serif; 
@@ -376,11 +368,27 @@ margin-left: 66%;
     padding-top: 1px;
   }
 
-#signupSubmitBtn:hover, #signupCloseButton:hover {
+#numLoggedRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1%;
+}
+
+#myRecipesCloseButton:hover {
     background-color:rgb(60, 60, 60);
   }
-  
-#signupInputContents{
-margin-left: 27.5%;
-margin-top: 5%;
+
+#newRecipe{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-left: 13px;
+    padding-right: 13px;  
+}
+
+#newRecipe:hover{
+    background-color: rgb(60, 60, 60);
 }
