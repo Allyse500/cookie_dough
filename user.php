@@ -127,11 +127,32 @@
             <textarea id="ingredients" class="newRecipeInputs textarea" rows="8" cols="32"></textarea>
             <br>
             <div id="newRecipeBtnsGrid">
-                <div id="savenewRecipeForm"><button id="savenewRecipe" class="newRecipeBtn" name="savenewRecipe" onclick="savenewRecipe()">Save</button></div><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Close</div>
+                <div id="savenewRecipeForm"><button id="savenewRecipe" class="newRecipeBtn" name="savenewRecipe" onclick="savenewRecipe()">Save</button></div><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Cancel</div>
             </div><!-- end of id="newRecipeBtnsGrid" -->
         </div><!--end of id="newRecipeSecondaryContainer-->
     </div><!--end of id="newRecipeContainer"-->
 </div><!--end of id="newRecipeModal"-->
+
+<!--========================RECIPE PROMPT BOX===========================================-->       
+
+<div id="recipeModal">
+    <div id="recipeContainer">
+        <div id="recipeSecondaryContainer">
+            <div id="recipeHeaderGrid">
+                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div>
+            </div><!--end of id="recipeHeaderGrid"-->
+            <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
+            <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
+            <div id="preparationTitle" class="recipeLabel">Preparation:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="8" cols="32"></textarea>
+            <br>
+            <div id="recipeBtnsGrid">
+                <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
+            </div><!-- end of id="recipeBtnsGrid" -->
+        </div><!--end of id="recipeSecondaryContainer-->
+    </div><!--end of id="recipeContainer"-->
+</div><!--end of id="recipeModal"-->
 
 <!--=====================DELETE RECIPE CONFIRMATION PROMPT BOX=================================-->
 <div id="drcModal">
@@ -313,20 +334,27 @@ document.getElementById("recipeModal").style.display = "none";
 }
 
 //========================NEW RECIPE PROMPT BOX===========================================//      
-//display delete recipe confirm (drc) prompt box-------------------------
+//cancel new recipe-------------------------------------------------------
+function cancelNewRecipe(){
+    document.getElementById("newRecipeModal").style.display ="none";
+}
+
+//return to My Recipies prompt box----------------------------------------
+function newRecipeModalBackBtn(){
+    document.getElementById("newRecipeModal").style.display = "none";
+    document.getElementById("myRecipesModal").style.display ="block";  
+}
+
+//========================RECIPE PROMPT BOX===========================================//      
+//display delete recipe confirmation prompt box--------------------------
 function drcModal(){
     document.getElementById("recipeModal").style.display ="none";
     document.getElementById("drcModal").style.display ="block";
 }
-//return to recipe prompt box---------------------------------------------
+//cancel delete request by returning to recipe prompt box----------------
 function canceldrc(){
-    document.getElementById("newRecipeModal").style.display ="block";
+    document.getElementById("recipeModal").style.display ="block";
     document.getElementById("drcModal").style.display ="none";
-}
-
-//cancel new recipe-------------------------------------------------------
-function cancelNewRecipe(){
-    document.getElementById("newRecipeModal").style.display ="none";
 }
 
 //return to My Recipies prompt box----------------------------------------

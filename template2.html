@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head>
+<style>
+    /*=========================MY RECIPES PROMPT BOX===============================*/
+#myRecipesModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#myRecipesListContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#myRecipesListSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#myRecipesListTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+#myRecipesBtnsGrid{
+    display: grid;
+    grid-template-columns: 25% 30%;
+    grid-gap: 0% 5%;
+    width: 200px;
+    margin-left: 69%;
+    }
+
+ #myRecipesCloseButton, #newRecipe{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+  }
+
+#numLoggedRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#myRecipesCloseButton:hover, #newRecipe:hover {
+    background-color:rgb(60, 60, 60);
+  }
+
+#myRecipesInputContents{
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 135px;
+    overflow-y: auto;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(255, 255, 255, .2);
+}
+
+.recipeOpt{
+    text-align: center;
+    padding: 2%;
+    border-radius: 4px;
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.recipeOpt:hover{
+    background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+}
+
+</style>
+</head>
+
+<body>
+<!--========================MY RECIPES PROMPT BOX===========================================-->       
+
+<div id="myRecipesModal">
+    <div id="myRecipesListContainer">
+        <div id="myRecipesListSecondaryContainer">
+            <div id="myRecipesListTitle">My Recipes</div>
+            <div id="myRecipesList">
+                <div id="numLoggedRecipesMsg"><span style="font-weight:bold; color:orange;">8</span> logged recipes.</div>
+                <div id="myRecipesInputContents">
+                    <div class="recipeOpt">Sugar Cookies</div>
+                    <div class="recipeOpt">Chocolate Chip</div>
+                    <div class="recipeOpt">Oatmeal</div>
+                    <div class="recipeOpt">Ginger Snap</div>
+                    <div class="recipeOpt">Brownie</div>
+                    <div class="recipeOpt">Lemon</div>
+                    <div class="recipeOpt">Oreo</div>
+                    <div class="recipeOpt">Cinnamon</div>
+                </div><!--end of id="myRecipesInputContents", empty array of recipes -->
+                <br>
+                <div id="myRecipesBtnsGrid">
+                    <div id="newRecipe" name="newRecipe" onclick="newRecipe()">New</div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
+                </div><!-- end of id="myRecipesBtnsGrid" -->
+            </div><!--end of id="myRecipesList"-->
+        </div><!--end of id="myRecipesListSecondaryContainer-->
+    </div><!--end of id="myRecipesListContainer"-->
+</div><!--end of id="myRecipesModal"-->
+</body>
+</html>
