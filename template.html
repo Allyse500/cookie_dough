@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<head>
+
+<style>
+/*=========================RECIPE PROMPT BOX===============================*/
+#recipeModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#recipeContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 280px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#recipeSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 4%;
+height: fit-content;
+}
+
+#recipeHeaderGrid{
+    display: grid;
+    grid-template-columns: 12% 65%;
+    grid-gap: 0 5%;
+}
+
+#recipeModalBackBtn{
+    color: white;
+    border: 2px double white;
+    border-radius: 4px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    height: fit-content;
+}
+
+#recipeModalBackBtn:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+#recipeContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+}
+
+#recipeFormTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+#recipeTitle{
+   border-radius: 4px;
+   width: 96.5%; 
+   margin-bottom: 3%;
+}
+
+.recipeInputs{
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.textarea{
+    resize: none;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.recipeLabel{
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+font-weight: bold;
+margin-bottom: 1%;
+}
+
+#recipeBtnsGrid{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 0 5%;
+    width:80%;
+    margin-left: 10%;
+}
+
+#recipeCloseButton{
+    margin-left: -7%;
+}
+
+.recipeBtn{
+    cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 2px double white;
+       width: 100%;
+       color: white;
+       text-align: center;
+       font-family: Arial, Helvetica, sans-serif;
+}
+
+.recipeBtnDiv{
+    font-size: 85%;
+    padding-top: 1.5%;
+}
+
+.recipeBtn:hover{
+       background-color: rgb(60, 60, 60);
+}
+
+/*==================DELETE RECIPE CONFIRMATION PROMPT BOX===================*/
+#drcModal{
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#drcContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#drcSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#drcTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: white;
+}
+
+#drcContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+margin-bottom: 3%;
+}
+
+#drcNameField{
+    margin-bottom: 1%;
+}
+
+#drcRecipeName{
+    font-weight: bold;
+    color: orange;
+}
+
+#drcDelBtnsGrid{
+    display: grid;
+    grid-template-columns: 30% 30%;
+    grid-gap: 0 5%;
+    width: 50%;
+    margin-left: 32.5%;
+}
+  
+#drcDelBtn:hover{
+background-color: orange;
+}
+
+.drcBtns{
+    cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 2px double white;
+       width: 100%;
+       color: white;
+       text-align: center;
+       font-family: Arial, Helvetica, sans-serif;
+}
+
+.drcBtnsDiv{
+    font-size: 85%;
+    padding-top: 1.5%;
+}
+
+.drcBtnsDiv:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+</style>
+
+</head>
+<body>
+<!--========================RECIPE PROMPT BOX===========================================-->       
+
+<div id="recipeModal">
+    <div id="recipeContainer">
+        <div id="recipeSecondaryContainer">
+            <div id="recipeHeaderGrid">
+                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div>
+            </div><!--end of id="recipeHeaderGrid"-->
+            <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
+            <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
+            <div id="preparationTitle" class="recipeLabel">Preparation:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="8" cols="32"></textarea>
+            <br>
+            <div id="recipeBtnsGrid">
+                <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
+            </div><!-- end of id="recipeBtnsGrid" -->
+        </div><!--end of id="recipeSecondaryContainer-->
+    </div><!--end of id="recipeContainer"-->
+</div><!--end of id="recipeModal"-->
+
+<!--=====================DELETE RECIPE CONFIRMATION PROMPT BOX=================================-->
+<div id="drcModal">
+    <div id="drcContainer">
+        <div id="drcSecondaryContainer">
+            <div id="drcTitle">Delete Recipe</div>
+            <div id="drcContents">
+                <div id="drcNameField">Recipe Name: <span id="drcRecipeName">Chocolate Chip</span></div>
+                Are you sure you would like to delete this recipe?
+            </div><!--end of id="drcContents"-->
+            <div id="drcDelBtnsGrid">
+                <form id="drcDelBtnForm" action="delRecipe.php" method="POST"><button id="drcDelBtn" class="drcBtns" name="drcDelBtn">Delete</button></form><div id="drcCancelButton" class="drcBtns drcBtnsDiv" onclick="canceldrc()">Cancel</div>
+            </div><!--end of id="drcDelBtnsGrid"-->
+        </div><!--end of id="drcSecondaryContainer-->
+    </div><!--end of id="drcContainer"-->
+</div><!--end of id="drcModal"-->
+
+<!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
+<script>
+function drcModal(){
+    document.getElementById("recipeModal").style.display ="none";
+    document.getElementById("drcModal").style.display ="block";
+}
+
+function canceldrc(){
+    document.getElementById("recipeModal").style.display ="block";
+    document.getElementById("drcModal").style.display ="none";
+}
+</script>
+</body>
+</html>

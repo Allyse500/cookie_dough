@@ -112,6 +112,26 @@
     </div><!--end of id="myRecipesListContainer"-->
 </div><!--end of id="myRecipesModal"-->
 
+<!--========================RECIPE PROMPT BOX===========================================-->       
+
+<div id="recipeModal">
+    <div id="recipeContainer">
+        <div id="recipeSecondaryContainer">
+            <label for="recipeTitle">Title: </label><input id="recipeTitle">
+            <div id="ingredientsTitle">Ingredients:</div>
+            <textarea id="ingredients" rows="3" cols="4"></textarea>
+            <div id="preparationTitle">Preparation:</div>
+            <textarea id="ingredients" rows="3" cols="4"></textarea>
+            <br>
+            <div id="recipeBtnsGrid">
+                <div id="delRecipe">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" onclick="closerecipe()">Close</div>
+            </div><!-- end of id="recipeBtnsGrid" -->
+        </div><!--end of id="recipeSecondaryContainer-->
+    </div><!--end of id="recipeContainer"-->
+</div><!--end of id="recipeModal"-->
+
+
+
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
         
@@ -256,10 +276,6 @@ document.getElementById("deleteMsgAndConfirmSect").style.display="none";}
 //display myRecipes prompt box-------------------------------------------------------------
 function myRecipesPromptBox(){
 document.getElementById("myRecipesModal").style.display ="block";
-document.getElementById("newUsername").value ="";
-document.getElementById("newPassword").value ="";
-document.getElementById("newUserEmail").value ="";
-document.getElementById("confirmNewPassword").value="";
 }//end of myRecipesPromptBox()
 
 //close myRecipes prompt box-------------------------------------------------------------
@@ -267,6 +283,16 @@ function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
 
+//display recipe form--------------------------------------------------------------------
+function newRecipe(){
+document.getElementById("recipeModal").style.display = "block";
+document.getElementById("myRecipesModal").style.display ="none";
+}//end of newRecipe()
+
+//close recipe form----------------------------------------------------------------------
+function closerecipe(){
+document.getElementById("recipeModal").style.display = "none";
+}
 </script>
 
 </body>
