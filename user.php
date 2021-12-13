@@ -117,19 +117,37 @@
 <div id="recipeModal">
     <div id="recipeContainer">
         <div id="recipeSecondaryContainer">
-            <label for="recipeTitle">Title: </label><input id="recipeTitle">
-            <div id="ingredientsTitle">Ingredients:</div>
-            <textarea id="ingredients" rows="3" cols="4"></textarea>
-            <div id="preparationTitle">Preparation:</div>
-            <textarea id="ingredients" rows="3" cols="4"></textarea>
+            <div id="recipeHeaderGrid">
+                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div>
+            </div><!--end of id="recipeHeaderGrid"-->
+            <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
+            <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
+            <div id="preparationTitle" class="recipeLabel">Preparation:</div>
+            <textarea id="ingredients" class="recipeInputs textarea" rows="8" cols="32"></textarea>
             <br>
             <div id="recipeBtnsGrid">
-                <div id="delRecipe">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" onclick="closerecipe()">Close</div>
+                <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
             </div><!-- end of id="recipeBtnsGrid" -->
         </div><!--end of id="recipeSecondaryContainer-->
     </div><!--end of id="recipeContainer"-->
 </div><!--end of id="recipeModal"-->
 
+<!--=====================DELETE RECIPE CONFIRMATION PROMPT BOX=================================-->
+<div id="drcModal">
+    <div id="drcContainer">
+        <div id="drcSecondaryContainer">
+            <div id="drcTitle">Delete Recipe</div>
+            <div id="drcContents">
+                <div id="drcNameField">Recipe Name: <span id="drcRecipeName">Chocolate Chip</span></div>
+                Are you sure you would like to delete this recipe?
+            </div><!--end of id="drcContents"-->
+            <div id="drcDelBtnsGrid">
+                <form id="drcDelBtnForm" action="delRecipe.php" method="POST"><button id="drcDelBtn" class="drcBtns" name="drcDelBtn">Delete</button></form><div id="drcCancelButton" class="drcBtns drcBtnsDiv" onclick="canceldrc()">Cancel</div>
+            </div><!--end of id="drcDelBtnsGrid"-->
+        </div><!--end of id="drcSecondaryContainer-->
+    </div><!--end of id="drcContainer"-->
+</div><!--end of id="drcModal"-->
 
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
@@ -293,6 +311,19 @@ document.getElementById("myRecipesModal").style.display ="none";
 function closerecipe(){
 document.getElementById("recipeModal").style.display = "none";
 }
+
+//========================RECIPE PROMPT BOX===========================================//      
+//display delete recipe confirm (drc) prompt box-------------------------
+function drcModal(){
+    document.getElementById("recipeModal").style.display ="none";
+    document.getElementById("drcModal").style.display ="block";
+}
+//return to recipe prompt box---------------------------------------------
+function canceldrc(){
+    document.getElementById("recipeModal").style.display ="block";
+    document.getElementById("drcModal").style.display ="none";
+}
+
 </script>
 
 </body>
