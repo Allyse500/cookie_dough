@@ -356,7 +356,7 @@ color: orange;
     margin-left: 69%;
     }
 
- #myRecipesCloseButton{
+ #myRecipesCloseButton, #newRecipe{
     background-color: rgb(0, 0, 0);
     color: white;
     font-family: Arial, Helvetica, sans-serif; 
@@ -375,26 +375,12 @@ color: orange;
     margin-top: 1%;
 }
 
-#myRecipesCloseButton:hover {
+#myRecipesCloseButton:hover, #newRecipe:hover {
     background-color:rgb(60, 60, 60);
   }
 
-#newRecipe{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: white 1px solid;
-    border-radius: 5px;
-    cursor: pointer;
-    padding-left: 13px;
-    padding-right: 13px;  
-}
-
-#newRecipe:hover{
-    background-color: rgb(60, 60, 60);
-}
-
-/*=========================RECIPE PROMPT BOX===============================*/
-#recipeModal{
+/*=========================NEW RECIPE PROMPT BOX===============================*/
+#newRecipeModal{
   display: none;
   position: fixed; 
   z-index: 1;
@@ -407,7 +393,7 @@ color: orange;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#recipeContainer{
+#newRecipeContainer{
  margin-left: auto;
  margin-right: auto;
  width: 280px;
@@ -418,7 +404,7 @@ color: orange;
  padding: .75%;
 }
 
-#recipeSecondaryContainer{
+#newRecipeSecondaryContainer{
 background-color: rgba(145, 88, 41, 0.75);
 margin-left: auto;
 margin-right: auto;
@@ -426,15 +412,15 @@ padding: 4%;
 height: fit-content;
 }
 
-#recipeHeaderGrid{
+#newRecipeHeaderGrid{
     display: grid;
-    grid-template-columns: 12% 65%;
+    grid-template-columns: 12% 75%;
     grid-gap: 0 5%;
 }
 
-#recipeModalBackBtn{
+#newRecipeModalBackBtn{
     color: white;
-    border: 2px double white;
+    border: 1px solid white;
     border-radius: 4px;
     padding-top: 1%;
     padding-bottom: 1%;
@@ -445,11 +431,11 @@ height: fit-content;
     height: fit-content;
 }
 
-#recipeModalBackBtn:hover{
+#newRecipeModalBackBtn:hover{
     background-color: rgb(60, 60, 60);
 }
 
-#recipeContents{
+#newRecipeContents{
 padding-left: 5%;
 padding-right: 5%;
 margin-top: 5%;
@@ -457,7 +443,7 @@ font-family: Arial, Helvetica, sans-serif;
 color: white;
 }
 
-#recipeFormTitle{
+#newRecipeFormTitle{
 font-style: italic;
 font-weight: bold;
 font-size: 200%;
@@ -466,13 +452,13 @@ text-align: center;
 color: orange;
 }
 
-#recipeTitle{
+#newRecipeTitle{
    border-radius: 4px;
    width: 96.5%; 
    margin-bottom: 3%;
 }
 
-.recipeInputs{
+.newRecipeInputs{
     border-radius: 10px;
     margin-bottom: 3%;
 }
@@ -483,42 +469,42 @@ color: orange;
     overflow-y:auto;
 }
 
-.recipeLabel{
+.newRecipeLabel{
 font-family: Arial, Helvetica, sans-serif;
 color: white;
 font-weight: bold;
 margin-bottom: 1%;
 }
 
-#recipeBtnsGrid{
+#newRecipeBtnsGrid{
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 30% 30%;
     grid-gap: 0 5%;
     width:80%;
-    margin-left: 10%;
+    margin-left: 25%;
 }
 
-#recipeCloseButton{
+#newRecipeCancelButton{
     margin-left: -7%;
 }
 
-.recipeBtn{
+.newRecipeBtn{
     cursor: pointer;
        border-radius: 4px;
        background-color: rgb(0, 0, 0);
-       border: 2px double white;
+       border: 1px solid white;
        width: 100%;
        color: white;
        text-align: center;
        font-family: Arial, Helvetica, sans-serif;
 }
 
-.recipeBtnDiv{
+.newRecipeBtnDiv{
     font-size: 85%;
     padding-top: 1.5%;
 }
 
-.recipeBtn:hover{
+.newRecipeBtn:hover{
        background-color: rgb(60, 60, 60);
 }
 
@@ -597,7 +583,7 @@ background-color: orange;
     cursor: pointer;
        border-radius: 4px;
        background-color: rgb(0, 0, 0);
-       border: 2px double white;
+       border: 1px solid white;
        width: 100%;
        color: white;
        text-align: center;

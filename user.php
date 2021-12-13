@@ -105,33 +105,33 @@
                 <div id="myRecipesInputContents"></div><!--end of id="myRecipesInputContents", empty array of recipes -->
                 <br>
                 <div id="myRecipesBtnsGrid">
-                    <div id="newRecipeForm"><button id="newRecipe" name="newRecipe" onclick="newRecipe()">New</button></div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
+                    <div id="newRecipe" name="newRecipe" onclick="newRecipe()">New</div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
                 </div><!-- end of id="myRecipesBtnsGrid" -->
             </div><!--end of id="myRecipesList"-->
         </div><!--end of id="myRecipesListSecondaryContainer-->
     </div><!--end of id="myRecipesListContainer"-->
 </div><!--end of id="myRecipesModal"-->
 
-<!--========================RECIPE PROMPT BOX===========================================-->       
+<!--========================NEW RECIPE PROMPT BOX===========================================-->       
 
-<div id="recipeModal">
-    <div id="recipeContainer">
-        <div id="recipeSecondaryContainer">
-            <div id="recipeHeaderGrid">
-                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div>
-            </div><!--end of id="recipeHeaderGrid"-->
-            <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
-            <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
-            <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
-            <div id="preparationTitle" class="recipeLabel">Preparation:</div>
-            <textarea id="ingredients" class="recipeInputs textarea" rows="8" cols="32"></textarea>
+<div id="newRecipeModal">
+    <div id="newRecipeContainer">
+        <div id="newRecipeSecondaryContainer">
+            <div id="newRecipeHeaderGrid">
+                <div id="newRecipeModalBackBtn" onclick="newRecipeModalBackBtn()">&larr;</div><div id="newRecipeFormTitle">New Recipe</div>
+            </div><!--end of id="newRecipeHeaderGrid"-->
+            <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeName">
+            <div id="ingredientsTitle" class="newRecipeLabel">Ingredients:</div>
+            <textarea id="ingredients" class="newRecipeInputs textarea" rows="7" cols="32"></textarea>
+            <div id="preparationTitle" class="newRecipeLabel">Preparation:</div>
+            <textarea id="ingredients" class="newRecipeInputs textarea" rows="8" cols="32"></textarea>
             <br>
-            <div id="recipeBtnsGrid">
-                <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
-            </div><!-- end of id="recipeBtnsGrid" -->
-        </div><!--end of id="recipeSecondaryContainer-->
-    </div><!--end of id="recipeContainer"-->
-</div><!--end of id="recipeModal"-->
+            <div id="newRecipeBtnsGrid">
+                <div id="savenewRecipeForm"><button id="savenewRecipe" class="newRecipeBtn" name="savenewRecipe" onclick="savenewRecipe()">Save</button></div><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Close</div>
+            </div><!-- end of id="newRecipeBtnsGrid" -->
+        </div><!--end of id="newRecipeSecondaryContainer-->
+    </div><!--end of id="newRecipeContainer"-->
+</div><!--end of id="newRecipeModal"-->
 
 <!--=====================DELETE RECIPE CONFIRMATION PROMPT BOX=================================-->
 <div id="drcModal">
@@ -301,9 +301,9 @@ function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
 
-//display recipe form--------------------------------------------------------------------
+//display new recipe form--------------------------------------------------------------------
 function newRecipe(){
-document.getElementById("recipeModal").style.display = "block";
+document.getElementById("newRecipeModal").style.display = "block";
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of newRecipe()
 
@@ -312,7 +312,7 @@ function closerecipe(){
 document.getElementById("recipeModal").style.display = "none";
 }
 
-//========================RECIPE PROMPT BOX===========================================//      
+//========================NEW RECIPE PROMPT BOX===========================================//      
 //display delete recipe confirm (drc) prompt box-------------------------
 function drcModal(){
     document.getElementById("recipeModal").style.display ="none";
@@ -320,8 +320,19 @@ function drcModal(){
 }
 //return to recipe prompt box---------------------------------------------
 function canceldrc(){
-    document.getElementById("recipeModal").style.display ="block";
+    document.getElementById("newRecipeModal").style.display ="block";
     document.getElementById("drcModal").style.display ="none";
+}
+
+//cancel new recipe-------------------------------------------------------
+function cancelNewRecipe(){
+    document.getElementById("newRecipeModal").style.display ="none";
+}
+
+//return to My Recipies prompt box----------------------------------------
+function newRecipeModalBackBtn(){
+    document.getElementById("newRecipeModal").style.display = "none";
+    document.getElementById("myRecipesModal").style.display ="block";  
 }
 
 </script>
