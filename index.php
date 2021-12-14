@@ -62,6 +62,12 @@
     </div><!--end of id="signupFormContainer"-->
 </div><!--end of id="signupModal"-->
 
+<!--=======================WELCOME PROMPT BOX===============================================-->
+<?php
+if(isset($_GET["error"])){
+include_once 'welcomePrompt.php';
+}
+?>
 <!--========================LOGIN PROMPT BOX===========================================-->
 
         <div id="loginModal">
@@ -83,9 +89,9 @@
         </div><!--end of id="loginModal"-->
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
-        <script>
+<script>
         
-        //==========================ABOUT PROMPT BOX====================================//
+//==========================ABOUT PROMPT BOX====================================//
 //display about prompt box-------------------------------------------------------------
 function aboutPromptBox(){
 document.getElementById("aboutModal").style.display ="block";
@@ -109,6 +115,12 @@ document.getElementById("confirmNewPassword").value="";
 function closesignup(){
 document.getElementById("signupModal").style.display ="none";
 }//end of closesignup()
+
+//==========================WELCOME PROMPT BOX====================================//
+//close welcome prompt box-------------------------------------------------------------
+function closewelcome(){
+document.getElementById("welcomeModal").style.display ="none";
+}//end of closewelcome()
 
 //===========================LOGIN PROMPT BOX====================================//
 //display login prompt box-------------------------------------------------------------
@@ -141,7 +153,7 @@ document.getElementById("loginModal").style.display ="none";
         function loginTextResponce(){
         document.getElementById("loginTextResponce").style.display ="block";
         }*/
-        </script>
+</script>
 
 </body>
 </html>
