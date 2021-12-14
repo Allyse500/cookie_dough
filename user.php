@@ -345,6 +345,10 @@ function newRecipeModalBackBtn(){
     document.getElementById("myRecipesModal").style.display ="block";  
 }
 
+function savenewRecipe(){
+    document.getElementById("")
+}
+
 //========================RECIPE PROMPT BOX===========================================//      
 //display delete recipe confirmation prompt box--------------------------
 function drcModal(){
