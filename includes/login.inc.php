@@ -10,7 +10,7 @@ if(isset($_POST["loginSubmit"])){
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    //error handlers for sign up------------------------------------------------
+    //error handlers for log in------------------------------------------------
     if(emptyInputLogin($username, $pwd) !== false){
         header("location: ../index.php?error=emptyLoginInput");
         exit();

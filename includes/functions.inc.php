@@ -12,7 +12,7 @@ function emptyInputSignup($name, $email, $pwd, $pwdConfirm) {
     return $result;
 }
 
-//===================SIGN UP PROMPT BOX: IS USERNAME VALID?=================================
+//===================SIGN UP PROMPT BOX || EDIT USERNAME PROMPT BOX: IS USERNAME VALID?=================================
 function invalidUsername($name) {
     $result;
     if(!preg_match("/^[a-zA-Z0-9]*$/", $name)){
@@ -131,7 +131,7 @@ function loginUser($connection, $username, $pwd){
  }
 
  $hashedPW = $existingUser["usersPwd"];
- $checkPW = password_verify('123', $hashedPW);
+ $checkPW = password_verify($pwd, $hashedPW);
 
  if($checkPW === false){
     header("location: ../index.php?error=wrongLogin");
@@ -152,3 +152,154 @@ function loginUser($connection, $username, $pwd){
  }
 
 }//end of loginUser()
+
+ //=====================EDIT USERNAME PROMPT: ARE ANY FIELDS EMPTY?===========================
+ function emptyInputEditUN($name, $pwd) {
+    $result;
+    if(empty($name) || empty($pwd)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=======================EDIT USERNAME ==============================================
+//-----------------------QUERY FOR USER WITH ATTEMPTED USERNAME-----------------
+function alreadyExistsUN($connection, $name) {
+    $sql = "SELECT * FROM users WHERE usersName = ?;";
+    $stmt = mysqli_stmt_init($connection);
+ 
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+ 
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "s", $name);
+ 
+    //execute statement----------------
+     mysqli_stmt_execute($stmt);
+ 
+    //get result of prepared statement--------------------
+     $resultData = mysqli_stmt_get_result($stmt);
+ 
+     if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this username (also set located user as variable)
+         return $row;//return all info of user located
+     }
+     else{//no user was located with that name
+         $result = false;
+         return $result;
+     }
+ 
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+ 
+ }//end of alreadyExistsUN()
+
+//-----------------------QUERY FOR USER'S CURRENT NAME----------------------------
+function currentUser($connection, $currentName) {
+    $sql = "SELECT * FROM users WHERE usersName = ?;";
+    $stmt = mysqli_stmt_init($connection);
+    error_log("user's current name from currentUser(): " . $currentName);
+    error_log("variable type of currentName variable: " . gettype($currentName));
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+    header("location: ../user.php?error=stmtFailed");
+    error_log("statement failed from currentUser()");
+    exit();
+    }
+
+    //bind the input variables to the stmt function--------------
+    mysqli_stmt_bind_param($stmt, "s", $currentName);
+
+    //execute statement----------------
+    mysqli_stmt_execute($stmt);
+
+    //get result of prepared statement--------------------
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this username (also set located user as variable)
+        return $row;//return all info of user located
+    }
+    else{//no user was located with that name
+        $result = false;
+        return $result;
+    }
+
+    //close sql statement-------------------------
+    mysqli_stmt_close($stmt);
+
+}//end of currentUser()
+
+
+//----------------------------EDIT USERNAME-----------------------------------------
+function editUsername($connection, $name, $pwd, $currentName){
+    
+    $existingUser = alreadyExistsUN($connection, $name);
+    $currentUser = currentUser($connection, $currentName);
+    
+    if($existingUser === false){//if user not located with that name-------------
+        
+        //check if password matches---------------------------------
+        $hashedPW = $currentUser["usersPwd"];//password of DB
+        $checkPW = password_verify($pwd, $hashedPW);//compare password from input to pw of DB
+
+        //if password did not match--------------------------------
+        if($checkPW === false){
+            header("location: ../user.php?error=wrongPW");
+            error_log("current user located: " . $currentUser);
+            exit();
+        }
+        //if password was correct----------------------------------
+        else if($checkPW === true){
+
+            //define variable of id for query---------------------
+            $id = $currentUser["usersID"];
+            
+            //query for user with attempted username--------------
+            function changeUN($connection, $name, $id) {
+                //$sql = "UPDATE `users` SET `usersName` = '?' WHERE `usersID` = '?';";
+                $sql = "UPDATE `users` SET `usersName` = '". $name ."' WHERE `users`.`usersID` = '". $id."';";
+    
+                $stmt = mysqli_stmt_init($connection);
+                                
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at changeUN()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                    //re-define username for session----------------------
+                    $_SESSION["username"] = $name;
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=unNotUptated");
+                    exit();
+                }
+                //close sql statement-----------------------------
+                mysqli_close($connection);
+            
+            }//end of changeUN()
+
+            changeUN($connection, $name, $id);//call the function
+
+            //send user to user's profile page-------------------
+            header("location: ../user.php?error=noneEditUN");
+            exit();
+        }//end of else if($checkPW === true)
+    }//end of if($existingUser === false)
+
+    //if a user was located with the attempted name----------------------
+    else if($existingUser === true){
+        header("location: ../user.php?error=nameTaken");
+        exit();
+    }
+
+}//end of editUsername()

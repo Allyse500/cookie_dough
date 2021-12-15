@@ -26,7 +26,7 @@ if(!isset($_SESSION["userId"])){
             <?php
             echo $_SESSION["username"];
             ?>
-        </div>
+        </div><!--end of id="userTitle" -->
         <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
@@ -47,9 +47,9 @@ if(!isset($_SESSION["userId"])){
             <div id="accountTitle">Account</div>
             <div id="accountContents">
             <!--edit username section ----------------->
-                <form action="/editUsername" method="POST" >
+                <form action="includes/editUsername.inc.php" method="POST" >
                     <div class="editUserAcctGrid">
-                    <div class="editAcctFieldLabel">username: </div><div id="currentUserName"><?php echo $_SESSION["username"]; ?></div><input id="editedusername" name="editedusername" class="userInput"><div id="editusernamebtn" onclick="editusername()">Edit</div><button id="saveUsernameBtn">Save</button>
+                    <div class="editAcctFieldLabel">username: </div><div id="currentUserName"><?php echo $_SESSION["username"]; ?></div><input id="editedusername" name="editedusername" class="userInput"><div id="editusernamebtn" onclick="editusername()">Edit</div><button id="saveUsernameBtn" name="saveUsernameBtn">Save</button>
                     </div><!--end of username upper half class="editUserAcctGrid"-->
                     <div id="editUNLowerHalf">
                     <div id="uNeditStatusMsg">Please enter password to confirm.</div>
@@ -59,7 +59,7 @@ if(!isset($_SESSION["userId"])){
                     </div><!--end of id="editUNLowerHalf" -->
                 </form>
             <!--edit email section ----------------->
-                <form class="editAcctForm" action="/editEmail" method="POST" >
+                <form class="editAcctForm" action="includes/editEmail.inc.php" method="POST" >
                     <div class="editUserAcctGrid">
                     <div class="editAcctFieldLabel">email: </div><div id="currentEmail"><?php echo $_SESSION["email"]; ?></div><input id="editedEmail" name="editedEmail" class="userInput"><div id="editEmailBtn" onclick="editEmail()">Edit</div><button id="saveEmailBtn">Save</button>
                     </div><!--end of email upper half class="editUserAcctGrid"-->
@@ -72,7 +72,7 @@ if(!isset($_SESSION["userId"])){
                 </form>
     
             <!--edit passowrd section--------------->
-                <form id ="editPassowrdForm" class="editAcctForm" action="/editPassword" method="POST">
+                <form id ="editPassowrdForm" class="editAcctForm" action="includes/editPassword.inc.php" method="POST">
                     <div class="editUserAcctGrid">
                     <div class="editAcctFieldLabel">password: </div><div id="currentPassword">****</div><div id="editpasswordbtn" onclick="editpassword()">Edit</div><button id="savePasswordBtn">Save</button>
                     </div><!--end of password class="editUserAcctGrid"-->
@@ -95,7 +95,7 @@ if(!isset($_SESSION["userId"])){
                 </div><!--end of id="deleteAcctGrid" -->
                 <div id="deleteMsgAndConfirmSect">
                     <div>*This will delete all records of this user account. Please enter password to acknowledge this message and submit.</div>
-                    <form id="deleteAcctForm" method="POST" action="/deleteAcct">
+                    <form id="deleteAcctForm" method="POST" action="includes/deleteAcct.inc.php">
                         <input type="password" id="deleteAcctuserPW" name="deleteAcctuserPW" class="userInput inputSpace"><button id="deleteAcctBtn" name="deleteAcctBtn">Delete</button>
                     </form><!--end of id="deleteAcctForm"-->
                 </div><!--end of id="deleteMsgAndConfirmSect" -->
