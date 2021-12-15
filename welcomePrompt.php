@@ -10,13 +10,16 @@
                         else if ($_GET["error"] == "none"){
                             echo "Welcome!";
                         }
+                        else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
+                            echo "Login Error...";
+                        }
                     }
                 ?>
             </div>
             <div id="welcomeContents">
             <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "emptyLoginInput"){
                             echo "Please fill in all fields.";
                         }
                         else if ($_GET["error"] == "invalidUsername"){
@@ -36,6 +39,9 @@
                         }
                         else if ($_GET["error"] == "none"){
                             echo "Please log in to access your account.";
+                        }
+                        else if ($_GET["error"] == "wrongLogin"){
+                            echo "Wrong username or password. Please try again.";
                         }
                     }
                 ?>

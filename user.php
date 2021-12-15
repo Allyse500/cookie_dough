@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["userId"])){
+    header("location: index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +27,7 @@
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
           <div id="myRecipesBtn" class="homeButtons" onclick="myRecipesPromptBox()">My Recipes</div>
-          <form id="loginForm" action="/logout" method="POST"><button name="logoutBtn" class="homeButtons">Log Out</button></form>
+          <form id="logoutForm" action="includes/logout.inc.php" method="POST"><button name="logoutBtn" class="homeButtons">Log Out</button></form>
         </div><!--end of id="buttonsGrid"-->
     </div><!--end of id="headerGrid"-->
 </div><!--end of id="navbar"-->

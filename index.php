@@ -64,29 +64,29 @@
 
 <!--=======================WELCOME PROMPT BOX===============================================-->
 <?php
-if(isset($_GET["error"])){
-include_once 'welcomePrompt.php';
-}
+    if(isset($_GET["error"])){
+        include_once 'welcomePrompt.php';
+    }
 ?>
 <!--========================LOGIN PROMPT BOX===========================================-->
 
-        <div id="loginModal">
-            <div id="loginFormContainer">
-                <div id="loginFormSecondaryContainer">
-                    <div id="loginFormTitle">Login</div>
-                    <form id="loginForm" action="includes/login.inc.php" method="POST">
-                        <div id="loginInputContents">
-                            <input class="userInput inputSpace" type="text" id="username" name="username" placeholder ="Email or Username..."><br>
-                            <input class="userInput inputSpace" type="password" id="password" name="pwd" placeholder="Password...">
-                        </div><!--end of id="loginInputContents" -->
-                        <br>
-                        <div id="loginBtnsGrid">
-                            <button id="loginSubmitBtn" name="loginSubmit">Submit</button><div id="loginCloseButton" onclick="closelogin()">Close</div>
-                        </div><!--end of id="loginBtnsGrid"-->
-                    </form><!--end of id="loginForm"-->
-                </div><!--end of id="loginFormSecondaryContainer-->
-            </div><!--end of id="loginFormContainer"-->
-        </div><!--end of id="loginModal"-->
+<div id="loginModal">
+    <div id="loginFormContainer">
+        <div id="loginFormSecondaryContainer">
+            <div id="loginFormTitle">Login</div>
+            <form id="loginForm" action="includes/login.inc.php" method="POST">
+                <div id="loginInputContents">
+                    <input class="userInput inputSpace" type="text" id="username" name="username" placeholder ="Email or Username..."><br>
+                    <input class="userInput inputSpace" type="password" id="password" name="pwd" placeholder="Password...">
+                </div><!--end of id="loginInputContents" -->
+                <br>
+                <div id="loginBtnsGrid">
+                    <button id="loginSubmitBtn" name="loginSubmit">Submit</button><div id="loginCloseButton" onclick="closelogin()">Close</div>
+                </div><!--end of id="loginBtnsGrid"-->
+            </form><!--end of id="loginForm"-->
+        </div><!--end of id="loginFormSecondaryContainer-->
+    </div><!--end of id="loginFormContainer"-->
+</div><!--end of id="loginModal"-->
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
@@ -135,24 +135,6 @@ function closelogin(){
 document.getElementById("loginModal").style.display ="none";
 }//end of closelogin()
 
-
-        // function signUpForm(){
-        // document.getElementById("loginModal").style.display ="none";
-        // document.getElementById("signUpModal").style.display ="block";
-        // }
-        
-        // function loginForm(){
-        // document.getElementById("loginModal").style.display ="block";
-        // document.getElementById("signUpModal").style.display ="none";
-        // }
-        
-        /*function signUpTextResponce(){
-        document.getElementById("signUpTextResponce").style.display ="block";
-        }
-        
-        function loginTextResponce(){
-        document.getElementById("loginTextResponce").style.display ="block";
-        }*/
 </script>
 
 </body>

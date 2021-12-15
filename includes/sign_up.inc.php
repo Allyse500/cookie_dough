@@ -14,7 +14,6 @@ if(isset($_POST["submitSignUp"])){
     require_once 'functions.inc.php';
 
     //error handlers for sign up------------------------------------------------
-    //
     if(emptyInputSignup($name, $email, $pwd, $pwdConfirm) !== false){
         header("location: ../index.php?error=emptyInput");
         exit();

@@ -1,6 +1,6 @@
 <?php
 
-////===================SIGN UP PROMPT BOX: ARE ANY FIELDS EMPTY?===========================
+//=====================SIGN UP PROMPT BOX: ARE ANY FIELDS EMPTY?===========================
 function emptyInputSignup($name, $email, $pwd, $pwdConfirm) {
     $result;
     if(empty($name) || empty($email) || empty($pwd) || empty($pwdConfirm)){
@@ -107,3 +107,46 @@ function createUser($connection, $name, $email, $pwd) {
      header("location: ../index.php?error=none");
      exit();
  }//end of createUser()
+
+ //=====================LOGIN PROMPT BOX: ARE ANY FIELDS EMPTY?===========================
+function emptyInputLogin($username, $pwd) {
+    $result;
+    if(empty($username) || empty($pwd)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=======================LOG IN USER ==============================================
+
+function loginUser($connection, $username, $pwd){
+ $existingUser = alreadyExists($connection, $username, $username);
+ 
+ if($existingUser === false){
+    header("location: ../index.php?error=wrongLogin");
+    exit();
+ }
+
+ $hashedPW = $existingUser["usersPwd"];
+ $checkPW = password_verify('123', $hashedPW);
+
+ if($checkPW === false){
+    header("location: ../index.php?error=wrongLogin");
+    exit();
+ }
+ else if($checkPW === true){
+    session_start();//make login session
+
+    //define variables for session----------------------
+    $_SESSION["userId"] = $existingUser["usersID"];
+    $_SESSION["username"] = $existingUser["usersName"];
+
+    //send user to user's profile page-------------------
+    header("location: ../user.php");
+    exit();
+ }
+
+}//end of loginUser()
