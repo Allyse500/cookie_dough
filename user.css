@@ -176,20 +176,21 @@ padding-right: 5%;
 margin-top: 5%;
 font-family: Arial, Helvetica, sans-serif;
 color: white;
+margin-bottom: 5%;
 }
 
 /*--------------Edit Acct Info---------------------*/
 .editUserAcctGrid{
     display: grid;
-    grid-template-columns: 25% 50% 20%;
+    grid-template-columns: 25% 50% 16%;
     grid-gap: 10% 2%;
     }
     
     #editpasswordbtn, #editusernamebtn, #saveUsernameBtn, #savePasswordBtn, #editEmailBtn, #saveEmailBtn{
        cursor: pointer;
-       border-radius: 10px;
+       border-radius: 4px;
        background-color: rgb(0, 0, 0);
-       border: 2px double white;
+       border: 1px solid white;
        color: white;
    }
     
@@ -204,6 +205,14 @@ color: white;
    
    #saveUsernameBtn, #savePasswordBtn, #saveEmailBtn{
    display: none;
+   }
+
+   #saveUsernameBtn{
+    height: 90%;
+   }
+
+   #saveEmailBtn{
+    height: 85%;
    }
 
    #editpasswordbtn:hover, #editusernamebtn:hover, #saveUsernameBtn:hover, #savePasswordBtn:hover, #editEmailBtn:hover, #saveEmailBtn:hover{
@@ -281,16 +290,17 @@ color: white;
    
    #deleteAcctForm{
    display: grid;
-   grid-template-columns: 60% 30%;
+   grid-template-columns: 60% 20%;
    grid-gap: 0 5%;
    }
    
    #deleteAcctBtn{
    cursor: pointer;
-       border-radius: 10px;
+       border-radius: 4px;
        background-color: rgb(0, 0, 0);
-       border: 2px double white;
+       border: 1px solid white;
        width: 80%;
+       height: 75%;
        color: white;
    }
    

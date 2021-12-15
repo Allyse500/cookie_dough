@@ -143,6 +143,8 @@ function loginUser($connection, $username, $pwd){
     //define variables for session----------------------
     $_SESSION["userId"] = $existingUser["usersID"];
     $_SESSION["username"] = $existingUser["usersName"];
+    $_SESSION["email"] = $existingUser["usersEmail"];
+    $_SESSION["userPW"] = $existingUser["usersPwd"];
 
     //send user to user's profile page-------------------
     header("location: ../user.php");
