@@ -74,7 +74,7 @@ if(!isset($_SESSION["userId"])){
             <!--edit passowrd section--------------->
                 <form id ="editPassowrdForm" class="editAcctForm" action="includes/editPassword.inc.php" method="POST">
                     <div class="editUserAcctGrid">
-                    <div class="editAcctFieldLabel">password: </div><div id="currentPassword">****</div><div id="editpasswordbtn" onclick="editpassword()">Edit</div><button id="savePasswordBtn">Save</button>
+                    <div class="editAcctFieldLabel">password: </div><div id="currentPassword">****</div><div id="editpasswordbtn" onclick="editpassword()">Edit</div><button id="savePasswordBtn" name="savePasswordBtn">Save</button>
                     </div><!--end of password class="editUserAcctGrid"-->
                     
                     <div id="newPasswordContainer">

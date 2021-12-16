@@ -24,7 +24,7 @@ if(isset($_POST["saveEmailBtn"])){
         header("location: ../user.php?error=invalidEmail");
         exit();
     }
-    if(sameEmail($connection, $email) !== false){
+    if(sameEmail($currentEmail, $email) !== false){
         header("location: ../user.php?error=sameEmail");
         exit();
     }
@@ -36,6 +36,6 @@ if(isset($_POST["saveEmailBtn"])){
     editEmail($connection, $email, $pwd, $currentEmail);
 }
 else {
-    header("location: ../user.php");//send user back to user.php if attempted to enter editUsername.inc.php link without using submit btn
+    header("location: ../user.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
     exit();
 }

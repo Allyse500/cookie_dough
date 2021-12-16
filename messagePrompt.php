@@ -9,10 +9,10 @@ $email = $_SESSION["email"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "unNotUptated" || $_GET["error"] == "emailTaken"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken"){
                             echo "Error...";
                         }
-                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM"){
+                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW"){
                             echo "Success!";
                         }
                         else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
@@ -42,7 +42,7 @@ $email = $_SESSION["email"];
                         else if ($_GET["error"] == "nameTaken"){
                             echo "Username already taken. Please try again.";
                         }
-                        else if ($_GET["error"] == "stmtFailed"|| $_GET["error"] == "unNotUptated"){
+                        else if ($_GET["error"] == "stmtFailed"|| $_GET["error"] == "notUptated"){
                             echo "Something went wrong. Please try again.";
                         }
                         else if ($_GET["error"] == "noneEditUN"){
@@ -62,6 +62,9 @@ $email = $_SESSION["email"];
                         }
                         else if ($_GET["error"] == "emailTaken"){
                             echo "Email already taken. Please try again.";
+                        }
+                        else if ($_GET["error"] == "noneEditPW"){
+                            echo "Password updated!";
                         }
                     }
                 ?>

@@ -36,7 +36,7 @@ function invalidEmail($email) {
     return $result;
 }
 
-//===================SIGN UP PROMPT BOX: PASSWORD AND CONFIRM PASSWORD MATCHES?===========
+//===================SIGN UP PROMPT BOX: PASSWORD AND CONFIRM PASSWORD MATCH?===========
 function pwdMatch($pwd, $pwdConfirm) {
     $result;
     if($pwd !== $pwdConfirm){
@@ -108,7 +108,7 @@ function createUser($connection, $name, $email, $pwd) {
      exit();
  }//end of createUser()
 
- //=====================LOGIN PROMPT BOX: ARE ANY FIELDS EMPTY?===========================
+//=====================LOGIN PROMPT BOX: ARE ANY FIELDS EMPTY?===========================
 function emptyInputLogin($username, $pwd) {
     $result;
     if(empty($username) || empty($pwd)){
@@ -291,7 +291,7 @@ function editUsername($connection, $name, $pwd, $currentName){
                     $_SESSION["username"] = $name;
                 } else {
                     error_log("Error updating record: " . mysqli_error($connection));
-                    header("location: ../user.php?error=unNotUptated");
+                    header("location: ../user.php?error=notUptated");
                     exit();
                 }
                 //close sql statement-----------------------------
@@ -452,7 +452,7 @@ function editEmail($connection, $email, $pwd, $currentEmail){
                     $_SESSION["email"] = $email;
                 } else {
                     error_log("Error updating record: " . mysqli_error($connection));
-                    header("location: ../user.php?error=unNotUptated");
+                    header("location: ../user.php?error=notUptated");
                     exit();
                 }
                 //close sql statement-----------------------------
@@ -475,3 +475,92 @@ function editEmail($connection, $email, $pwd, $currentEmail){
     }
 
 }//end of editEmail()
+
+//=====================EDIT PASSWORD PROMPT: ARE ANY FIELDS EMPTY?===========================
+function emptyInputEditPW($oldPW, $newPW, $pwConfirm) {
+    $result;
+    if(empty($oldPW) || empty($newPW) || empty($pwConfirm)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//===================PASSWORD EDIT PROMPT: PASSWORD AND CONFIRM PASSWORD MATCH?===========
+function pwdMatchEditPW($newPW, $pwConfirm) {
+    $result;
+    if($newPW !== $pwConfirm){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=======================UPDATE PASSWORD ==============================================
+
+function editPassword($connection, $oldPW, $newPW, $currentEmail){
+    $currentUser = currentUserEmail($connection, $currentEmail);
+    error_log("stopped at location 1 with variables: " . $oldPW . ", " . $newPW . ", " . $currentEmail . ", " . $currentUser);
+    if(!$currentUser){
+        header("location: ../user.php?error=notUptated");
+        exit();
+    }//end of if(!$currentUser)
+
+    //if a user was not located with the attempted email----------------------
+    else if($currentUser){
+        error_log("stopped at location 2 with variables: " . $oldPW . ", " . $newPW . ", " . $currentEmail);
+        $hashedPW = $currentUser["usersPwd"];
+        $checkPW = password_verify($oldPW, $hashedPW);
+        error_log("stopped at location 3 with variables: " . $hashedPW . ", " . $oldPW . ", " . $newPW . ", " . $currentEmail);
+        if($checkPW === false){
+            header("location: ../user.php?error=wrongPW");
+            exit();
+        }
+        else if($checkPW === true){
+            //define variable of id for query---------------------
+            $id = $currentUser["usersID"];
+            error_log("stopped at location 4 with variables: " . $id . ", " . $newPW . ", " . $currentEmail);        
+            //update user acct with requested password--------------
+
+            $newHashedPW = password_hash($newPW, PASSWORD_DEFAULT);
+            error_log("stopped at location 5 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            function changePW($connection, $newHashedPW, $id) {
+                $sql = "UPDATE `users` SET `usersPwd` = '". $newHashedPW ."' WHERE `users`.`usersID` = '". $id."';";
+                error_log("stopped at location 6 with variables: " . $id . ", " . $newHashedPW . ", " . $sql);
+                $stmt = mysqli_stmt_init($connection);
+                                
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at changePW()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                    //re-define password for session----------------------
+                    $_SESSION["userPW"] = $newPW;
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=notUptated");
+                    exit();
+                }
+                //close sql statement-----------------------------
+                mysqli_close($connection);
+                error_log("stopped at location 7 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            }//end of changePW()
+            error_log("stopped at location 8 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            changePW($connection, $newHashedPW, $id);//call the function
+            error_log("stopped at location 9 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            //send user to user's profile page-------------------
+            header("location: ../user.php?error=noneEditPW");
+            exit();
+        }//end of else if($checkPW === true)
+    }//end of else if($currentUser)
+    error_log("stopped at location 10 with variable: " . $currentEmail);
+}//end of editPassword()
