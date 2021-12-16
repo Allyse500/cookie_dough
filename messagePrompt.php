@@ -1,6 +1,7 @@
 <?php
 session_start();
 $name = $_SESSION["username"];
+$email = $_SESSION["email"];
 ?>
 <div id="messageModal">
     <div id="messageContainer">
@@ -8,11 +9,14 @@ $name = $_SESSION["username"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "unNotUptated"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "unNotUptated" || $_GET["error"] == "emailTaken"){
                             echo "Error...";
                         }
-                        else if ($_GET["error"] == "noneEditUN"){
+                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM"){
                             echo "Success!";
+                        }
+                        else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
+                            echo "No change...";
                         }
                         // else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
                         //     echo "Login Error...";
@@ -46,6 +50,18 @@ $name = $_SESSION["username"];
                         }
                         else if ($_GET["error"] == "wrongPW"){
                             echo "Password incorrect. Please try again.";
+                        }
+                        else if ($_GET["error"] == "sameUsername"){
+                            echo "Username requested is the same as the current username.";
+                        }
+                        else if ($_GET["error"] == "sameEmail"){
+                            echo "Email requested is the same as the current email.";
+                        }
+                        else if ($_GET["error"] == "noneEditEM"){
+                            echo "Updated email to ". $email . "!";
+                        }
+                        else if ($_GET["error"] == "emailTaken"){
+                            echo "Email already taken. Please try again.";
                         }
                     }
                 ?>

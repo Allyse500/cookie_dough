@@ -165,6 +165,18 @@ function loginUser($connection, $username, $pwd){
     return $result;
 }
 
+//=====================EDIT USERNAME PROMPT: ARE THE ENTRIES THE SAME?=========================
+function sameUsername($currentName, $name){
+    $result;
+    if($currentName == $name){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
 //=======================EDIT USERNAME ==============================================
 //-----------------------QUERY FOR USER WITH ATTEMPTED USERNAME-----------------
 function alreadyExistsUN($connection, $name) {
@@ -250,7 +262,6 @@ function editUsername($connection, $name, $pwd, $currentName){
         //if password did not match--------------------------------
         if($checkPW === false){
             header("location: ../user.php?error=wrongPW");
-            error_log("current user located: " . $currentUser);
             exit();
         }
         //if password was correct----------------------------------
@@ -259,7 +270,7 @@ function editUsername($connection, $name, $pwd, $currentName){
             //define variable of id for query---------------------
             $id = $currentUser["usersID"];
             
-            //query for user with attempted username--------------
+            //update user acct with requested username--------------
             function changeUN($connection, $name, $id) {
                 //$sql = "UPDATE `users` SET `usersName` = '?' WHERE `usersID` = '?';";
                 $sql = "UPDATE `users` SET `usersName` = '". $name ."' WHERE `users`.`usersID` = '". $id."';";
@@ -303,3 +314,164 @@ function editUsername($connection, $name, $pwd, $currentName){
     }
 
 }//end of editUsername()
+
+//=====================EDIT EMAIL PROMPT: ARE ANY FIELDS EMPTY?===========================
+function emptyInputEditEM($email, $pwd) {
+    $result;
+    if(empty($email) || empty($pwd)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=====================EDIT EMAIL PROMPT: ARE THE ENTRIES THE SAME?=========================
+function sameEmail($currentEmail, $email){
+    $result;
+    if($currentEmail == $email){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=======================EDIT EMAIL ==============================================
+//-----------------------QUERY FOR USER WITH ATTEMPTED EMAIL-----------------
+function alreadyExistsEM($connection, $email) {
+    $sql = "SELECT * FROM users WHERE usersEmail = ?;";
+    $stmt = mysqli_stmt_init($connection);
+ 
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+ 
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "s", $email);
+ 
+    //execute statement----------------
+     mysqli_stmt_execute($stmt);
+ 
+    //get result of prepared statement--------------------
+     $resultData = mysqli_stmt_get_result($stmt);
+ 
+     if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this email (also set located user as variable)
+         return $row;//return all info of user located
+     }
+     else{//no user was located with that email
+         $result = false;
+         return $result;
+     }
+ 
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+ 
+ }//end of alreadyExistsEM()
+
+//-----------------------QUERY FOR USER'S CURRENT EMAIL----------------------------
+function currentUserEmail($connection, $currentEmail) {
+    $sql = "SELECT * FROM users WHERE usersEmail = ?;";
+    $stmt = mysqli_stmt_init($connection);
+    error_log("user's current name from currentUserEmail(): " . $currentEmail);
+    error_log("variable type of currentEmail variable: " . gettype($currentEmail));
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+    header("location: ../user.php?error=stmtFailed");
+    error_log("statement failed from currentUserEmail()");
+    exit();
+    }
+
+    //bind the input variables to the stmt function--------------
+    mysqli_stmt_bind_param($stmt, "s", $currentEmail);
+
+    //execute statement----------------
+    mysqli_stmt_execute($stmt);
+
+    //get result of prepared statement--------------------
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this email (also set located user as variable)
+        return $row;//return all info of user located
+    }
+    else{//no user was located with that email
+        $result = false;
+        return $result;
+    }
+
+    //close sql statement-------------------------
+    mysqli_stmt_close($stmt);
+
+}//end of currentUserEmail()
+
+
+//----------------------------EDIT EMAIL-----------------------------------------
+function editEmail($connection, $email, $pwd, $currentEmail){
+    
+    $existingUser = alreadyExistsEM($connection, $email);
+    $currentUser = currentUserEmail($connection, $currentEmail);
+    
+    if($existingUser === false){//if user not located with that email-------------
+        
+        //check if password matches---------------------------------
+        $hashedPW = $currentUser["usersPwd"];//password of DB
+        $checkPW = password_verify($pwd, $hashedPW);//compare password from input to pw of DB
+
+        //if password did not match--------------------------------
+        if($checkPW === false){
+            header("location: ../user.php?error=wrongPW");
+            exit();
+        }
+        //if password was correct----------------------------------
+        else if($checkPW === true){
+
+            //define variable of id for query---------------------
+            $id = $currentUser["usersID"];
+            
+            //update user acct with requested email--------------
+            function changeEM($connection, $email, $id) {
+                $sql = "UPDATE `users` SET `usersEmail` = '". $email ."' WHERE `users`.`usersID` = '". $id."';";
+    
+                $stmt = mysqli_stmt_init($connection);
+                                
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at changeEM()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                    //re-define email for session----------------------
+                    $_SESSION["email"] = $email;
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=unNotUptated");
+                    exit();
+                }
+                //close sql statement-----------------------------
+                mysqli_close($connection);
+            
+            }//end of changeEM()
+
+            changeEM($connection, $email, $id);//call the function
+
+            //send user to user's profile page-------------------
+            header("location: ../user.php?error=noneEditEM");
+            exit();
+        }//end of else if($checkPW === true)
+    }//end of if($existingUser === false)
+
+    //if a user was located with the attempted email----------------------
+    else if($existingUser === true){
+        header("location: ../user.php?error=emailTaken");
+        exit();
+    }
+
+}//end of editEmail()

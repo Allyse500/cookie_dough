@@ -61,7 +61,7 @@ if(!isset($_SESSION["userId"])){
             <!--edit email section ----------------->
                 <form class="editAcctForm" action="includes/editEmail.inc.php" method="POST" >
                     <div class="editUserAcctGrid">
-                    <div class="editAcctFieldLabel">email: </div><div id="currentEmail"><?php echo $_SESSION["email"]; ?></div><input id="editedEmail" name="editedEmail" class="userInput"><div id="editEmailBtn" onclick="editEmail()">Edit</div><button id="saveEmailBtn">Save</button>
+                    <div class="editAcctFieldLabel">email: </div><div id="currentEmail"><?php echo $_SESSION["email"]; ?></div><input id="editedEmail" name="editedEmail" class="userInput"><div id="editEmailBtn" onclick="editEmail()">Edit</div><button id="saveEmailBtn" name="saveEmailBtn">Save</button>
                     </div><!--end of email upper half class="editUserAcctGrid"-->
                     <div id="editEmailLowerHalf">
                     <div id="eMeditStatusMsg">Please enter password to confirm.</div>
@@ -364,9 +364,9 @@ function newRecipeModalBackBtn(){
     document.getElementById("myRecipesModal").style.display ="block";  
 }
 
-function savenewRecipe(){
-    document.getElementById("")
-}
+// function savenewRecipe(){
+//     document.getElementById("")
+// }
 
 //========================RECIPE PROMPT BOX===========================================//      
 //display delete recipe confirmation prompt box--------------------------

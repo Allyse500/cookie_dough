@@ -1,3 +1,8 @@
+<?php
+session_start();
+$name = $_SESSION["username"];
+?>
+
 <div id="welcomeModal">
     <div id="welcomeContainer">
         <div id="welcomeSecondaryContainer">
@@ -8,7 +13,7 @@
                             echo "Sign Up Error...";
                         }
                         else if ($_GET["error"] == "none"){
-                            echo "Welcome!";
+                            echo "Welcome". $name . "!";
                         }
                         else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
                             echo "Login Error...";
