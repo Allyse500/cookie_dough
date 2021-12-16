@@ -9,7 +9,7 @@ $email = $_SESSION["email"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW"){
                             echo "Error...";
                         }
                         else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW"){
@@ -18,9 +18,6 @@ $email = $_SESSION["email"];
                         else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
                             echo "No change...";
                         }
-                        // else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
-                        //     echo "Login Error...";
-                        // }
                     }
                 ?>
             </div>

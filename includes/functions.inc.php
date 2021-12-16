@@ -504,7 +504,7 @@ function pwdMatchEditPW($newPW, $pwConfirm) {
 
 function editPassword($connection, $oldPW, $newPW, $currentEmail){
     $currentUser = currentUserEmail($connection, $currentEmail);
-    error_log("stopped at location 1 with variables: " . $oldPW . ", " . $newPW . ", " . $currentEmail . ", " . $currentUser);
+    
     if(!$currentUser){
         header("location: ../user.php?error=notUptated");
         exit();
@@ -512,10 +512,10 @@ function editPassword($connection, $oldPW, $newPW, $currentEmail){
 
     //if a user was not located with the attempted email----------------------
     else if($currentUser){
-        error_log("stopped at location 2 with variables: " . $oldPW . ", " . $newPW . ", " . $currentEmail);
+        
         $hashedPW = $currentUser["usersPwd"];
         $checkPW = password_verify($oldPW, $hashedPW);
-        error_log("stopped at location 3 with variables: " . $hashedPW . ", " . $oldPW . ", " . $newPW . ", " . $currentEmail);
+        
         if($checkPW === false){
             header("location: ../user.php?error=wrongPW");
             exit();
@@ -523,14 +523,13 @@ function editPassword($connection, $oldPW, $newPW, $currentEmail){
         else if($checkPW === true){
             //define variable of id for query---------------------
             $id = $currentUser["usersID"];
-            error_log("stopped at location 4 with variables: " . $id . ", " . $newPW . ", " . $currentEmail);        
+            
             //update user acct with requested password--------------
-
             $newHashedPW = password_hash($newPW, PASSWORD_DEFAULT);
-            error_log("stopped at location 5 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            
             function changePW($connection, $newHashedPW, $id) {
                 $sql = "UPDATE `users` SET `usersPwd` = '". $newHashedPW ."' WHERE `users`.`usersID` = '". $id."';";
-                error_log("stopped at location 6 with variables: " . $id . ", " . $newHashedPW . ", " . $sql);
+                
                 $stmt = mysqli_stmt_init($connection);
                                 
                 //if there are any errors in the sql statement written
@@ -552,15 +551,86 @@ function editPassword($connection, $oldPW, $newPW, $currentEmail){
                 }
                 //close sql statement-----------------------------
                 mysqli_close($connection);
-                error_log("stopped at location 7 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+                
             }//end of changePW()
-            error_log("stopped at location 8 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            
             changePW($connection, $newHashedPW, $id);//call the function
-            error_log("stopped at location 9 with variables: " . $id . ", " . $newHashedPW . ", " . $currentEmail);
+            
             //send user to user's profile page-------------------
             header("location: ../user.php?error=noneEditPW");
             exit();
         }//end of else if($checkPW === true)
     }//end of else if($currentUser)
-    error_log("stopped at location 10 with variable: " . $currentEmail);
 }//end of editPassword()
+
+//=====================DELETE ACCT PROMPT: ARE ANY FIELDS EMPTY?===========================
+function emptyInputDeleteAcct($pwd) {
+    $result;
+    if(empty($pwd)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+//=======================DELETE ACCT ==============================================
+
+function deleteAcct($connection, $pwd, $currentEmail){
+    $currentUser = currentUserEmail($connection, $currentEmail);
+    
+    if(!$currentUser){
+        header("location: ../user.php?error=notUptated");
+        exit();
+    }//end of if(!$currentUser)
+
+    //if a user was not located with the attempted email----------------------
+    else if($currentUser){
+        
+        $hashedPW = $currentUser["usersPwd"];
+        $checkPW = password_verify($pwd, $hashedPW);
+        
+        if($checkPW === false){
+            header("location: ../user.php?error=wrongPW");
+            exit();
+        }
+        else if($checkPW === true){
+            //define variable of id for query---------------------
+            $id = $currentUser["usersID"];
+            
+            //delete user account---------------------------------
+            
+            function deleteUser($connection,  $id) {
+                $sql = "DELETE FROM `users` WHERE `users`.`usersID` = '". $id."';";
+                
+                $stmt = mysqli_stmt_init($connection);
+                                
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at deleteUser()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=notUptated");
+                    exit();
+                }
+                //close sql statement-----------------------------
+                mysqli_close($connection);
+                
+            }//end of deleteUser()
+            
+            deleteUser($connection,  $id);//call the function
+            
+            //send user to index page and logout-------------------
+            header("location: ../index.php?error=noneAcctDeleted");
+            exit();
+        }//end of else if($checkPW === true)
+    }//end of else if($currentUser)
+}//end of deleteAcct()

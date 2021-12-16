@@ -18,6 +18,12 @@ $name = $_SESSION["username"];
                         else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
                             echo "Login Error...";
                         }
+                        else if ($_GET["error"] == "noneLoggedOut"){
+                            echo "Logged Out...";
+                        }
+                        else if ($_GET["error"] == "noneAcctDeleted"){
+                            echo "Account Deleted";
+                        }
                     }
                 ?>
             </div>
@@ -47,6 +53,14 @@ $name = $_SESSION["username"];
                         }
                         else if ($_GET["error"] == "wrongLogin"){
                             echo "Wrong username or password. Please try again.";
+                        }
+                        else if ($_GET["error"] == "noneLoggedOut"){
+                            echo "<span style='font-style: italic;'>See ya later!</span>";
+                        }
+                        else if ($_GET["error"] == "noneAcctDeleted"){
+                            echo "<span style='font-style: italic;'>Goodbye!</span>";
+                            session_unset();
+                            session_destroy();
                         }
                     }
                 ?>

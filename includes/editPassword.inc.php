@@ -16,7 +16,7 @@ if(isset($_POST["savePasswordBtn"])){
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    //error handlers for edit email------------------------------------------------
+    //error handlers for edit password------------------------------------------------
     if(emptyInputEditPW($oldPW, $newPW, $pwConfirm) !== false){
         header("location: ../user.php?error=emptyInput");
         exit();
