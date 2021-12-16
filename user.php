@@ -183,6 +183,12 @@ if(!isset($_SESSION["userId"])){
     </div><!--end of id="drcContainer"-->
 </div><!--end of id="drcModal"-->
 
+<!--=======================MESSAGE PROMPT BOX===============================================-->
+<?php
+    if(isset($_GET["error"])){
+        include_once 'messagePrompt.php';
+    }
+?>
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
@@ -380,6 +386,11 @@ function newRecipeModalBackBtn(){
     document.getElementById("myRecipesModal").style.display ="block";  
 }
 
+//==========================MESSAGE PROMPT BOX====================================//
+//close message prompt box-------------------------------------------------------------
+function closeMessage(){
+document.getElementById("messageModal").style.display ="none";
+}//end of closeMessage()
 </script>
 
 </body>

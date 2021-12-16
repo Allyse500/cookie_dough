@@ -24,6 +24,10 @@ if(isset($_POST["saveUsernameBtn"])){
         header("location: ../user.php?error=invalidUsername");
         exit();
     }
+    if(alreadyExistsUN($connection, $name) !== false){
+        header("location: ../user.php?error=nameTaken");
+        exit();
+    }
 
     editUsername($connection, $name, $pwd, $currentName);
 }
