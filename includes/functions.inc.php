@@ -803,7 +803,67 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
             if ($updateResult) {
                 error_log("Record updated successfully");
                 //re-define recipe title for session----------------------
-                $_SESSION["newRecipeTitle"] = $title;
+                $_SESSION["newRecipeTitle"] = $title;//where i left off
+
+                //---------------------QUERY FOR USER'S RECIPES (IF ANY)----------------------------
+                //$id = $existingUser["usersID"];
+
+                function getRecipes($connection, $user) {
+                    $sql = "SELECT recipesTitle FROM recipes WHERE recipesUser = ?;";
+                
+                    $stmt = mysqli_stmt_init($connection);
+                
+                    //if there are any errors in the sql statement written
+                    if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../index.php?error=stmtFailed");
+                    exit();
+                    }
+                
+                    //bind the input variables to the stmt function--------------
+                    mysqli_stmt_bind_param($stmt, "i", $user);
+                
+                    //execute statement----------------
+                    mysqli_stmt_execute($stmt);
+                
+                    //get result of prepared statement--------------------
+                    $resultData = mysqli_stmt_get_result($stmt);
+
+                    if($row = mysqli_fetch_all($resultData, MYSQLI_ASSOC)){//if there is data in database with this user ID (also set located user as variable)
+                        error_log("row variable: " . gettype($row));
+                        error_log("count of row array: " . count($row));
+
+                        foreach ($row as $value) {
+                            error_log("Attempt for recipe titles: " . $value["recipesTitle"]);
+                        }
+
+                        return $row;//return all info of user located
+                    }
+                    else{//no recipes were located with that user's ID
+                        $result = false;
+                        return $result;
+                    }
+                
+                //close sql statement-------------------------
+                    mysqli_stmt_close($stmt);
+                
+                }//end of getRecipes()
+                $recipes = getRecipes($connection, $user);//call the function and set to variable
+
+                if(!$recipes){
+                    error_log("no recipes located...");
+                }
+                else if($recipes){
+                    //spotting variable type for trouble shooting-------------
+                    error_log("recipes variable type: ". gettype($recipes));
+                    error_log("number of recipes located: ". count($recipes));
+                    foreach ($recipes as $value) {
+                        error_log("Second attempt for recipe titles: " . $value["recipesTitle"]);
+                    }
+
+                    $_SESSION["recipeArray"] = $recipes;
+
+                }//end of inserted where i left off
+                
             } else {
                 error_log("Error updating record: " . mysqli_error($connection));
                 header("location: ../user.php?error=notUptated");
