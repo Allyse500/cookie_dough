@@ -133,7 +133,7 @@ if(!isset($_SESSION["userId"])){
                     <?php
                         $recipeTitles = $_SESSION["recipeArray"];
                         foreach ($recipeTitles as $value) {
-                            echo "<form class='recipeOpt' action='includes/loadRecipe.inc.php' method='POST'><input style='display:none;' id='recipeInputName' name ='recipeInputName' value='" . $value["recipesTitle"] . "'><button name='loadRecipe' class='recipeOptBtn' onclick='recipePrompt(event)'>" . $value["recipesTitle"] . "</button></form>";
+                            echo "<form class='recipeOpt' action='includes/loadRecipe.inc.php' method='POST'><input style='display:none;' id='recipeInputName' name ='recipeInputName' value='" . $value["recipesTitle"] . "'><button name='loadRecipe' class='recipeOptBtn'>" . $value["recipesTitle"] . "</button></form>";
                         }     
                     ?>
                 </div><!--end of id="myRecipesInputContents", empty array of recipes -->
@@ -335,18 +335,6 @@ document.getElementById("myRecipesModal").style.display ="block";
 function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
-
-function recipePrompt(event){
-    var inputText = event.target.innerText;
-
-    document.getElementById("myRecipesModal").style.display ="none";
-    // document.getElementById("recipeModal").style.display ="block";
-    // document.getElementById("recipeTitle").value = inputText;
-    document.getElementById("recipeInputName").value = inputText;
-
-    // var formInputText = document.getElementById("recipeInputName").value;
-    // console.log(formInputText);
-}
 
 //=========================NEW RECIPE PROMPT BOX======================================//
 //display new recipe form--------------------------------------------------------------------
