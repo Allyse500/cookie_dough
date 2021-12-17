@@ -109,7 +109,7 @@ if(!isset($_SESSION["userId"])){
 
 <!--========================MY RECIPES PROMPT BOX===========================================-->       
 
-<div id="myRecipesModal" style="display:none;">
+<div id="myRecipesModal">
     <div id="myRecipesListContainer">
         <div id="myRecipesListSecondaryContainer">
             <div id="myRecipesListTitle">My Recipes</div>
@@ -133,9 +133,8 @@ if(!isset($_SESSION["userId"])){
                     <?php
                         $recipeTitles = $_SESSION["recipeArray"];
                         foreach ($recipeTitles as $value) {
-                            echo "<div class='recipeOpt'>" . $value["recipesTitle"] . "</div>";
-                        }
-                        
+                            echo "<form class='recipeOpt' action='includes/editRecipe.inc.php' method='POST'><button name='editRecipe' class='recipeOptBtn'>" . $value["recipesTitle"] . "</button></form>";
+                        }     
                     ?>
                 </div><!--end of id="myRecipesInputContents", empty array of recipes -->
                 <br>

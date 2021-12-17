@@ -475,14 +475,30 @@ color: orange;
 
 .recipeOpt{
     text-align: center;
-    padding: 2%;
     border-radius: 4px;
     cursor:pointer;
     font-family: Arial, Helvetica, sans-serif; 
+    margin-left:auto;
+    margin-right: auto;
+    display:block;
+    outline:none;
 }
 
 .recipeOpt:hover{
     background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+}
+
+.recipeOptBtn{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor:pointer;
+    padding: 2%;
+    width:100%;
+    font-size: 105%;
+}
+
+.recipeOptBtn:hover{
     color: rgb(199, 130, 2);
 }
 
