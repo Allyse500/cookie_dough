@@ -18,7 +18,7 @@ if(isset($_POST["savePasswordBtn"])){
 
     //error handlers for edit password------------------------------------------------
     if(emptyInputEditPW($oldPW, $newPW, $pwConfirm) !== false){
-        header("location: ../user.php?error=emptyInput");
+        header("location: ../user.php?error=emptyTitle");
         exit();
     }
     // if(invalidEmail($email) !== false){

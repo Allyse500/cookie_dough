@@ -114,8 +114,30 @@ if(!isset($_SESSION["userId"])){
         <div id="myRecipesListSecondaryContainer">
             <div id="myRecipesListTitle">My Recipes</div>
             <div id="myRecipesList">
-                <div id="numLoggedRecipesMsg">No logged recipes.</div>
-                <div id="myRecipesInputContents"></div><!--end of id="myRecipesInputContents", empty array of recipes -->
+                <div id="numLoggedRecipesMsg">
+                    <?php
+                        $recipeTitles = $_SESSION["recipeArray"];
+                        $num = count($recipeTitles);
+                        if($num == 0){
+                            echo "<span style='color:orange; font-weight:bold;'>" . $num . "</span> logged recipes.";
+                        }
+                        else if($num == 1){
+                            echo "<span style='color:orange; font-weight:bold;'>" . $num . "</span> logged recipe.";    
+                        }
+                        else if($num > 1){
+                            echo "<span style='color:orange; font-weight:bold;'>" . count($recipeTitles) . "</span> logged recipes.";    
+                        }
+                    ?>
+                </div>
+                <div id="myRecipesInputContents">
+                    <?php
+                        $recipeTitles = $_SESSION["recipeArray"];
+                        foreach ($recipeTitles as $value) {
+                            echo "<div class='recipeOpt'>" . $value["recipesTitle"] . "</div>";
+                        }
+                        
+                    ?>
+                </div><!--end of id="myRecipesInputContents", empty array of recipes -->
                 <br>
                 <div id="myRecipesBtnsGrid">
                     <div id="newRecipe" name="newRecipe" onclick="newRecipe()">New</div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
@@ -130,18 +152,20 @@ if(!isset($_SESSION["userId"])){
 <div id="newRecipeModal">
     <div id="newRecipeContainer">
         <div id="newRecipeSecondaryContainer">
-            <div id="newRecipeHeaderGrid">
-                <div id="newRecipeModalBackBtn" onclick="newRecipeModalBackBtn()">&larr;</div><div id="newRecipeFormTitle">New Recipe</div>
-            </div><!--end of id="newRecipeHeaderGrid"-->
-            <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeName">
-            <div id="ingredientsTitle" class="newRecipeLabel">Ingredients:</div>
-            <textarea id="ingredients" class="newRecipeInputs textarea" rows="7" cols="32"></textarea>
-            <div id="preparationTitle" class="newRecipeLabel">Preparation:</div>
-            <textarea id="ingredients" class="newRecipeInputs textarea" rows="8" cols="32"></textarea>
-            <br>
-            <div id="newRecipeBtnsGrid">
-                <div id="savenewRecipeForm"><button id="savenewRecipe" class="newRecipeBtn" name="savenewRecipe" onclick="savenewRecipe()">Save</button></div><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Cancel</div>
-            </div><!-- end of id="newRecipeBtnsGrid" -->
+            <form id="newRecipeForm" action="includes/newRecipe.inc.php" method ="POST">
+                <div id="newRecipeHeaderGrid">
+                    <div id="newRecipeModalBackBtn" onclick="newRecipeModalBackBtn()">&larr;</div><div id="newRecipeFormTitle">New Recipe</div>
+                </div><!--end of id="newRecipeHeaderGrid"-->
+                <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeTitle">
+                <div id="newIngredientsTitle" class="newRecipeLabel">Ingredients:</div>
+                <textarea id="newIngredients" class="newRecipeInputs textarea" rows="7" cols="32" name="newIngredients"></textarea>
+                <div id="newPreparationTitle" class="newRecipeLabel">Preparation:</div>
+                <textarea id="newPreparation" class="newRecipeInputs textarea" rows="8" cols="32" name="newPreparation"></textarea>
+                <br>
+                <div id="newRecipeBtnsGrid">
+                    <button id="saveNewRecipe" class="newRecipeBtn" name="saveNewRecipe">Save</button><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Cancel</div>
+                </div><!-- end of id="newRecipeBtnsGrid" -->
+            </form><!-- end of id="newRecipeForm" -->
         </div><!--end of id="newRecipeSecondaryContainer-->
     </div><!--end of id="newRecipeContainer"-->
 </div><!--end of id="newRecipeModal"-->
@@ -158,7 +182,7 @@ if(!isset($_SESSION["userId"])){
             <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
             <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
             <div id="preparationTitle" class="recipeLabel">Preparation:</div>
-            <textarea id="ingredients" class="recipeInputs textarea" rows="8" cols="32"></textarea>
+            <textarea id="preparation" class="recipeInputs textarea" rows="8" cols="32"></textarea>
             <br>
             <div id="recipeBtnsGrid">
                 <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
@@ -341,6 +365,7 @@ function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
 
+//=========================NEW RECIPE PROMPT BOX======================================//
 //display new recipe form--------------------------------------------------------------------
 function newRecipe(){
 document.getElementById("newRecipeModal").style.display = "block";

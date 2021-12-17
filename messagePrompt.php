@@ -2,6 +2,7 @@
 session_start();
 $name = $_SESSION["username"];
 $email = $_SESSION["email"];
+$title = $_SESSION["newRecipeTitle"];
 ?>
 <div id="messageModal">
     <div id="messageContainer">
@@ -9,10 +10,10 @@ $email = $_SESSION["email"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle"){
                             echo "Error...";
                         }
-                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW"){
+                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW" || $_GET["error"] == "recipeSubmitted"){
                             echo "Success!";
                         }
                         else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
@@ -62,6 +63,15 @@ $email = $_SESSION["email"];
                         }
                         else if ($_GET["error"] == "noneEditPW"){
                             echo "Password updated!";
+                        }
+                        else if ($_GET["error"] == "recipeNameTaken"){
+                            echo "Recipe title <span style='color: orange;'>" . $title . "</span> already exists. Please submit with new title.";
+                        }
+                        else if ($_GET["error"] == "emptyTitle"){
+                            echo "Recipe title is empty. Please re-submit the recipe with a title.";
+                        }
+                        else if ($_GET["error"] == "recipeSubmitted"){
+                            echo "New recipe submitted: <span style='color: orange;'>" . $title . "</span>"; 
                         }
                     }
                 ?>

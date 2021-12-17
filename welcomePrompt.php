@@ -24,6 +24,9 @@ $name = $_SESSION["username"];
                         else if ($_GET["error"] == "noneAcctDeleted"){
                             echo "Account Deleted";
                         }
+                        else if ($_GET["error"] == "stmtFailed"){
+                            echo "Error...";
+                        }
                     }
                 ?>
             </div>
@@ -55,10 +58,10 @@ $name = $_SESSION["username"];
                             echo "Wrong username or password. Please try again.";
                         }
                         else if ($_GET["error"] == "noneLoggedOut"){
-                            echo "<span style='font-style: italic;'>See ya later!</span>";
+                            echo "<span style='font-style: italic; margin-left:37.5%;'>See ya later!</span>";
                         }
                         else if ($_GET["error"] == "noneAcctDeleted"){
-                            echo "<span style='font-style: italic;'>Goodbye!</span>";
+                            echo "<span style='font-style: italic; margin-left:37.5%;'>Goodbye!</span>";
                             session_unset();
                             session_destroy();
                         }
