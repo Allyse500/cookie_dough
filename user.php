@@ -133,7 +133,7 @@ if(!isset($_SESSION["userId"])){
                     <?php
                         $recipeTitles = $_SESSION["recipeArray"];
                         foreach ($recipeTitles as $value) {
-                            echo "<form class='recipeOpt' action='includes/editRecipe.inc.php' method='POST'><button name='editRecipe' class='recipeOptBtn'>" . $value["recipesTitle"] . "</button></form>";
+                            echo "<form class='recipeOpt' action='includes/loadRecipe.inc.php' method='POST'><input style='display:none;' id='recipeInputName' name ='recipeInputName' value='" . $value["recipesTitle"] . "'><button name='loadRecipe' class='recipeOptBtn' onclick='recipePrompt(event)'>" . $value["recipesTitle"] . "</button></form>";
                         }     
                     ?>
                 </div><!--end of id="myRecipesInputContents", empty array of recipes -->
@@ -171,40 +171,12 @@ if(!isset($_SESSION["userId"])){
 
 <!--========================RECIPE PROMPT BOX===========================================-->       
 
-<div id="recipeModal">
-    <div id="recipeContainer">
-        <div id="recipeSecondaryContainer">
-            <div id="recipeHeaderGrid">
-                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div>
-            </div><!--end of id="recipeHeaderGrid"-->
-            <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
-            <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
-            <textarea id="ingredients" class="recipeInputs textarea" rows="7" cols="32"></textarea>
-            <div id="preparationTitle" class="recipeLabel">Preparation:</div>
-            <textarea id="preparation" class="recipeInputs textarea" rows="8" cols="32"></textarea>
-            <br>
-            <div id="recipeBtnsGrid">
-                <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><div id="saveRecipeForm"><button id="saveRecipe" class="recipeBtn" name="saveRecipe" onclick="saveRecipe()">Save</button></div><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
-            </div><!-- end of id="recipeBtnsGrid" -->
-        </div><!--end of id="recipeSecondaryContainer-->
-    </div><!--end of id="recipeContainer"-->
-</div><!--end of id="recipeModal"-->
+<?php
 
-<!--=====================DELETE RECIPE CONFIRMATION PROMPT BOX=================================-->
-<div id="drcModal">
-    <div id="drcContainer">
-        <div id="drcSecondaryContainer">
-            <div id="drcTitle">Delete Recipe</div>
-            <div id="drcContents">
-                <div id="drcNameField">Recipe Name: <span id="drcRecipeName">Chocolate Chip</span></div>
-                Are you sure you would like to delete this recipe?
-            </div><!--end of id="drcContents"-->
-            <div id="drcDelBtnsGrid">
-                <form id="drcDelBtnForm" action="delRecipe.php" method="POST"><button id="drcDelBtn" class="drcBtns" name="drcDelBtn">Delete</button></form><div id="drcCancelButton" class="drcBtns drcBtnsDiv" onclick="canceldrc()">Cancel</div>
-            </div><!--end of id="drcDelBtnsGrid"-->
-        </div><!--end of id="drcSecondaryContainer-->
-    </div><!--end of id="drcContainer"-->
-</div><!--end of id="drcModal"-->
+if(isset($_GET["recipe"])){
+    include_once 'recipePromptBox.php';
+}
+?>
 
 <!--=======================MESSAGE PROMPT BOX===============================================-->
 <?php
@@ -363,6 +335,18 @@ document.getElementById("myRecipesModal").style.display ="block";
 function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
+
+function recipePrompt(event){
+    var inputText = event.target.innerText;
+
+    document.getElementById("myRecipesModal").style.display ="none";
+    // document.getElementById("recipeModal").style.display ="block";
+    // document.getElementById("recipeTitle").value = inputText;
+    document.getElementById("recipeInputName").value = inputText;
+
+    // var formInputText = document.getElementById("recipeInputName").value;
+    // console.log(formInputText);
+}
 
 //=========================NEW RECIPE PROMPT BOX======================================//
 //display new recipe form--------------------------------------------------------------------

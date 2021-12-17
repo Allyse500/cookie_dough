@@ -790,8 +790,8 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
             $sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
             //$sql = "INSERT INTO recipes (recipesUser, recipesTitle, recipesIngredients, recipesPreparation) VALUES (?, ?, ?, ?);";
             $stmt = mysqli_stmt_init($connection);
-            error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $ingredients . ", " . $preparation);                    
-            error_log("sql statement used: ". $sql);
+            //error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $ingredients . ", " . $preparation);                    
+            //error_log("sql statement used: ". $sql);
             //if there are any errors in the sql statement written
             if(!mysqli_stmt_prepare($stmt, $sql)){
                 header("location: ../user.php?error=stmtFailed");
@@ -854,11 +854,11 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
                 }
                 else if($recipes){
                     //spotting variable type for trouble shooting-------------
-                    error_log("recipes variable type: ". gettype($recipes));
-                    error_log("number of recipes located: ". count($recipes));
-                    foreach ($recipes as $value) {
-                        error_log("Second attempt for recipe titles: " . $value["recipesTitle"]);
-                    }
+                    //error_log("recipes variable type: ". gettype($recipes));
+                    // error_log("number of recipes located: ". count($recipes));
+                    // foreach ($recipes as $value) {
+                    //     error_log("Second attempt for recipe titles: " . $value["recipesTitle"]);
+                    // }
                     $_SESSION["recipeArray"] = $recipes;
                 }//end of else if($recipes)
                 
@@ -886,3 +886,38 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
     }
 
 }//end of createRecipe()
+
+//=======================LOAD RECIPE ==============================================
+function loadRecipe($connection, $user, $recipeNameSelected){
+    $sql = "SELECT * FROM recipes WHERE recipesUser = ? AND recipesTitle = ?;";
+    error_log("recipe name selected: " . $recipeNameSelected);
+    $stmt = mysqli_stmt_init($connection);
+
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+    header("location: ../index.php?error=stmtFailed");
+    exit();
+    }
+
+    //bind the input variables to the stmt function--------------
+    mysqli_stmt_bind_param($stmt, "is", $user, $recipeNameSelected);
+
+    //execute statement----------------
+    mysqli_stmt_execute($stmt);
+
+    //get result of prepared statement--------------------
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this user ID (also set located user as variable)
+
+        return $row;//return all info of user located
+    }
+    else{//no recipes were located with that user's ID
+        $result = false;
+        return $result;
+    }
+
+//close sql statement-------------------------
+    mysqli_stmt_close($stmt);
+
+}//end of loadRecipe()

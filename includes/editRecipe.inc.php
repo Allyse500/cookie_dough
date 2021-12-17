@@ -1,15 +1,14 @@
 <?php
-//if a post action was entered by the button named "saveEmailBtn"...
-if(isset($_POST["saveEmailBtn"])){
+//if a post action was entered by the button named "editRecipe"...
+if(isset($_POST["editRecipe"])){
 
     //make super global variables from submitted form data
-    $email = $_POST["editedEmail"];
-    $pwd = $_POST["currentPWEditEM"];
+    $recipeNameSelected = $_POST[$inputName];
 
     //start up session to alter/obtain session variable(s)
     session_start();
-    //declare variable of current email
-    $currentEmail = $_SESSION["email"];
+    //declare variable of current user
+    $user = $_SESSION["userId"];
 
     //import functions & variables from these files
     require_once 'dbh.inc.php';
