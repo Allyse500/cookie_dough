@@ -109,7 +109,7 @@ if(!isset($_SESSION["userId"])){
 
 <!--========================MY RECIPES PROMPT BOX===========================================-->       
 
-<div id="myRecipesModal">
+<div id="myRecipesModal" style="display:none;">
     <div id="myRecipesListContainer">
         <div id="myRecipesListSecondaryContainer">
             <div id="myRecipesListTitle">My Recipes</div>
