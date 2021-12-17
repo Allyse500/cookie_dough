@@ -5,6 +5,10 @@ if(!isset($_SESSION["userId"])){
     header("location: index.php");
     exit();
 }
+//make variables of not yet submitted recipe form inputs (so user won't need to start over after finding error)
+$tempTitle = $_SESSION["temporaryRecipeTitle"];
+$tempIng = $_SESSION["temporaryIngredients"];
+$tempPrep = $_SESSION["temporaryPreparation"];
 ?>
 
 <!DOCTYPE html>
@@ -155,14 +159,34 @@ if(!isset($_SESSION["userId"])){
                 <div id="newRecipeHeaderGrid">
                     <div id="newRecipeModalBackBtn" onclick="newRecipeModalBackBtn()">&larr;</div><div id="newRecipeFormTitle">New Recipe</div>
                 </div><!--end of id="newRecipeHeaderGrid"-->
-                <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeTitle">
+                <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeTitle" value="<?php if(!$tempTitle){echo "";} else if($tempTitle){echo $tempTitle;} ?>">
                 <div id="newIngredientsTitle" class="newRecipeLabel">Ingredients:</div>
-                <textarea id="newIngredients" class="newRecipeInputs textarea" rows="7" cols="32" name="newIngredients"></textarea>
+                <textarea id="newIngredients" class="newRecipeInputs textarea" rows="7" cols="32" name="newIngredients">
+                    <?php
+                        if(!$tempIng){
+                            echo "";
+                        }
+                        else if($tempIng){
+                            echo $tempIng;
+                        }
+                    ?>
+                </textarea>
                 <div id="newPreparationTitle" class="newRecipeLabel">Preparation:</div>
-                <textarea id="newPreparation" class="newRecipeInputs textarea" rows="8" cols="32" name="newPreparation"></textarea>
+                <textarea id="newPreparation" class="newRecipeInputs textarea" rows="8" cols="32" name="newPreparation">
+                    <?php
+
+                        if(!$tempPrep){
+                            echo "";
+                        }
+                        else if($tempPrep){
+                            echo $tempPrep;
+                        }
+                        
+                    ?>
+                </textarea>
                 <br>
                 <div id="newRecipeBtnsGrid">
-                    <button id="saveNewRecipe" class="newRecipeBtn" name="saveNewRecipe">Save</button><div id="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv" onclick="cancelNewRecipe()">Cancel</div>
+                    <button id="saveNewRecipe" class="newRecipeBtn" name="saveNewRecipe">Save</button><button id="newRecipeCancelButton" name ="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv">Cancel</button>
                 </div><!-- end of id="newRecipeBtnsGrid" -->
             </form><!-- end of id="newRecipeForm" -->
         </div><!--end of id="newRecipeSecondaryContainer-->
@@ -336,35 +360,29 @@ function closemyRecipes(){
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of closemyRecipes()
 
-//=========================NEW RECIPE PROMPT BOX======================================//
+//========================NEW RECIPE PROMPT BOX===========================================//      
 //display new recipe form--------------------------------------------------------------------
 function newRecipe(){
 document.getElementById("newRecipeModal").style.display = "block";
 document.getElementById("myRecipesModal").style.display ="none";
 }//end of newRecipe()
 
-//close recipe form----------------------------------------------------------------------
-function closerecipe(){
-document.getElementById("recipeModal").style.display = "none";
-}
-
-//========================NEW RECIPE PROMPT BOX===========================================//      
-//cancel new recipe-------------------------------------------------------
-function cancelNewRecipe(){
-    document.getElementById("newRecipeModal").style.display ="none";
-}
-
-//return to My Recipies prompt box----------------------------------------
+//return to My Recipies prompt box, leave this function to enable users to reference other recipies while buliding the one they want----------------------------------------
 function newRecipeModalBackBtn(){
     document.getElementById("newRecipeModal").style.display = "none";
     document.getElementById("myRecipesModal").style.display ="block";  
 }
 
-// function savenewRecipe(){
-//     document.getElementById("")
-// }
-
 //========================RECIPE PROMPT BOX===========================================//      
+//close recipe form----------------------------------------------------------------------
+function closerecipe(){
+document.getElementById("recipeModal").style.display = "none";
+}
+//return to My Recipies prompt box----------------------------------------
+function recipeModalBackBtn(){
+    document.getElementById("recipeModal").style.display = "none";
+    document.getElementById("myRecipesModal").style.display ="block";  
+}
 //display delete recipe confirmation prompt box--------------------------
 function drcModal(){
     document.getElementById("recipeModal").style.display ="none";
@@ -376,17 +394,21 @@ function canceldrc(){
     document.getElementById("drcModal").style.display ="none";
 }
 
-//return to My Recipies prompt box----------------------------------------
-function newRecipeModalBackBtn(){
-    document.getElementById("newRecipeModal").style.display = "none";
-    document.getElementById("myRecipesModal").style.display ="block";  
-}
-
 //==========================MESSAGE PROMPT BOX====================================//
 //close message prompt box-------------------------------------------------------------
 function closeMessage(){
 document.getElementById("messageModal").style.display ="none";
 }//end of closeMessage()
+
+function returnToRecipePrompt(){
+document.getElementById("messageModal").style.display ="none";
+}//end of returnToRecipePrompt()
+
+function returnToNewRecipePrompt(){
+document.getElementById("messageModal").style.display ="none";
+document.getElementById("newRecipeModal").style.display ="block";
+
+}
 </script>
 
 </body>

@@ -20,14 +20,39 @@ if(isset($_POST["saveNewRecipe"])){
     //error handlers for new recipe------------------------------------------------
     if(emptyInputNewRecipe($title) !== false){
         header("location: ../user.php?error=emptyTitle");
+        $_SESSION["temporaryRecipeTitle"] = $title;
+        $_SESSION["temporaryIngredients"] = $ingredients;
+        $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
     if(recipeAlreadyExists($connection, $user, $title) !== false){
         header("location: ../user.php?error=recipeNameTaken");
+        $_SESSION["temporaryRecipeTitle"] = $title;
+        $_SESSION["temporaryIngredients"] = $ingredients;
+        $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
     createRecipe($connection, $user, $title, $ingredients, $preparation);
+    $_SESSION["temporaryRecipeTitle"] = "";
+    $_SESSION["temporaryIngredients"] = "";
+    $_SESSION["temporaryPreparation"] = "";
 
+}
+//if a post action was entered by the button named "newRecipeCancelButton"...
+else if(isset($_POST["newRecipeCancelButton"])){
+
+    //clear entry super global variables for form
+    $_POST["newRecipeTitle"] = "";
+    $_POST["newIngredients"] = "";
+    $_POST["newPreparation"] = "";
+
+    session_start();
+    $_SESSION["temporaryRecipeTitle"] = "";
+    $_SESSION["temporaryIngredients"] = "";
+    $_SESSION["temporaryPreparation"] = "";
+    //send user back to user page---------------------------------
+    header("location: ../user.php");//return user to user page
+    exit();
 }
 
 //send user back to user.php if attempted to enter newRecipe.inc.php link without using submit btn

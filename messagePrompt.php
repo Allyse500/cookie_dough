@@ -10,7 +10,7 @@ $title = $_SESSION["newRecipeTitle"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle" || $_GET["error"] == "emptyRecipeTitle"){
                             echo "Error...";
                         }
                         else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW" || $_GET["error"] == "recipeSubmitted"){
@@ -73,10 +73,23 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "recipeSubmitted"){
                             echo "New recipe submitted: <span style='color: orange;'>" . $title . "</span>"; 
                         }
+                        else if ($_GET["error"] == "emptyRecipeTitle"){
+                            echo "Recipe title is empty. Please re-submit the recipe with a title.";
+                        }
                     }
                 ?>
             </div>
-            <div id="messageCloseButton" onclick="closeMessage()">Ok</div>
+            <div id="messageCloseButton" <?php
+                    if($_GET["error"] == "emptyTitle" || $_GET["error"] == "recipeNameTaken"){
+                        echo "onclick='returnToNewRecipePrompt()'";
+                    }
+                    else if ($_GET["error"] == "emptyRecipeTitle"){
+                        echo "onclick='returnToRecipePrompt()'";
+                    }
+                    else{
+                        echo "onclick='closeMessage()'";
+                    }
+            ?>>Ok</div>
         </div><!--end of id="messageSecondaryContainer-->
     </div><!--end of id="messageContainer"-->
 </div><!--end of id="messageModal"-->
