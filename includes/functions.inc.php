@@ -803,7 +803,7 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
             if ($updateResult) {
                 error_log("Record updated successfully");
                 //re-define recipe title for session----------------------
-                $_SESSION["newRecipeTitle"] = $title;//where i left off
+                $_SESSION["newRecipeTitle"] = $title;
 
                 //---------------------QUERY FOR USER'S RECIPES (IF ANY)----------------------------
                 //$id = $existingUser["usersID"];
@@ -859,10 +859,8 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
                     foreach ($recipes as $value) {
                         error_log("Second attempt for recipe titles: " . $value["recipesTitle"]);
                     }
-
                     $_SESSION["recipeArray"] = $recipes;
-
-                }//end of inserted where i left off
+                }//end of else if($recipes)
                 
             } else {
                 error_log("Error updating record: " . mysqli_error($connection));
