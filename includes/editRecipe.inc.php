@@ -21,18 +21,33 @@ if(isset($_POST["saveRecipe"])){
     //error handlers for new recipe------------------------------------------------
     if(emptyInputNewRecipe($title) !== false){//re-use function, ignore title
         header("location: ../user.php?error=emptyRecipeTitle");
+        $_SESSION["temporaryRecipeTitle"] = $title;
+        $_SESSION["temporaryIngredients"] = $ingredients;
+        $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
     if(recipeTitleInvalid($title) !== false){
         header("location: ../user.php?error=invalidRecipeTitle");
-        exit();
-    }
-    if(recipeAlreadyExists($connection, $user, $title) !== false){
-        header("location: ../user.php?error=recipenametaken");
+        $_SESSION["temporaryRecipeTitle"] = $title;
+        $_SESSION["temporaryIngredients"] = $ingredients;
+        $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
     updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $preparation);
-
+    $_SESSION["temporaryRecipeTitle"] = "";
+    $_SESSION["temporaryIngredients"] = "";
+    $_SESSION["temporaryPreparation"] = "";
+}
+else if(isset($_POST["recipeModalBackBtn"])){//if post method was submitted by button named "recipeModalBackBtn"
+    header("location: ../user.php?myRecipes");//pull up My Recipes prompt box
+    exit();
+}
+else if(isset($_POST["recipeCloseButton"])){
+    $_SESSION["temporaryRecipeTitle"] = "";
+    $_SESSION["temporaryIngredients"] = "";
+    $_SESSION["temporaryPreparation"] = "";
+    header("location: ../user.php");//return user to user page
+    exit();
 }
 
 //send user back to user.php if attempted to enter newRecipe.inc.php link without using submit btn

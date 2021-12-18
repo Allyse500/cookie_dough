@@ -92,17 +92,17 @@ $title = $_SESSION["newRecipeTitle"];
                     }
                 ?>
             </div>
-            <div id="messageCloseButton" <?php
+            <?php
                     if($_GET["error"] == "emptyTitle" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "invalidTitle"){
-                        echo "onclick='returnToNewRecipePrompt()'";
+                        echo "<div id='messageCloseButton' onclick='returnToNewRecipePrompt()'>Ok</div>";
                     }
-                    else if ($_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
-                        echo "onclick='returnToRecipePrompt()'";
+                    if ($_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
+                        echo "<form action='includes/navBackToRecipe.inc.php' method='POST'><button id='messageCloseButton' name='messageCloseButton'>Ok</button></form>";
                     }
-                    else{
-                        echo "onclick='closeMessage()'";
+                    else {
+                        echo "<div id='messageCloseButton' onclick='closeMessage()'>Ok</div>";
                     }
-            ?>>Ok</div>
+            ?>
         </div><!--end of id="messageSecondaryContainer-->
     </div><!--end of id="messageContainer"-->
 </div><!--end of id="messageModal"-->

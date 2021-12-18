@@ -3,38 +3,37 @@ session_start();
 $name = $_SESSION["username"];
 ?>
 
-<div id="welcomeModal">
+<div id="welcomeModal" style="display:block;">
     <div id="welcomeContainer">
         <div id="welcomeSecondaryContainer">
             <div id="welcomeTitle">
                 <?php
-                    if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken"){
-                            echo "Sign Up Error...";
-                        }
-                        else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
-                            echo "Login Error...";
-                        }
-                        else if ($_GET["error"] == "stmtFailed"){
-                            echo "Error...";
-                        }
+                   
+                    if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken"){
+                        echo "Sign Up Error...";
                     }
-                    else if(isset($_GET["success"])){
-                        else if ($_GET["success"] == "signedUp"){
-                            echo "Welcome". $name . "!";
-                        }
-                        else if ($_GET["success"] == "loggedOut"){
-                            echo "Logged Out...";
-                        }
-                        else if ($_GET["success"] == "acctDeleted"){
-                            echo "Account Deleted";
-                        }
+                    else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
+                        echo "Login Error...";
                     }
+                    else if ($_GET["error"] == "stmtFailed"){
+                        echo "Error...";
+                    }
+                    
+                    else if ($_GET["success"] == "signedUp"){
+                        echo "Welcome". $name . "!";
+                    }
+                    else if ($_GET["success"] == "loggedOut"){
+                        echo "Logged Out...";
+                    }
+                    else if ($_GET["success"] == "acctDeleted"){
+                        echo "Account Deleted";
+                    }
+                    
                 ?>
             </div>
             <div id="welcomeContents">
             <?php
-                    if (isset($_GET["error"])){
+                    
                         if ($_GET["error"] == "emptyInput" || $_GET["error"] == "emptyLoginInput"){
                             echo "Please fill in all fields.";
                         }
@@ -56,8 +55,6 @@ $name = $_SESSION["username"];
                         else if ($_GET["error"] == "wrongLogin"){
                             echo "Wrong username or password. Please try again.";
                         }
-                    }
-                    else if(isset($_GET["success"])){
                         else if ($_GET["success"] == "signedUp"){
                             echo "Please log in to access your account.";
                         }
@@ -69,7 +66,6 @@ $name = $_SESSION["username"];
                             session_unset();
                             session_destroy();
                         }
-                    }
                 ?>
             </div>
             <div id="welcomeCloseButton" onclick="closewelcome()">Ok</div>

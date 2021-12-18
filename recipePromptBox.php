@@ -4,6 +4,10 @@ $name = $_SESSION["username"];
 $recipeTitle = $_SESSION["recipeName"];
 $ingredients = $_SESSION["loadedIngredients"];
 $preparation = $_SESSION["loadedPreparation"];
+
+$tempTitle = $_SESSION["temporaryRecipeTitle"];
+$tempIngredients = $_SESSION["temporaryIngredients"];
+$tempPreparation = $_SESSION["temporaryPreparation"];
 ?>
 
 <div id="recipeModal">
@@ -11,25 +15,35 @@ $preparation = $_SESSION["loadedPreparation"];
         <div id="recipeSecondaryContainer">
             <form id="editRecipeForm" action="includes/editRecipe.inc.php" method="POST">
                 <div id="recipeHeaderGrid">
-                    <div id="recipeModalBackBtn" onclick="recipeModalBackBtn()">&larr;</div><div id="recipeFormTitle">Recipe</div>
+                    <button id="recipeModalBackBtn" name="recipeModalBackBtn">&larr;</button><div id="recipeFormTitle">Recipe</div>
                 </div><!--end of id="recipeHeaderGrid"-->
                 <label for="recipeTitle" class="recipeLabel">Title: </label>
-                <input id="recipeTitle" type="text" name="recipeName" value="<?php echo $recipeTitle; ?>">
+                <input id="recipeTitle" type="text" name="recipeName" value="<?php if(isset($_GET["recipe"])){echo $recipeTitle;} else if(isset($_GET["recipeBack"])){echo $tempTitle;} ?>">
                 <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
                 <textarea id="ingredients" name="recipeIngredients" class="recipeInputs textarea" rows="7" cols="32">
                     <?php
-                    echo $ingredients;
+                        if(isset($_GET["recipe"])){
+                            echo $ingredients;
+                        }
+                        else if(isset($_GET["recipeBack"])){
+                            echo $tempIngredients;
+                        }
                     ?>
                 </textarea>
                 <div id="preparationTitle" class="recipeLabel">Preparation:</div>
                 <textarea id="preparation" name="recipePreparation" class="recipeInputs textarea" rows="8" cols="32">
                     <?php
-                    echo $preparation;
+                        if(isset($_GET["recipe"])){
+                            echo $preparation;
+                        }
+                        else if(isset($_GET["recipeBack"])){
+                            echo $tempPreparation;
+                        }
                     ?>
                 </textarea>
                 <br>
                 <div id="recipeBtnsGrid">
-                    <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><button id="saveRecipe" class="recipeBtn" name="saveRecipe">Save</button><div id="recipeCloseButton" class="recipeBtn recipeBtnDiv" onclick="closerecipe()">Close</div>
+                    <div id="delRecipe" class="recipeBtn recipeBtnDiv" onclick="drcModal()">Delete</div><button id="saveRecipe" class="recipeBtn" name="saveRecipe">Save</button><button id="recipeCloseButton" name="recipeCloseButton" class="recipeBtn recipeBtnDiv">Close</button>
                 </div><!-- end of id="recipeBtnsGrid" -->
             </form><!-- end of id="editRecipeForm" -->
         </div><!--end of id="recipeSecondaryContainer-->

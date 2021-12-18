@@ -165,9 +165,10 @@ if(isset($_GET["myRecipes"])){
 
 <?php
 
-if(isset($_GET["recipe"])){
-    include_once 'recipePromptBox.php';
-}
+    if(isset($_GET["recipe"]) || isset($_GET["recipeBack"])){
+        include_once 'recipePromptBox.php';
+    }
+
 ?>
 
 <!--=======================MESSAGE PROMPT BOX===============================================-->
@@ -345,15 +346,6 @@ function newRecipeModalBackBtn(){
 }
 
 //========================RECIPE PROMPT BOX===========================================//      
-//close recipe form----------------------------------------------------------------------
-function closerecipe(){
-document.getElementById("recipeModal").style.display = "none";
-}
-//return to My Recipies prompt box----------------------------------------
-function recipeModalBackBtn(){
-    document.getElementById("recipeModal").style.display = "none";
-    document.getElementById("myRecipesModal").style.display ="block";  
-}
 //display delete recipe confirmation prompt box--------------------------
 function drcModal(){
     document.getElementById("recipeModal").style.display ="none";
@@ -370,10 +362,6 @@ function canceldrc(){
 function closeMessage(){
 document.getElementById("messageModal").style.display ="none";
 }//end of closeMessage()
-
-function returnToRecipePrompt(){
-document.getElementById("messageModal").style.display ="none";
-}//end of returnToRecipePrompt()
 
 function returnToNewRecipePrompt(){
 document.getElementById("messageModal").style.display ="none";

@@ -711,6 +711,7 @@ function sameTitle($currentTitle, $title){
     else{
         $result = false;
     }
+    error_log("result of sameTitle function: " . $result);
     return $result;
 }
 
@@ -873,19 +874,18 @@ function loadRecipe($connection, $user, $recipeNameSelected){
 
 //================================EDIT RECIPE=============================================//
 function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $preparation){
-    
-    $existingRecipe = recipeAlreadyExists($connection, $user, $title);
+
     $sameTitle = sameTitle($currentTitle, $title);
+    $existingRecipe = recipeAlreadyExists($connection, $user, $title);
     
-    if($existingRecipe === false){//if recipe name not located under user's ID whether recipe name same or not------------
-            
+    if(!$existingRecipe){//if recipe name not located under user's ID whether recipe name same or not------------
         //prepare new recipe entry with user's id--------------
         function updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation) {
             //$sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
             $sql = "UPDATE `recipes` SET `recipesTitle` = '". $title ."', `recipesIngredients` ='". $ingredients ."', `recipesPreparation` ='". $preparation . "' WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $currentTitle . "';";
             $stmt = mysqli_stmt_init($connection);
-            error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $currentTitle . ", " . $ingredients . ", " . $preparation);                    
-            error_log("sql statement used: ". $sql);
+            //error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $currentTitle . ", " . $ingredients . ", " . $preparation);                    
+            //error_log("sql statement used: ". $sql);
             //if there are any errors in the sql statement written
             if(!mysqli_stmt_prepare($stmt, $sql)){
                 header("location: ../user.php?error=stmtFailed");
@@ -914,53 +914,52 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
         //send user to user's profile page-------------------
         header("location: ../user.php?success=recipeUpdated");
         exit();
-    }//end of if($existingRecipe === false)
+    }//end of if(!$existingRecipe)
 
     //if a recipe was located for this user with the attempted title and the new name is the same as the current name----------------------
-    else if($existingRecipe === true && $sameTitle === true){
-        //prepare new recipe entry with user's id--------------
-        function updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation) {
-            //$sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
-            $sql = "UPDATE `recipes` SET `recipesTitle` = '". $title ."', `recipesIngredients` ='". $ingredients ."', `recipesPreparation` ='". $preparation . "' WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $currentTitle . "';";
-            $stmt = mysqli_stmt_init($connection);
-            error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $currentTitle . ", " . $ingredients . ", " . $preparation);                    
-            error_log("sql statement used: ". $sql);
-            //if there are any errors in the sql statement written
-            if(!mysqli_stmt_prepare($stmt, $sql)){
-                header("location: ../user.php?error=stmtFailed");
-                error_log("statement failed at updateRecipeWithNewTitle()...");
-                exit();
-            }
-            //execute update request--------------------------
-            $updateResult = mysqli_query($connection, $sql);
-            if ($updateResult) {
-                error_log("Record updated successfully");
-                //re-define recipe title for session----------------------
-                //$_SESSION["updatedRecipeTitle"] = $title;
+    else if($existingRecipe){
+        if($sameTitle == true){
+            //prepare new recipe entry with user's id--------------
+            function updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation) {
+                //$sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
+                $sql = "UPDATE `recipes` SET `recipesTitle` = '". $title ."', `recipesIngredients` ='". $ingredients ."', `recipesPreparation` ='". $preparation . "' WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $currentTitle . "';";
+                $stmt = mysqli_stmt_init($connection);
+                error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $currentTitle . ", " . $ingredients . ", " . $preparation);                    
+                error_log("sql statement used: ". $sql);
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at updateRecipeWithNewTitle()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                    //re-define recipe title for session----------------------
+                    //$_SESSION["updatedRecipeTitle"] = $title;
 
-            } else {
-                error_log("Error updating record: " . mysqli_error($connection));
-                header("location: ../user.php?error=notUptated");
-                exit();
-            }
-            //close sql statement-----------------------------
-            mysqli_close($connection);
-            
-        }//end of updateRecipeWithNewTitle()
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=notUptated");
+                    exit();
+                }
+                //close sql statement-----------------------------
+                mysqli_close($connection);
+                
+            }//end of updateRecipeWithNewTitle()
 
-        updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation);//call the function
+            updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation);//call the function
 
-        //send user to user's profile page-------------------
-        header("location: ../user.php?success=recipeUpdated");
-        exit();
-    }//end of else if($existingRecipe === true && $sameTitle === true)
-
-    //if a recipe was located for this user with the attempted title and the new name requested isn't the same as the current name----------------------
-    else if($existingRecipe === true && $sameTitle === false){
-        header("location: ../user.php?error=recipenametaken");
-        exit();
-    }
-
+            //send user to user's profile page-------------------
+            header("location: ../user.php?success=recipeUpdated");
+            exit();
+        }//end of if($sameTitle == true)
+        else if($sameTitle == false){//if a recipe was located for this user with the attempted title and the new name requested isn't the same as the current name----------------------
+            header("location: ../user.php?error=recipenametaken");
+            exit();
+        }
+    }//end of else if($existingRecipe)
 }//end of updateRecipe()
 
 //============================DELETE RECIPE===================================================

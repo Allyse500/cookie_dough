@@ -71,6 +71,9 @@ session_start();
     if(isset($_GET["error"])){
         include_once 'welcomePrompt.php';
     }
+    else if(isset($_GET["success"])){
+        include_once 'welcomePrompt.php';
+    }
 ?>
 <!--========================LOGIN PROMPT BOX===========================================-->
 
