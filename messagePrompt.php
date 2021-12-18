@@ -13,15 +13,12 @@ $title = $_SESSION["newRecipeTitle"];
                         if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle" || $_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
                             echo "Error...";
                         }
-                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW" || $_GET["error"] == "recipeSubmitted" || $_GET["error"] == "recipeUpdated"){
-                            echo "Success!";
-                        }
                         else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
                             echo "No change...";
                         }
                     }
                     else if(isset($_GET["success"])){
-                        if ($_GET["success"] == "recipeDeleted"){
+                        if ($_GET["success"] == "recipeDeleted" || $_GET["success"] == "UNEdited" || $_GET["success"] =="emailEdited" || $_GET["success"] == "pwEdited" || $_GET["success"] == "recipeSubmitted" || $_GET["success"] == "recipeUpdated"){
                             echo "Success!";
                         }
                     }
@@ -48,9 +45,6 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "stmtFailed"|| $_GET["error"] == "notUptated"){
                             echo "Something went wrong. Please try again.";
                         }
-                        else if ($_GET["error"] == "noneEditUN"){
-                            echo "Updated username to ". $name . "!";
-                        }
                         else if ($_GET["error"] == "wrongPW"){
                             echo "Password incorrect. Please try again.";
                         }
@@ -60,14 +54,8 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "sameEmail"){
                             echo "Email requested is the same as the current email.";
                         }
-                        else if ($_GET["error"] == "noneEditEM"){
-                            echo "Updated email to ". $email . "!";
-                        }
                         else if ($_GET["error"] == "emailTaken"){
                             echo "Email already taken. Please try again.";
-                        }
-                        else if ($_GET["error"] == "noneEditPW"){
-                            echo "Password updated!";
                         }
                         else if ($_GET["error"] == "recipeNameTaken" || $_GET["error"] == "recipenametaken"){
                             echo "Recipe title <span style='color: orange;'>" . $title . "</span> already exists. Please submit with new title.";
@@ -75,22 +63,31 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "emptyTitle"){
                             echo "Recipe title is empty. Please re-submit the recipe with a title.";
                         }
-                        else if ($_GET["error"] == "recipeSubmitted"){
-                            echo "New recipe submitted: <span style='color: orange;'>" . $title . "</span>"; 
-                        }
                         else if ($_GET["error"] == "emptyRecipeTitle"){
                             echo "Recipe title is empty. Please re-submit the recipe with a title.";
                         }
                         else if ($_GET["error"] == "invalidTitle" || $_GET["error"] == "invalidRecipeTitle"){
                             echo "Recipe title invalid. Please re-submit entry with title using either characters a-z, A-Z or 0-9";
                         }
-                        else if ($_GET["error"] == "recipeUpdated"){
-                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
-                        }
                     }
                     else if(isset($_GET["success"])){
                         if ($_GET["success"] == "recipeDeleted"){
                             echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe deleted.</span>";
+                        }
+                        else if ($_GET["success"] == "UNEdited"){
+                            echo "Updated username to ". $name . "!";
+                        }
+                        else if ($_GET["success"] == "emailEdited"){
+                            echo "Updated email to ". $email . "!";
+                        }
+                        else if ($_GET["success"] == "pwEdited"){
+                            echo "Password updated!";
+                        }
+                        else if ($_GET["success"] == "recipeSubmitted"){
+                            echo "New recipe submitted: <span style='color: orange;'>" . $title . "</span>"; 
+                        }
+                        else if ($_GET["success"] == "recipeUpdated"){
+                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
                         }
                     }
                 ?>

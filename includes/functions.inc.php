@@ -104,7 +104,7 @@ function createUser($connection, $name, $email, $pwd) {
      mysqli_stmt_close($stmt);
  
  //redirect user to front page with msg of sign up success
-     header("location: ../index.php?error=none");
+     header("location: ../index.php?success=signedUp");
      exit();
  }//end of createUser()
 
@@ -343,7 +343,7 @@ function editUsername($connection, $name, $pwd, $currentName){
             changeUN($connection, $name, $id);//call the function
 
             //send user to user's profile page-------------------
-            header("location: ../user.php?error=noneEditUN");
+            header("location: ../user.php?success=UNEdited");
             exit();
         }//end of else if($checkPW === true)
     }//end of if($existingUser === false)
@@ -504,7 +504,7 @@ function editEmail($connection, $email, $pwd, $currentEmail){
             changeEM($connection, $email, $id);//call the function
 
             //send user to user's profile page-------------------
-            header("location: ../user.php?error=noneEditEM");
+            header("location: ../user.php?success=emailEdited");
             exit();
         }//end of else if($checkPW === true)
     }//end of if($existingUser === false)
@@ -598,7 +598,7 @@ function editPassword($connection, $oldPW, $newPW, $currentEmail){
             changePW($connection, $newHashedPW, $id);//call the function
             
             //send user to user's profile page-------------------
-            header("location: ../user.php?error=noneEditPW");
+            header("location: ../user.php?success=pwEdited");
             exit();
         }//end of else if($checkPW === true)
     }//end of else if($currentUser)
@@ -670,7 +670,7 @@ function deleteAcct($connection, $pwd, $currentEmail){
             deleteUser($connection,  $id);//call the function
             
             //send user to index page and logout-------------------
-            header("location: ../index.php?error=noneAcctDeleted");
+            header("location: ../index.php?success=acctDeleted");
             exit();
         }//end of else if($checkPW === true)
     }//end of else if($currentUser)
@@ -824,7 +824,7 @@ function createRecipe($connection, $user, $title, $ingredients, $preparation){
         makeNewRecipe($connection, $user, $title, $ingredients, $preparation);//call the function
 
         //send user to user's profile page-------------------
-        header("location: ../user.php?error=recipeSubmitted");
+        header("location: ../user.php?success=recipeSubmitted");
         exit();
     }//end of if($existingRecipe === false)
 
@@ -912,7 +912,7 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
         updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation);//call the function
 
         //send user to user's profile page-------------------
-        header("location: ../user.php?error=recipeUpdated");
+        header("location: ../user.php?success=recipeUpdated");
         exit();
     }//end of if($existingRecipe === false)
 
@@ -951,7 +951,7 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
         updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation);//call the function
 
         //send user to user's profile page-------------------
-        header("location: ../user.php?error=recipeUpdated");
+        header("location: ../user.php?success=recipeUpdated");
         exit();
     }//end of else if($existingRecipe === true && $sameTitle === true)
 

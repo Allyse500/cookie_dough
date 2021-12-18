@@ -12,20 +12,22 @@ $name = $_SESSION["username"];
                         if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken"){
                             echo "Sign Up Error...";
                         }
-                        else if ($_GET["error"] == "none"){
-                            echo "Welcome". $name . "!";
-                        }
                         else if ($_GET["error"] == "emptyLoginInput" || $_GET["error"] == "wrongLogin"){
                             echo "Login Error...";
                         }
-                        else if ($_GET["error"] == "noneLoggedOut"){
-                            echo "Logged Out...";
-                        }
-                        else if ($_GET["error"] == "noneAcctDeleted"){
-                            echo "Account Deleted";
-                        }
                         else if ($_GET["error"] == "stmtFailed"){
                             echo "Error...";
+                        }
+                    }
+                    else if(isset($_GET["success"])){
+                        else if ($_GET["success"] == "signedUp"){
+                            echo "Welcome". $name . "!";
+                        }
+                        else if ($_GET["success"] == "loggedOut"){
+                            echo "Logged Out...";
+                        }
+                        else if ($_GET["success"] == "acctDeleted"){
+                            echo "Account Deleted";
                         }
                     }
                 ?>
@@ -51,16 +53,18 @@ $name = $_SESSION["username"];
                         else if ($_GET["error"] == "stmtFailed"){
                             echo "Something went wrong. Please try again.";
                         }
-                        else if ($_GET["error"] == "none"){
-                            echo "Please log in to access your account.";
-                        }
                         else if ($_GET["error"] == "wrongLogin"){
                             echo "Wrong username or password. Please try again.";
                         }
-                        else if ($_GET["error"] == "noneLoggedOut"){
+                    }
+                    else if(isset($_GET["success"])){
+                        else if ($_GET["success"] == "signedUp"){
+                            echo "Please log in to access your account.";
+                        }
+                        else if ($_GET["success"] == "loggedOut"){
                             echo "<span style='font-style: italic; margin-left:33.5%;'>See ya later!</span>";
                         }
-                        else if ($_GET["error"] == "noneAcctDeleted"){
+                        else if ($_GET["success"] == "acctDeleted"){
                             echo "<span style='font-style: italic; margin-left:33.5%;'>Goodbye!</span>";
                             session_unset();
                             session_destroy();
