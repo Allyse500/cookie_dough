@@ -175,6 +175,9 @@ if(isset($_GET["recipe"])){
     if(isset($_GET["error"])){
         include_once 'messagePrompt.php';
     }
+    else if(isset($_GET["success"])){
+        include_once 'messagePrompt.php';
+    }
 ?>
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->

@@ -20,6 +20,11 @@ $title = $_SESSION["newRecipeTitle"];
                             echo "No change...";
                         }
                     }
+                    else if(isset($_GET["success"])){
+                        if ($_GET["success"] == "recipeDeleted"){
+                            echo "Success!";
+                        }
+                    }
                 ?>
             </div>
             <div id="messageContents">
@@ -81,6 +86,11 @@ $title = $_SESSION["newRecipeTitle"];
                         }
                         else if ($_GET["error"] == "recipeUpdated"){
                             echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
+                        }
+                    }
+                    else if(isset($_GET["success"])){
+                        if ($_GET["success"] == "recipeDeleted"){
+                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe deleted.</span>";
                         }
                     }
                 ?>

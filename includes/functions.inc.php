@@ -962,3 +962,34 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
     }
 
 }//end of updateRecipe()
+
+//============================DELETE RECIPE===================================================
+
+function deleteRecipe($connection, $user, $title){
+        $sql = "DELETE FROM `recipes` WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $title . "';";  
+        $stmt = mysqli_stmt_init($connection);
+                                
+        //if there are any errors in the sql statement written
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: ../user.php?error=stmtFailed");
+            error_log("statement failed at deleteRecipe()...");
+            exit();
+        }
+        //execute update request--------------------------
+        $updateResult = mysqli_query($connection, $sql);
+        if ($updateResult) {
+            error_log("Record updated successfully");
+        } else {
+            error_log("Error updating record: " . mysqli_error($connection));
+            header("location: ../user.php?error=notUptated");
+            exit();
+        }
+        //close sql statement-----------------------------
+        mysqli_close($connection);
+            
+    //send user to index page and logout-------------------
+    header("location: ../user.php?success=recipeDeleted");
+    exit();
+
+}//end of deleteRecipe()
+

@@ -46,7 +46,7 @@ $preparation = $_SESSION["loadedPreparation"];
                 Are you sure you would like to delete this recipe?
             </div><!--end of id="drcContents"-->
             <div id="drcDelBtnsGrid">
-                <form id="drcDelBtnForm" action="delRecipe.php" method="POST"><button id="drcDelBtn" class="drcBtns" name="drcDelBtn">Delete</button></form><div id="drcCancelButton" class="drcBtns drcBtnsDiv" onclick="canceldrc()">Cancel</div>
+                <form id="drcDelBtnForm" action="includes/delRecipe.inc.php" method="POST"><button id="drcDelBtn" class="drcBtns" name="drcDelBtn">Delete</button></form><div id="drcCancelButton" class="drcBtns drcBtnsDiv" onclick="canceldrc()">Cancel</div>
             </div><!--end of id="drcDelBtnsGrid"-->
         </div><!--end of id="drcSecondaryContainer-->
     </div><!--end of id="drcContainer"-->
