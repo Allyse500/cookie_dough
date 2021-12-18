@@ -10,10 +10,10 @@ $title = $_SESSION["newRecipeTitle"];
             <div id="messageTitle">
                 <?php
                     if (isset($_GET["error"])){
-                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle" || $_GET["error"] == "emptyRecipeTitle"){
+                        if ($_GET["error"] == "emptyInput" || $_GET["error"] == "invalidUsername" || $_GET["error"] == "invalidEmail" || $_GET["error"] == "passwordsDontMatch" || $_GET["error"] == "nameTaken" || $_GET["error"] == "notUptated" || $_GET["error"] == "emailTaken" || $_GET["error"] == "wrongPW" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "emptyTitle" || $_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
                             echo "Error...";
                         }
-                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW" || $_GET["error"] == "recipeSubmitted"){
+                        else if ($_GET["error"] == "noneEditUN" || $_GET["error"] =="noneEditEM" || $_GET["error"] == "noneEditPW" || $_GET["error"] == "recipeSubmitted" || $_GET["error"] == "recipeUpdated"){
                             echo "Success!";
                         }
                         else if ($_GET["error"] == "sameUsername" || $_GET["error"] == "sameEmail"){
@@ -64,7 +64,7 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "noneEditPW"){
                             echo "Password updated!";
                         }
-                        else if ($_GET["error"] == "recipeNameTaken"){
+                        else if ($_GET["error"] == "recipeNameTaken" || $_GET["error"] == "recipenametaken"){
                             echo "Recipe title <span style='color: orange;'>" . $title . "</span> already exists. Please submit with new title.";
                         }
                         else if ($_GET["error"] == "emptyTitle"){
@@ -76,14 +76,20 @@ $title = $_SESSION["newRecipeTitle"];
                         else if ($_GET["error"] == "emptyRecipeTitle"){
                             echo "Recipe title is empty. Please re-submit the recipe with a title.";
                         }
+                        else if ($_GET["error"] == "invalidTitle" || $_GET["error"] == "invalidRecipeTitle"){
+                            echo "Recipe title invalid. Please re-submit entry with title using either characters a-z, A-Z or 0-9";
+                        }
+                        else if ($_GET["error"] == "recipeUpdated"){
+                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
+                        }
                     }
                 ?>
             </div>
             <div id="messageCloseButton" <?php
-                    if($_GET["error"] == "emptyTitle" || $_GET["error"] == "recipeNameTaken"){
+                    if($_GET["error"] == "emptyTitle" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "invalidTitle"){
                         echo "onclick='returnToNewRecipePrompt()'";
                     }
-                    else if ($_GET["error"] == "emptyRecipeTitle"){
+                    else if ($_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
                         echo "onclick='returnToRecipePrompt()'";
                     }
                     else{

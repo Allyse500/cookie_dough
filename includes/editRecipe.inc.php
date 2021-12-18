@@ -1,40 +1,42 @@
 <?php
-//if a post action was entered by the button named "editRecipe"...
-if(isset($_POST["editRecipe"])){
+
+//if a post action was entered by the button named "saveRecipe"...
+if(isset($_POST["saveRecipe"])){
 
     //make super global variables from submitted form data
-    $recipeNameSelected = $_POST[$inputName];
+    $title = $_POST["recipeName"];
+    $ingredients = $_POST["recipeIngredients"];
+    $preparation = $_POST["recipePreparation"];
 
     //start up session to alter/obtain session variable(s)
     session_start();
     //declare variable of current user
     $user = $_SESSION["userId"];
+    $currentTitle = $_SESSION["recipeName"];
 
     //import functions & variables from these files
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    //error handlers for edit email------------------------------------------------
-    if(emptyInputEditEM($email, $pwd) !== false){
-        header("location: ../user.php?error=emptyInput");
+    //error handlers for new recipe------------------------------------------------
+    if(emptyInputNewRecipe($title) !== false){//re-use function, ignore title
+        header("location: ../user.php?error=emptyRecipeTitle");
         exit();
     }
-    if(invalidEmail($email) !== false){
-        header("location: ../user.php?error=invalidEmail");
+    if(recipeTitleInvalid($title) !== false){
+        header("location: ../user.php?error=invalidRecipeTitle");
         exit();
     }
-    if(sameEmail($currentEmail, $email) !== false){
-        header("location: ../user.php?error=sameEmail");
+    if(recipeAlreadyExists($connection, $user, $title) !== false){
+        header("location: ../user.php?error=recipenametaken");
         exit();
     }
-    if(alreadyExistsEM($connection, $email) !== false){
-        header("location: ../user.php?error=emailTaken");
-        exit();
-    }
+    updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $preparation);
 
-    editEmail($connection, $email, $pwd, $currentEmail);
 }
-else {
-    header("location: ../user.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
-    exit();
+
+//send user back to user.php if attempted to enter newRecipe.inc.php link without using submit btn
+else{
+header("location: ../user.php");//return user to user page
+exit();
 }

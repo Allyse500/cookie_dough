@@ -25,6 +25,13 @@ if(isset($_POST["saveNewRecipe"])){
         $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
+    if(recipeTitleInvalid($title) !== false){
+        header("location: ../user.php?error=invalidTitle");
+        $_SESSION["temporaryRecipeTitle"] = $title;
+        $_SESSION["temporaryIngredients"] = $ingredients;
+        $_SESSION["temporaryPreparation"] = $preparation;
+        exit();
+    }
     if(recipeAlreadyExists($connection, $user, $title) !== false){
         header("location: ../user.php?error=recipeNameTaken");
         $_SESSION["temporaryRecipeTitle"] = $title;

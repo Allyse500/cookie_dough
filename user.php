@@ -34,7 +34,7 @@ $tempPrep = $_SESSION["temporaryPreparation"];
         <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
-          <div id="myRecipesBtn" class="homeButtons" onclick="myRecipesPromptBox()">My Recipes</div>
+          <form id="myRecipesForm" class="homeButtons" action="includes/getRecipeList.inc.php" method="POST"><button id="myRecipesBtn" name="myRecipesBtn">My Recipes</button></form>
           <form id="logoutForm" action="includes/logout.inc.php" method="POST"><button name="logoutBtn" class="homeButtons">Log Out</button></form>
         </div><!--end of id="buttonsGrid"-->
     </div><!--end of id="headerGrid"-->
@@ -112,43 +112,11 @@ $tempPrep = $_SESSION["temporaryPreparation"];
 </div><!--end of id="accountModal"-->
 
 <!--========================MY RECIPES PROMPT BOX===========================================-->       
-
-<div id="myRecipesModal" style="display:none;">
-    <div id="myRecipesListContainer">
-        <div id="myRecipesListSecondaryContainer">
-            <div id="myRecipesListTitle">My Recipes</div>
-            <div id="myRecipesList">
-                <div id="numLoggedRecipesMsg">
-                    <?php
-                        $recipeTitles = $_SESSION["recipeArray"];
-                        $num = count($recipeTitles);
-                        if($num == 0){
-                            echo "<span style='color:orange; font-weight:bold;'>" . $num . "</span> logged recipes.";
-                        }
-                        else if($num == 1){
-                            echo "<span style='color:orange; font-weight:bold;'>" . $num . "</span> logged recipe.";    
-                        }
-                        else if($num > 1){
-                            echo "<span style='color:orange; font-weight:bold;'>" . count($recipeTitles) . "</span> logged recipes.";    
-                        }
-                    ?>
-                </div>
-                <div id="myRecipesInputContents">
-                    <?php
-                        $recipeTitles = $_SESSION["recipeArray"];
-                        foreach ($recipeTitles as $value) {
-                            echo "<form class='recipeOpt' action='includes/loadRecipe.inc.php' method='POST'><input style='display:none;' id='recipeInputName' name ='recipeInputName' value='" . $value["recipesTitle"] . "'><button name='loadRecipe' class='recipeOptBtn'>" . $value["recipesTitle"] . "</button></form>";
-                        }     
-                    ?>
-                </div><!--end of id="myRecipesInputContents", empty array of recipes -->
-                <br>
-                <div id="myRecipesBtnsGrid">
-                    <div id="newRecipe" name="newRecipe" onclick="newRecipe()">New</div><div id="myRecipesCloseButton" onclick="closemyRecipes()">Close</div>
-                </div><!-- end of id="myRecipesBtnsGrid" -->
-            </div><!--end of id="myRecipesList"-->
-        </div><!--end of id="myRecipesListSecondaryContainer-->
-    </div><!--end of id="myRecipesListContainer"-->
-</div><!--end of id="myRecipesModal"-->
+<?php
+if(isset($_GET["myRecipes"])){
+    include_once 'myRecipesPromptBox.php';
+}
+?>
 
 <!--========================NEW RECIPE PROMPT BOX===========================================-->       
 
