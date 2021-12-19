@@ -96,7 +96,7 @@ $title = $_SESSION["newRecipeTitle"];
                     if($_GET["error"] == "emptyTitle" || $_GET["error"] == "recipeNameTaken" || $_GET["error"] == "invalidTitle"){
                         echo "<div id='messageCloseButton' onclick='returnToNewRecipePrompt()'>Ok</div>";
                     }
-                    if ($_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
+                    else if ($_GET["error"] == "emptyRecipeTitle" || $_GET["error"] == "invalidRecipeTitle" || $_GET["error"] == "recipenametaken"){
                         echo "<form action='includes/navBackToRecipe.inc.php' method='POST'><button id='messageCloseButton' name='messageCloseButton'>Ok</button></form>";
                     }
                     else {
