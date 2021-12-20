@@ -81,7 +81,7 @@ $title = $_SESSION["newRecipeTitle"];
                             echo "Updated email to ". $email . "!";
                         }
                         else if ($_GET["success"] == "pwEdited"){
-                            echo "Password updated!";
+                            echo "<span style='font-style: italic; margin-left:30.5%;'>Password updated!</span>";
                         }
                         else if ($_GET["success"] == "recipeSubmitted"){
                             echo "New recipe submitted: <span style='color: orange;'>" . $title . "</span>"; 

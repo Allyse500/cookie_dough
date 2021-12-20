@@ -62,7 +62,7 @@ $name = $_SESSION["username"];
                             echo "<span style='font-style: italic; margin-left:33.5%;'>See ya later!</span>";
                         }
                         else if ($_GET["success"] == "acctDeleted"){
-                            echo "<span style='font-style: italic; margin-left:33.5%;'>Goodbye!</span>";
+                            echo "<span style='font-style: italic; margin-left:38.5%;'>Goodbye!</span>";
                             session_unset();
                             session_destroy();
                         }

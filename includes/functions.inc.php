@@ -622,6 +622,7 @@ function deleteAcct($connection, $pwd, $currentEmail){
     $currentUser = currentUserEmail($connection, $currentEmail);
     
     if(!$currentUser){
+        error_log("null current email: ".$currentUser);
         header("location: ../user.php?error=notUptated");
         exit();
     }//end of if(!$currentUser)
@@ -640,6 +641,32 @@ function deleteAcct($connection, $pwd, $currentEmail){
             //define variable of id for query---------------------
             $id = $currentUser["usersID"];
             
+            function deleteRecipe2($connection, $id){
+                $sql = "DELETE FROM `recipes` WHERE `recipesUser` = '". $id."';";  
+                $stmt = mysqli_stmt_init($connection);
+                                        
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../user.php?error=stmtFailed");
+                    error_log("statement failed at deleteRecipe2()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Record updated successfully");
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../user.php?error=notUptated");
+                    error_log("update Result variable" . $updateResult);
+                    exit();
+                }
+                //close sql statement-----------------------------
+                //mysqli_close($connection);
+                error_log("user recipes deleted...");
+        
+            }//end of deleteRecipe2()
+            deleteRecipe2($connection, $id);//call the function
             //delete user account---------------------------------
             
             function deleteUser($connection,  $id) {
@@ -666,8 +693,8 @@ function deleteAcct($connection, $pwd, $currentEmail){
                 mysqli_close($connection);
                 
             }//end of deleteUser()
-            
-            deleteUser($connection,  $id);//call the function
+
+            deleteUser($connection, $id);//call the function
             
             //send user to index page and logout-------------------
             header("location: ../index.php?success=acctDeleted");
