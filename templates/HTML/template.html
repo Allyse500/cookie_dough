@@ -37,8 +37,7 @@ height: fit-content;
 
 #recipeHeaderGrid{
     display: grid;
-    grid-template-columns: 12% 65%;
-    grid-gap: 0 5%;
+    grid-template-columns: 12% 63% 25%;
 }
 
 #recipeModalBackBtn{
@@ -72,6 +71,7 @@ font-weight: bold;
 font-size: 200%;
 font-family: Arial, Helvetica, sans-serif; 
 text-align: center;
+margin-left: 15%;
 color: orange;
 }
 
@@ -222,6 +222,16 @@ background-color: orange;
     background-color: rgb(60, 60, 60);
 }
 
+.publicCheckBoxLabel{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#makePublic{
+    cursor: pointer;
+}
+
 </style>
 
 </head>
@@ -232,7 +242,7 @@ background-color: orange;
     <div id="recipeContainer">
         <div id="recipeSecondaryContainer">
             <div id="recipeHeaderGrid">
-                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div><input type="checkbox" name="makePublic"><label for="makePublic">make public</label>
+                <div id="recipeModalBackBtn">&larr;</div><div id="recipeFormTitle">Recipe</div><div><input type="checkbox" id="makePublic" name="makePublic"><label for="makePublic" class="publicCheckBoxLabel">public</label></div>
             </div><!--end of id="recipeHeaderGrid"-->
             <label for="recipeTitle" class="recipeLabel">Title: </label><input id="recipeTitle" type="text" name="recipeName">
             <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>

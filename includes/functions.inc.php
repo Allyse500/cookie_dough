@@ -1061,14 +1061,10 @@ function getPublicRecipes($connection, $searchInput) {
  
     if($existingRecipe === false){
         error_log("No recipe with that name or chef name located from public db...");
-        header("location: ../index.php?searchResult");
-        exit();
     }
 
     else if($existingRecipe === true){
         error_log("Recipe located: ". gettype($existingRecipe));
-        header("location: ../index.php?searchResult");
-        exit();
     }
    
 }//end of getPublicRecipes()

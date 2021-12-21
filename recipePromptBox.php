@@ -15,7 +15,7 @@ $tempPreparation = $_SESSION["temporaryPreparation"];
         <div id="recipeSecondaryContainer">
             <form id="editRecipeForm" action="includes/editRecipe.inc.php" method="POST">
                 <div id="recipeHeaderGrid">
-                    <button id="recipeModalBackBtn" name="recipeModalBackBtn">&larr;</button><div id="recipeFormTitle">Recipe</div>
+                    <button id="recipeModalBackBtn" name="recipeModalBackBtn">&larr;</button><div id="recipeFormTitle">Recipe</div><div><input type="checkbox" id="makePublic" name="makePublic"><label for="makePublic" class="publicCheckBoxLabel">public</label></div>
                 </div><!--end of id="recipeHeaderGrid"-->
                 <label for="recipeTitle" class="recipeLabel">Title: </label>
                 <input id="recipeTitle" type="text" name="recipeName" value="<?php if(isset($_GET["recipe"])){echo $recipeTitle;} else if(isset($_GET["recipeBack"])){echo $tempTitle;} ?>">

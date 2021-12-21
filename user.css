@@ -124,6 +124,102 @@ display: block;
 -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 
+/*=========================PUBLIC RECIPES PROMPT BOX===============================*/
+#publicRecipesModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#publicRecipesListContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#publicRecipesListSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#publicRecipesListTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+ #publicRecipesCloseButton{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+    margin-left: 84%;
+    width: 15%;
+  }
+
+#numLoggedPublicRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#publicRecipesCloseButton:hover {
+    background-color:rgb(60, 60, 60);
+  }
+
+#publicRecipesInputContents{
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 135px;
+    overflow-y: auto;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(255, 255, 255, .2);
+}
+
+/* .recipeOpt{
+    text-align: center;
+    padding: 2%;
+    border-radius: 4px;
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.recipeOpt:hover{
+    background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+} */
+
+.chefName{
+    text-align: right;
+}
+
 /*=========================ACCOUNT PROMPT BOX===============================*/
 #accountModal{
   display: none;
@@ -329,78 +425,6 @@ margin-bottom: 5%;
        font-weight: bold;
    }
 
-/* =========================MY RECIPES PROMPT BOX===============================
-#myRecipesModal{
-  display: none;
-  position: fixed; 
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-#myRecipesListContainer{
- margin-left: auto;
- margin-right: auto;
- width: 400px;
- height: fit-content;
- background-color: rgba(0, 0, 0, .5);
- border: 5px double rgb(80, 38, 22);
- border-radius:7px;
- padding: .75%;
-}
-
-#myRecipesListSecondaryContainer{
-background-color: rgba(145, 88, 41, 0.75);
-margin-left: auto;
-margin-right: auto;
-padding: 2%;
-}
-
-#myRecipesListTitle{
-font-style: italic;
-font-weight: bold;
-font-size: 200%;
-font-family: Arial, Helvetica, sans-serif; 
-text-align: center;
-color: orange;
-}
-
-#myRecipesBtnsGrid{
-    display: grid;
-    grid-template-columns: 25% 30%;
-    grid-gap: 0% 5%;
-    width: 200px;
-    margin-left: 69%;
-    }
-
- #myRecipesCloseButton, #newRecipe{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 85%;
-	text-align: center;
-    border: white 1px solid;
-    border-radius: 5px;
-    cursor: pointer;
-    padding-top: 1px;
-  }
-
-#numLoggedRecipesMsg{
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    margin-top: 1%;
-}
-
-#myRecipesCloseButton:hover, #newRecipe:hover {
-    background-color:rgb(60, 60, 60);
-  } */
-
 /*=========================MY RECIPES PROMPT BOX===============================*/
 #myRecipesModal{
   display: block;
@@ -549,8 +573,7 @@ height: fit-content;
 
 #newRecipeHeaderGrid{
     display: grid;
-    grid-template-columns: 12% 75%;
-    grid-gap: 0 5%;
+    grid-template-columns: 12% 83%;
 }
 
 #newRecipeModalBackBtn{
@@ -613,10 +636,10 @@ margin-bottom: 1%;
 
 #newRecipeBtnsGrid{
     display: grid;
-    grid-template-columns: 30% 30%;
+    grid-template-columns: 30% 30% 30%;
     grid-gap: 0 5%;
     width:80%;
-    margin-left: 25%;
+    margin-left: 10%;
 }
 
 #newRecipeCancelButton{
@@ -678,8 +701,7 @@ height: fit-content;
 
 #recipeHeaderGrid{
     display: grid;
-    grid-template-columns: 12% 65%;
-    grid-gap: 0 5%;
+    grid-template-columns: 12% 63% 25%;
 }
 
 #recipeModalBackBtn{
@@ -713,6 +735,7 @@ font-weight: bold;
 font-size: 200%;
 font-family: Arial, Helvetica, sans-serif; 
 text-align: center;
+margin-left: 15%;
 color: orange;
 }
 
@@ -770,6 +793,16 @@ margin-bottom: 1%;
 
 .recipeBtn:hover{
        background-color: rgb(60, 60, 60);
+}
+
+.publicCheckBoxLabel{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#makePublic{
+    cursor: pointer;
 }
 
 /*==================DELETE RECIPE CONFIRMATION PROMPT BOX===================*/

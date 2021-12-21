@@ -112,7 +112,11 @@ if(isset($_GET["searchResult"])){
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
-        
+    
+//===============================PUBLIC RECIPES PROMPT BOX==================================
+function closePublicRecipes(){
+document.getElementById("publicRecipesModal").style.display="none";
+}     
 //==========================ABOUT PROMPT BOX====================================//
 //display about prompt box-------------------------------------------------------------
 function aboutPromptBox(){
@@ -156,11 +160,6 @@ document.getElementById("password").value ="";
 function closelogin(){
 document.getElementById("loginModal").style.display ="none";
 }//end of closelogin()
-
-//===============================PUBLIC RECIPES PROMPT BOX==================================
-function closePublicRecipes(){
-document.getElementById("publicRecipesModal").style.display="none";
-}
 
 </script>
 

@@ -31,7 +31,7 @@ $tempPrep = $_SESSION["temporaryPreparation"];
             echo $_SESSION["username"];
             ?>
         </div><!--end of id="userTitle" -->
-        <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
+        <form id="searchBar" action="includes/search2.inc.php" method="POST"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name"><button id="searchButton" name="searchButton">Search</button></form>
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
           <form id="myRecipesForm" class="homeButtons" action="includes/getRecipeList.inc.php" method="POST"><button id="myRecipesBtn" name="myRecipesBtn">My Recipes</button></form>
@@ -44,6 +44,14 @@ $tempPrep = $_SESSION["temporaryPreparation"];
 <div id="centralPageTitle">
     Cookie Dough
 </div>
+
+<!--========================PUBLIC RECIPES PROMPT BOX===========================================-->       
+<?php
+if(isset($_GET["searchResult"])){
+    include_once 'searchResultPromptBox.php';
+}
+?>
+
 <!--=======================ACCOUNT===============================================-->
 <div id="accountModal">
     <div id="accountContainer">
@@ -154,7 +162,7 @@ if(isset($_GET["myRecipes"])){
                 </textarea>
                 <br>
                 <div id="newRecipeBtnsGrid">
-                    <button id="saveNewRecipe" class="newRecipeBtn" name="saveNewRecipe">Save</button><button id="newRecipeCancelButton" name ="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv">Cancel</button>
+                    <div><input type="checkbox" id="makePublic" name="makePublic"><label for="makePublic" class="publicCheckBoxLabel">public</label></div><button id="saveNewRecipe" class="newRecipeBtn" name="saveNewRecipe">Save</button><button id="newRecipeCancelButton" name ="newRecipeCancelButton" class="newRecipeBtn newRecipeBtnDiv">Cancel</button>
                 </div><!-- end of id="newRecipeBtnsGrid" -->
             </form><!-- end of id="newRecipeForm" -->
         </div><!--end of id="newRecipeSecondaryContainer-->
@@ -183,7 +191,12 @@ if(isset($_GET["myRecipes"])){
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
-        
+
+//===============================PUBLIC RECIPES PROMPT BOX==================================
+function closePublicRecipes(){
+document.getElementById("publicRecipesModal").style.display="none";
+}
+
 //==========================ACCOUNT PROMPT BOX====================================//
 //display account prompt box-------------------------------------------------------------
 function accountPromptBox(){

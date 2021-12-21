@@ -7,6 +7,9 @@ if(isset($_POST["saveRecipe"])){
     $title = $_POST["recipeName"];
     $ingredients = $_POST["recipeIngredients"];
     $preparation = $_POST["recipePreparation"];
+    $postToPublic = $_POST["makePublic"];
+
+    error_log("type of input from post to public checkbox: " . gettype($postToPublic));
 
     //start up session to alter/obtain session variable(s)
     session_start();
@@ -49,7 +52,6 @@ else if(isset($_POST["recipeCloseButton"])){
     header("location: ../user.php");//return user to user page
     exit();
 }
-
 //send user back to user.php if attempted to enter newRecipe.inc.php link without using submit btn
 else{
 header("location: ../user.php");//return user to user page
