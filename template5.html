@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+<style>
+#bodyID {
+    background-image: url('cookieDough.jpg');
+    background-size: cover;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+#document{
+height: 450px;
+width: 350px;
+background-color: rgba(255, 255, 255, .8);
+border-radius: 10px;
+margin-left: auto;
+margin-right: auto;
+display: block;
+margin-top: 5%;
+padding: 2%;
+box-shadow: 1px 1px 20px 1px grey inset;
+}
+
+#documentContents{
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: normal;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.recipeDocLabel{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    margin-bottom: 5%;
+}
+
+.recipeDocTitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 140%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+</style>
+</head>
+
+<body id="bodyID">
+    <!-- <div id="documentOverlay"></div> -->
+    <div id="document">
+        <div id="documentContents">
+            <div class="recipeDocTitle">Recipe Title</div>
+            <div class="recipeDocLabel">Ingredients: </div>
+            <div class="recipeDocLabel">Preparation: </div>    
+        </div><!--end of id="documentContents"-->
+    </div><!--end of id="document"-->
+
+</body>
+</html>
