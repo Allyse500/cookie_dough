@@ -11,11 +11,18 @@ if(isset($_POST["saveRecipe"])){
 
     error_log("type of input from post to public checkbox: " . gettype($postToPublic));
 
+    if(!$postToPublic){
+        error_log("user does not want this recipe in public recipe db");
+    }
+    else if($postToPublic){
+        error_log("user wants this recipe in public recipe db");
+    }
     //start up session to alter/obtain session variable(s)
     session_start();
     //declare variable of current user
     $user = $_SESSION["userId"];
     $currentTitle = $_SESSION["recipeName"];
+    $chef = $_SESSION["username"];
 
     //import functions & variables from these files
     require_once 'dbh.inc.php';
@@ -36,7 +43,9 @@ if(isset($_POST["saveRecipe"])){
         $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
-    updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $preparation);
+    //if no errors located:------------------------------------------------------
+    //-----------------------update recipe---------------------------------------
+    updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $preparation, $postToPublic, $chef);
     $_SESSION["temporaryRecipeTitle"] = "";
     $_SESSION["temporaryIngredients"] = "";
     $_SESSION["temporaryPreparation"] = "";
