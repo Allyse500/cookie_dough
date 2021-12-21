@@ -14,7 +14,7 @@ if(isset($_POST["myRecipesBtn"])){
 
     if(!$recipes){
         error_log("no recipes located...");
-        header("location: ../user.php?myRecipes");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+        header("location: ../user.php?myRecipes");//send user to user.php to display My Recipe Prompt Box
         exit();
     }
     else if($recipes){
@@ -25,11 +25,11 @@ if(isset($_POST["myRecipesBtn"])){
         //     error_log("Second attempt for recipe titles: " . $value["recipesTitle"]);
         // }
         $_SESSION["recipeArray"] = $recipes;
-        header("location: ../user.php?myRecipes");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+        header("location: ../user.php?myRecipes");//send user to user.php to display My Recipe Prompt Box
         exit();
     }
 }
 else {
-    header("location: ../user.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+    header("location: ../user.php");//send user back to user.php if attempted to enter getRecipeList.inc.php link without using submit btn
     exit();
 }

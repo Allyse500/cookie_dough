@@ -6,30 +6,32 @@
     margin: 0;
     overflow-x: hidden;
   }
-      /* =================SCROLL BAR BEGIN========================== */
-  ::-webkit-scrollbar {
-    width: 15px;
-  }
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-   box-shadow: inset 0 0 5px grey; 
-   border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:rgb(255, 255, 255, 0.5); 
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(216, 216, 216, 0.5);
-    box-shadow: inset 0 0 5px grey;
-  }
-  /* ==================SCROLL BAR END========================= */
+/* =================SCROLL BAR BEGIN========================== */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+ box-shadow: inset 0 0 5px grey; 
+ border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:rgb(199, 130, 2, 0.5); 
+  box-shadow: inset 0 0 5px rgb(199, 130, 2, 0.5);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(199, 130, 2, 0.7);
+  box-shadow: inset 0 0 5px rgb(199, 130, 2, 0.7);
+}
+/* ==================SCROLL BAR END========================= */
+
 
 /* ===================NAVBAR=================================== */
 #navbar{
@@ -407,4 +409,100 @@ margin-left: 66%;
 #loginInputContents{
 margin-left: 27.5%;
 margin-top: 5%;
+}
+
+/*=========================PUBLIC RECIPES PROMPT BOX===============================*/
+#publicRecipesModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#publicRecipesListContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#publicRecipesListSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#publicRecipesListTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+ #publicRecipesCloseButton{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+    margin-left: 84%;
+    width: 15%;
+  }
+
+#numLoggedPublicRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#publicRecipesCloseButton:hover {
+    background-color:rgb(60, 60, 60);
+  }
+
+#publicRecipesInputContents{
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 135px;
+    overflow-y: auto;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(255, 255, 255, .2);
+}
+
+.recipeOpt{
+    text-align: center;
+    padding: 2%;
+    border-radius: 4px;
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.recipeOpt:hover{
+    background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+}
+
+.chefName{
+    text-align: right;
 }

@@ -1019,3 +1019,58 @@ function deleteRecipe($connection, $user, $title){
 
 }//end of deleteRecipe()
 
+//===========================PUBLIC RECIPES PROMPT BOX===================================
+//-----------------------QUERY FOR USER'S RECIPE WITH ATTEMPTED TITLE-----------------
+function publicRecipeAlreadyExists($connection, $chef, $recipe) {
+    $sql = "SELECT * FROM publicrecipes WHERE publicRecipesTitle = ? OR publicRecipesUserName = ?;";
+    $stmt = mysqli_stmt_init($connection);
+ 
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+ 
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "ss", $chef, $recipe);
+ 
+    //execute statement----------------
+     mysqli_stmt_execute($stmt);
+ 
+    //get result of prepared statement--------------------
+     $resultData = mysqli_stmt_get_result($stmt);
+ 
+     if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this username (also set located user as variable)
+         return $row;//return all info of user located
+     }
+     else{//no user was located with that name
+         $result = false;
+         return $result;
+     }
+ 
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+ 
+ }//end of publicRecipeAlreadyExists
+
+
+//---------------------------query from home page----------------------------------------
+function getPublicRecipes($connection, $searchInput) {
+
+    $existingRecipe = publicRecipeAlreadyExists($connection, $searchInput, $searchInput);
+ 
+    if($existingRecipe === false){
+        error_log("No recipe with that name or chef name located from public db...");
+        header("location: ../index.php?searchResult");
+        exit();
+    }
+
+    else if($existingRecipe === true){
+        error_log("Recipe located: ". gettype($existingRecipe));
+        header("location: ../index.php?searchResult");
+        exit();
+    }
+   
+}//end of getPublicRecipes()
+
+

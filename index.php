@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if(isset($_SESSION["userId"])){
+    header("location: user.php");//disable user from getting back to home page
+    exit();
+}
+
+$recipeSearchResult = $_SESSION["recipeSearchArray"];
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +25,7 @@ session_start();
 <div id="navbar">
     <div id="headerGrid">
         <div id="homeTitle">Home</div>
-        <div id="searchBar"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="search" placeholder ="Enter cookie name"><button id="searchButton">Search</button></div>
+        <form id="searchBar" action="includes/search.inc.php" method="POST"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name"><button id="searchButton" name="searchButton">Search</button></form>
         <div id="buttonsGrid">
           <div id="aboutBtn" class="homeButtons" onclick="aboutPromptBox()">About</div>
           <div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">Sign Up</div>
@@ -31,6 +38,14 @@ session_start();
 <div id="centralPageTitle">
     Cookie Dough
 </div>
+
+<!--========================PUBLIC RECIPES PROMPT BOX===========================================-->       
+<?php
+if(isset($_GET["searchResult"])){
+    include_once 'searchResultPromptBox.php';
+}
+?>
+
 <!--=======================ABOUT===============================================-->
 <div id="aboutModal">
     <div id="aboutContainer">
@@ -141,6 +156,11 @@ document.getElementById("password").value ="";
 function closelogin(){
 document.getElementById("loginModal").style.display ="none";
 }//end of closelogin()
+
+//===============================PUBLIC RECIPES PROMPT BOX==================================
+function closePublicRecipes(){
+document.getElementById("publicRecipesModal").style.display="none";
+}
 
 </script>
 
