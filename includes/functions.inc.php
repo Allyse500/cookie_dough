@@ -1251,10 +1251,10 @@ function updatePublicRecipe($connection, $title, $ingredients, $preparation, $us
         exit();
     }
     //close sql statement-----------------------------
-    mysqli_close($connection);
+//     mysqli_close($connection);
         
-//send user to index page and logout-------------------
-header("location: ../user.php?success=publicRecipeDeleted");
-exit();
+// //send user to index page and logout-------------------
+// header("location: ../user.php?success=publicRecipeDeleted");
+// exit();
 
 }//end of deletePublicRecipe()
