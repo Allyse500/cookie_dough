@@ -1058,7 +1058,7 @@ function deleteRecipe($connection, $user, $title){
 
 //===========================HOME PAGE SEARCH BAR====================================================
 function publicRecipeAlreadyExists($connection, $chef, $recipe) {
-    $sql = "SELECT * FROM publicrecipes WHERE publicRecipesTitle = ? OR publicRecipesUserName = ?;";
+    $sql = "SELECT * FROM publicrecipes WHERE publicRecipesUserName = ? OR publicRecipesTitle = ?;";
     $stmt = mysqli_stmt_init($connection);
  
     //if there are any errors in the sql statement written
