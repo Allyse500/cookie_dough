@@ -18,7 +18,7 @@ $title = $_SESSION["newRecipeTitle"];
                         }
                     }
                     else if(isset($_GET["success"])){
-                        if ($_GET["success"] == "recipeDeleted" || $_GET["success"] == "UNEdited" || $_GET["success"] =="emailEdited" || $_GET["success"] == "pwEdited" || $_GET["success"] == "recipeSubmitted" || $_GET["success"] == "recipeUpdated"){
+                        if ($_GET["success"] == "recipeDeleted" || $_GET["success"] == "UNEdited" || $_GET["success"] =="emailEdited" || $_GET["success"] == "pwEdited" || $_GET["success"] == "recipeSubmitted" || $_GET["success"] == "recipeUpdated" || $_GET["success"] == "publicRecipeDeleted"){
                             echo "Success!";
                         }
                     }
@@ -88,6 +88,9 @@ $title = $_SESSION["newRecipeTitle"];
                         }
                         else if ($_GET["success"] == "recipeUpdated"){
                             echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
+                        }
+                        else if ($_GET["success"] == "publicRecipeDeleted"){
+                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe removed from public search.</span>";
                         }
                     }
                 ?>

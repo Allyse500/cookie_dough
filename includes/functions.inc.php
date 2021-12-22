@@ -964,6 +964,7 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
                 }
                 else if($existingPublicRecipe){//remove recipe from public DB-------------
                     error_log("remove recipe request: recipe located in public db...");
+                    deletePublicRecipe($connection, $user, $currentTitle);
                 }
             }
             else if($postToPublic){
@@ -971,10 +972,10 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
                 //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
                 $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
                 error_log("does public recipe exist?: " . $existingPublicRecipe);
-                //-------------------REMOVE RECIPE IF EXISTS-----------------------------------------------//
+                //-------------------INSERT/UPDATE RECIPE IF EXISTS-----------------------------------------------//
                 if(!$existingPublicRecipe){//insert new recipe to public db------------
                     error_log("post recipe request: recipe not in public db...");
-                    //newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
+                    newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
                 }
                 else if($existingPublicRecipe){//update recipe on public db-------------
                     error_log("update recipe request: recipe located in public db...");
@@ -1198,3 +1199,33 @@ function updatePublicRecipe($connection, $title, $ingredients, $preparation, $us
  
     error_log("public recipe updated...");
  }//end of updatePublicRecipe()
+
+ //==============================DELETE PUBLIC RECIPE=================================
+ function deletePublicRecipe($connection, $user, $currentTitle){//deleting public recipe from user edit recipe prompt
+    //$sql = "DELETE FROM `recipes` WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $title . "';";
+    $sql = "DELETE FROM `publicrecipes` WHERE `publicRecipesUserID` = '". $user ."' AND `publicRecipesTitle` = '". $currentTitle ."';";
+    $stmt = mysqli_stmt_init($connection);
+                            
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../user.php?error=stmtFailed");
+        error_log("statement failed at deletePublicRecipe()...");
+        exit();
+    }
+    //execute update request--------------------------
+    $updateResult = mysqli_query($connection, $sql);
+    if ($updateResult) {
+        error_log("Public recipe deleted successfully");
+    } else {
+        error_log("Error updating record: " . mysqli_error($connection));
+        header("location: ../user.php?error=notUptated");
+        exit();
+    }
+    //close sql statement-----------------------------
+    mysqli_close($connection);
+        
+//send user to index page and logout-------------------
+header("location: ../user.php?success=publicRecipeDeleted");
+exit();
+
+}//end of deletePublicRecipe()
