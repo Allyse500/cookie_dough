@@ -1149,6 +1149,65 @@ function getPublicRecipes($connection, $searchInput) {
 }//end of getPublicRecipes()
 
  //=========================USER PAGE SEARCH BAR=====================================
+ function getPublicRecipes2($connection, $searchInput) {
+
+    $existingRecipe = publicRecipeAlreadyExistsSearch($connection, $searchInput, $searchInput);
+    error_log("existing recipe variable: ". gettype($existingRecipe));
+    if(!$existingRecipe){
+        error_log("No recipe with that name or chef name located from public db...");
+        header("location: ../user.php?searchResult");//send user back to index.php to display Search Result Prompt Box
+        exit();
+    }
+
+    else if($existingRecipe){
+        //spotting variable type for trouble shooting-------------
+        error_log("existingRecipe variable type: ". gettype($existingRecipe));
+        error_log("Recipe located: ". count($existingRecipe));
+        foreach ($recipes as $value) {
+            error_log("Second attempt for recipe search results: Chef: " . $value["publicRecipesUserName"] . ", Title: " . $value["publicRecipesTitle"]);
+        }
+        $_SESSION["recipeSearchArray"] = $existingRecipe;
+        header("location: ../user.php?searchResult");//send user back to index.php to display Search Result Prompt Box
+        exit();
+    }
+   
+}//end of getPublicRecipes()
+
+function publicRecipeAlreadyExistsSearch($connection, $recipe, $chef) {
+    $sql = "SELECT * FROM publicrecipes WHERE publicRecipesTitle = ? OR publicRecipesUserName = ?;";
+    $stmt = mysqli_stmt_init($connection);
+    error_log("recipe variable: ". $recipe . ", chef variable: " . $chef);
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     error_log("statement failed at publicRecipeAlreadyExistsSearch...");
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+ 
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "ss", $recipe, $chef);
+     error_log("recipe variable2: ". $recipe . ", chef variable2: " . $chef);
+    //execute statement----------------
+     mysqli_stmt_execute($stmt);
+ 
+    //get result of prepared statement--------------------
+     $resultData = mysqli_stmt_get_result($stmt);
+     error_log("result data variable: " . gettype($resultData));
+     if($row = mysqli_fetch_all($resultData, MYSQLI_ASSOC)){//if there is data in database with this username (also set located user as variable)
+         return $row;//return all info of user located
+         error_log("user recipe located: ". gettype($row));
+     }
+     else{//no user was located with that name
+         $result = false;
+         return $result;
+     }
+ 
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+ 
+ }//end of publicRecipeAlreadyExistsSearch
+
+//========SEARCH FOR PUBLIC RECIPE BEFORE ADDING/UPDATING/DELETING PUBLIC RECIPE=================== 
  function publicRecipeAlreadyExists2($connection, $recipe, $chef) {
     $sql = "SELECT * FROM publicrecipes WHERE publicRecipesTitle = ? AND publicRecipesUserName = ?;";
     $stmt = mysqli_stmt_init($connection);
