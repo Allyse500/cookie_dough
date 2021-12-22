@@ -90,7 +90,7 @@ $title = $_SESSION["newRecipeTitle"];
                             echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe updated!</span>";
                         }
                         else if ($_GET["success"] == "publicRecipeDeleted"){
-                            echo "<span style='font-style: italic; margin-left:33.5%;'>Recipe removed from public search.</span>";
+                            echo "<span style='font-style: italic; margin-left: 15%;'>Recipe removed from public search.</span>";
                         }
                     }
                 ?>

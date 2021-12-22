@@ -906,6 +906,35 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
     $existingRecipe = recipeAlreadyExists($connection, $user, $title);
     
     if(!$existingRecipe){//if recipe name not located under user's ID whether recipe name same or not------------
+        if(!$postToPublic){
+            error_log("functions same title: user does not want this recipe in public db");
+            //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
+            $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
+            //-------------------REMOVE RECIPE IF EXISTS-----------------------------------------------//
+            if(!$existingPublicRecipe){//no action--------
+                error_log("remove recipe request: recipe not in public db...");
+            }
+            else if($existingPublicRecipe){//remove recipe from public DB-------------
+                error_log("remove recipe request: recipe located in public db...");
+                deletePublicRecipe($connection, $user, $currentTitle);
+            }
+        }
+        else if($postToPublic){
+            error_log("functions same title: user does want this recipe in the public db");
+            //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
+            $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
+            error_log("does public recipe exist?: " . $existingPublicRecipe);
+            //-------------------INSERT/UPDATE RECIPE IF EXISTS-----------------------------------------------//
+            if(!$existingPublicRecipe){//insert new recipe to public db------------
+                error_log("post recipe request: recipe not in public db...");
+                newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
+            }
+            else if($existingPublicRecipe){//update recipe on public db-------------
+                error_log("update recipe request: recipe located in public db...");
+                updatePublicRecipe($connection, $title, $ingredients, $preparation, $user, $chef);//call insert new recipe function
+            }
+        }
+
         //prepare new recipe entry with user's id--------------
         function updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation) {
             //$sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
