@@ -2,13 +2,34 @@
 <head>
 <style>
 #bodyID {
-    background-image: url('cookieDough.jpg');
+    background-image: url('../../cookieDough.jpg');
     background-size: cover;
     background-position: 0% 0%;
     background-repeat: no-repeat;
     margin: 0;
     overflow-x: hidden;
   }
+
+#documentModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#documentGrid{
+    display: grid;
+    grid-template-columns: 45% 2%;
+    width: 900px;
+    margin-left: 33.5%;
+    height: fit-content;
+}
 
 #document{
 height: 450px;
@@ -18,7 +39,6 @@ border-radius: 10px;
 margin-left: auto;
 margin-right: auto;
 display: block;
-margin-top: 5%;
 padding: 2%;
 box-shadow: 1px 1px 20px 1px grey inset;
 }
@@ -46,18 +66,47 @@ box-shadow: 1px 1px 20px 1px grey inset;
     text-align: center;
     margin-bottom: 5%;
 }
+
+#closeRead{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    width: fit-content;
+    height: fit-content;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#closeRead:hover{
+    background-color: rgb(60, 60, 60);
+}
+
 </style>
 </head>
 
 <body id="bodyID">
-    <!-- <div id="documentOverlay"></div> -->
-    <div id="document">
-        <div id="documentContents">
-            <div class="recipeDocTitle">Recipe Title</div>
-            <div class="recipeDocLabel">Ingredients: </div>
-            <div class="recipeDocLabel">Preparation: </div>    
-        </div><!--end of id="documentContents"-->
-    </div><!--end of id="document"-->
+    <div id="documentModal">
+        <div id="documentGrid">
+            <div id="document">
+                <div id="documentContents">
+                    <div class="recipeDocTitle">Recipe Title</div>
+                    <div class="recipeDocLabel">Ingredients: </div>
+                    <div class="recipeDocLabel">Preparation: </div>    
+                </div><!--end of id="documentContents"-->
+            </div><!--end of id="document"-->
+            <div id="closeRead" onclick="closeRead()">Close</div>
+        </div><!--end of id="documentGrid"-->
+    </div><!--end of id="documentModal"-->
 
 </body>
 </html>

@@ -48,7 +48,14 @@ $tempPrep = $_SESSION["temporaryPreparation"];
 <!--========================PUBLIC RECIPES PROMPT BOX===========================================-->       
 <?php
 if(isset($_GET["searchResult"])){
-    include_once 'searchResultPromptBox.php';
+    include_once 'searchResultPromptBox2.php';
+}
+?>
+
+<!--==========================RECIPE DOC 2======================================-->
+<?php
+if(isset($_GET["recipeDocument"])){
+    include_once 'recipeDoc2.php';
 }
 ?>
 
@@ -191,10 +198,14 @@ if(isset($_GET["myRecipes"])){
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
-
 //===============================PUBLIC RECIPES PROMPT BOX==================================
 function closePublicRecipes(){
 document.getElementById("publicRecipesModal").style.display="none";
+}
+
+//===============================RECIPE DOC 2===========================================//
+function closeRead(){
+document.getElementById("documentModal").style.display="none";
 }
 
 //==========================ACCOUNT PROMPT BOX====================================//
