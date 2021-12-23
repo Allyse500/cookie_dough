@@ -6,6 +6,6 @@ publicRecipesUserName VARCHAR(255) NOT NULL,
 publicRecipesTitle VARCHAR(255) NOT NULL,
 publicRecipesIngredients TEXT NOT NULL,
 publicRecipesPreparation TEXT NOT NULL,
-public TINYINT(1)
+public VARCHAR(10)
 
 );

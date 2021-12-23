@@ -1085,6 +1085,8 @@ function deleteRecipe($connection, $user, $title){
             header("location: ../user.php?error=notUptated");
             exit();
         }
+
+        deletePublicRecipe($connection, $user, $title);//call fuction to delete recipe
         //close sql statement-----------------------------
         mysqli_close($connection);
             

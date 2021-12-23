@@ -14,7 +14,6 @@ if(isset($_POST["drcDelBtn"])){
     require_once 'functions.inc.php';
 
     deleteRecipe($connection, $user, $title);
-
 }
 
 //send user back to user.php if attempted to enter newRecipe.inc.php link without using submit btn
