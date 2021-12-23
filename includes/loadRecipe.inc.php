@@ -31,6 +31,7 @@ if(isset($_POST["loadRecipe"])){
         $_SESSION["recipeName"] = $loadedRecipe["recipesTitle"];
         $_SESSION["loadedIngredients"] = $loadedRecipe["recipesIngredients"];
         $_SESSION["loadedPreparation"] = $loadedRecipe["recipesPreparation"];
+        $_SESSION["pulbicStatus"] = $loadedRecipe["public"];
         header("location: ../user.php?recipe");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
         exit();
     }

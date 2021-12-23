@@ -842,12 +842,27 @@ function currentUserID($connection, $user) {
 }//end of currentUserID()
 
 //----------------------------INSERT NEW RECIPE-----------------------------------------
-function createRecipe($connection, $user, $title, $ingredients, $preparation){
+function createRecipe($connection, $user, $title, $ingredients, $preparation, $postToPublic, $chef){
     
     $existingRecipe = recipeAlreadyExists($connection, $user, $title);
     
     if($existingRecipe === false){//if recipe name not located under user's ID-------------
             
+        if(!$postToPublic){
+            $postToPublicString = "private";
+            error_log("functions same title: user does not want this recipe in public db");
+            updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status false
+        }
+        else if($postToPublic){
+            $postToPublicString ="public";
+            error_log("functions same title: user does want this recipe in the public db");
+        
+            error_log("post recipe request: recipe not in public db...");
+            newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
+            updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status true
+        }
+          
+
         //prepare new recipe entry with user's id--------------
         function makeNewRecipe($connection, $user, $title, $ingredients, $preparation) {
             $sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";

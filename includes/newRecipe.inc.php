@@ -7,11 +7,13 @@ if(isset($_POST["saveNewRecipe"])){
     $title = $_POST["newRecipeTitle"];
     $ingredients = $_POST["newIngredients"];
     $preparation = $_POST["newPreparation"];
+    $postToPublic = $_POST["makePublic"];
 
     //start up session to alter/obtain session variable(s)
     session_start();
     //declare variable of current user
     $user = $_SESSION["userId"];
+    $chef = $_SESSION["username"];
 
     //import functions & variables from these files
     require_once 'dbh.inc.php';
@@ -39,7 +41,7 @@ if(isset($_POST["saveNewRecipe"])){
         $_SESSION["temporaryPreparation"] = $preparation;
         exit();
     }
-    createRecipe($connection, $user, $title, $ingredients, $preparation);
+    createRecipe($connection, $user, $title, $ingredients, $preparation, $postToPublic, $chef);
     $_SESSION["temporaryRecipeTitle"] = "";
     $_SESSION["temporaryIngredients"] = "";
     $_SESSION["temporaryPreparation"] = "";
