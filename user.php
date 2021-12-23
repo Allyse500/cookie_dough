@@ -31,19 +31,21 @@ $tempPrep = $_SESSION["temporaryPreparation"];
             echo $_SESSION["username"];
             ?>
         </div><!--end of id="userTitle" -->
-        <form id="searchBar" action="includes/search2.inc.php" method="POST">
-            <label id="searchLabel" for ="search">Search: </label>
-            <input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name">
-            <button id="searchButton" name="searchButton">Search</button>
+        <div id="upperNavGrid">
+            <form id="searchBar" action="includes/search2.inc.php" method="POST">
+                <label id="searchLabel" for ="search">Search: </label>
+                <input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name">
+                <button id="searchButton" name="searchButton">Search</button>
+            </form><!--end of id="searchBar"-->
             <div class="dropdown">
                 <div onclick="dropDownNav()" class="dropbtn">&equiv;</div>
                 <div id="myDropdown" class="dropdown-content">
                     <div class="navOpt" onclick="accountPromptBox()">Account</div>
-                    <form class="navOpt" action="includes/getRecipeList.inc.php" method="POST"><button class="navDropBtn navMyRec" name="myRecipesBtn">My Recipes</button></form>
+                    <form class="navOpt" action="includes/getRecipeList.inc.php" method="POST"><button class="navDropBtn" name="myRecipesBtn">My Recipes</button></form>
                     <form id="logoutForm" class="navOpt" action="includes/logout.inc.php" method="POST"><button class="navDropBtn" name="logoutBtn">Log Out</button></form>
                 </div><!--end of id="myDropdown"-->
             </div><!--end of class="dropdown"-->
-        </form><!--end of id="searchBar"-->
+        </div><!--end of id="upperNavGrid"-->
         <div id="buttonsGrid">
           <div id="accountBtn" class="homeButtons" onclick="accountPromptBox()">Account</div>
           <form id="myRecipesForm" class="homeButtons" action="includes/getRecipeList.inc.php" method="POST"><button id="myRecipesBtn" name="myRecipesBtn">My Recipes</button></form>
