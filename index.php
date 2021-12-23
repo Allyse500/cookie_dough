@@ -14,7 +14,7 @@ $recipeSearchResult = $_SESSION["recipeSearchArray"];
 <head>
 
     <title>Cookie Dough</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="CSS/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -32,9 +32,9 @@ $recipeSearchResult = $_SESSION["recipeSearchArray"];
             <div class="dropdown">
                 <div onclick="dropDownNav()" class="dropbtn">&equiv;</div>
                 <div id="myDropdown" class="dropdown-content">
-                    <div class="navOpt" onclick="aboutPromptBox()">About</div>
-                    <div class="navOpt" onclick="signupPromptBox()">Sign Up</div>
-                    <div class="navOpt" onclick="loginPromptBox()">Log In</div>
+                    <div id="aboutBtnDD" class="navOpt" onclick="aboutPromptBox()">About</div>
+                    <div id="signUpBtnDD" class="navOpt" onclick="signupPromptBox()">Sign Up</div>
+                    <div id="loginBtnDD" class="navOpt" onclick="loginPromptBox()">Log In</div>
                 </div><!--end of id="myDropdown"-->
             </div><!--end of class="dropdown"-->
         </form><!--end of id="searchBar"-->
@@ -130,6 +130,7 @@ if(isset($_GET["recipeDocument"])){
 </div><!--end of id="loginModal"-->
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
+<script src="JS/index.js"></script>
 <script>
 //==========================NAVBAR===================================================//
 function dropDownNav() {
@@ -149,58 +150,6 @@ window.onclick = function(event) {
     }
   }
 }
-
-//===============================PUBLIC RECIPES PROMPT BOX==================================
-function closePublicRecipes(){
-document.getElementById("publicRecipesModal").style.display="none";
-}
-//===============================RECIPE DOC 2===========================================//
-function closeRead(){
-document.getElementById("documentModal").style.display="none";
-}
-//==========================ABOUT PROMPT BOX====================================//
-//display about prompt box-------------------------------------------------------------
-function aboutPromptBox(){
-document.getElementById("aboutModal").style.display ="block";
-}//end of aboutPromptBox()
-
-//close about prompt box-------------------------------------------------------------
-function closeabout(){
-document.getElementById("aboutModal").style.display ="none";
-}//end of closeabout()
-//==========================SIGN UP PROMPT BOX===================================//
-//display signup prompt box-------------------------------------------------------------
-function signupPromptBox(){
-document.getElementById("signupModal").style.display ="block";
-document.getElementById("newUsername").value ="";
-document.getElementById("newPassword").value ="";
-document.getElementById("newUserEmail").value ="";
-document.getElementById("confirmNewPassword").value="";
-}//end of signupPromptBox()
-
-//close signup prompt box-------------------------------------------------------------
-function closesignup(){
-document.getElementById("signupModal").style.display ="none";
-}//end of closesignup()
-
-//==========================WELCOME PROMPT BOX====================================//
-//close welcome prompt box-------------------------------------------------------------
-function closewelcome(){
-document.getElementById("welcomeModal").style.display ="none";
-}//end of closewelcome()
-
-//===========================LOGIN PROMPT BOX====================================//
-//display login prompt box-------------------------------------------------------------
-function loginPromptBox(){
-document.getElementById("loginModal").style.display ="block";
-document.getElementById("username").value ="";
-document.getElementById("password").value ="";
-}//end of loginPromptBox()
-
-//close login prompt box-------------------------------------------------------------
-function closelogin(){
-document.getElementById("loginModal").style.display ="none";
-}//end of closelogin()
 
 </script>
 

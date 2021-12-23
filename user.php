@@ -16,7 +16,7 @@ $tempPrep = $_SESSION["temporaryPreparation"];
 <head>
 
     <title>Cookie Dough</title>
-    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="CSS/user.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -40,9 +40,9 @@ $tempPrep = $_SESSION["temporaryPreparation"];
             <div class="dropdown">
                 <div onclick="dropDownNav()" class="dropbtn">&equiv;</div>
                 <div id="myDropdown" class="dropdown-content">
-                    <div class="navOpt" onclick="accountPromptBox()">Account</div>
-                    <form class="navOpt" action="includes/getRecipeList.inc.php" method="POST"><button class="navDropBtn" name="myRecipesBtn">My Recipes</button></form>
-                    <form id="logoutForm" class="navOpt" action="includes/logout.inc.php" method="POST"><button class="navDropBtn" name="logoutBtn">Log Out</button></form>
+                    <div id="accountBtnDD" class="navOpt" onclick="accountPromptBox()">Account</div>
+                    <form id="myRecipesFormDD" class="navOpt" action="includes/getRecipeList.inc.php" method="POST"><button class="navDropBtn" name="myRecipesBtn">My Recipes</button></form>
+                    <form id="logoutFormDD" class="navOpt" action="includes/logout.inc.php" method="POST"><button class="navDropBtn" name="logoutBtn">Log Out</button></form>
                 </div><!--end of id="myDropdown"-->
             </div><!--end of class="dropdown"-->
         </div><!--end of id="upperNavGrid"-->
@@ -211,6 +211,7 @@ if(isset($_GET["myRecipes"])){
 ?>
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
+<script src="JS/user.js"></script>
 <script>
 //==========================NAVBAR===================================================//
 function dropDownNav() {
@@ -229,201 +230,6 @@ window.onclick = function(event) {
       }
     }
   }
-}
-
-//===============================PUBLIC RECIPES PROMPT BOX==================================
-function closePublicRecipes(){
-document.getElementById("publicRecipesModal").style.display="none";
-}
-
-//===============================RECIPE DOC 2===========================================//
-function closeRead(){
-document.getElementById("documentModal").style.display="none";
-}
-
-//==========================ACCOUNT PROMPT BOX====================================//
-//display account prompt box-------------------------------------------------------------
-function accountPromptBox(){
-document.getElementById("accountModal").style.display ="block";
-}//end of accountPromptBox()
-
-//close account prompt box-------------------------------------------------------------
-function closeaccount(){
-document.getElementById("accountModal").style.display ="none";
-
-document.getElementById("editedusername").style.display = "none";
-document.getElementById("editusernamebtn").style.display = "block";
-document.getElementById("currentUserName").style.display ="block";
-document.getElementById("saveUsernameBtn").style.display = "none";
-document.getElementById("editUNLowerHalf").style.display = "none";
-
-document.getElementById("editedEmail").style.display = "none";
-document.getElementById("editEmailBtn").style.display = "block";
-document.getElementById("currentEmail").style.display ="block";
-document.getElementById("saveEmailBtn").style.display = "none";
-document.getElementById("editEmailLowerHalf").style.display = "none";
-
-document.getElementById("newPasswordContainer").style.display ="none";
-document.getElementById("savePasswordBtn").style.display="none";
-document.getElementById("editpasswordbtn").style.display="block";
-
-document.getElementById("deleteAccountCheckBox").checked = false;
-document.getElementById("deleteMsgAndConfirmSect").style.display="none";
-}//end of closeaccount()
-
-//display to edit username--------------------------
-function editusername(){
-var currentUserName = document.getElementById("currentUserName").innerText;
-
-document.getElementById("editusernamebtn").style.display = "none";
-document.getElementById("currentUserName").style.display ="none";
-document.getElementById("saveUsernameBtn").style.display = "block";
-document.getElementById("editedusername").style.display = "block";
-document.getElementById("editedusername").value = currentUserName;
-document.getElementById("currentPWEditUN").value = "";
-document.getElementById("editUNLowerHalf").style.display = "block";
-
-document.getElementById("editedEmail").style.display = "none";
-document.getElementById("editEmailBtn").style.display = "block";
-document.getElementById("currentEmail").style.display ="block";
-document.getElementById("saveEmailBtn").style.display = "none";
-document.getElementById("editEmailLowerHalf").style.display = "none";
-
-document.getElementById("newPasswordContainer").style.display ="none";
-document.getElementById("savePasswordBtn").style.display="none";
-document.getElementById("editpasswordbtn").style.display="block";
-
-document.getElementById("deleteAccountCheckBox").checked = false;
-document.getElementById("deleteMsgAndConfirmSect").style.display="none";
-
-}//end of editusername()
-
-//display to edit email--------------------------
-function editEmail(){
-var currentEmail = document.getElementById("currentEmail").innerText;
-
-document.getElementById("editEmailBtn").style.display = "none";
-document.getElementById("currentEmail").style.display ="none";
-document.getElementById("saveEmailBtn").style.display = "block";
-document.getElementById("editedEmail").style.display = "block";
-document.getElementById("editedEmail").value = currentEmail;
-document.getElementById("currentPWEditEM").value = "";
-document.getElementById("editEmailLowerHalf").style.display = "block";
-
-document.getElementById("editedusername").style.display = "none";
-document.getElementById("editusernamebtn").style.display = "block";
-document.getElementById("currentUserName").style.display ="block";
-document.getElementById("saveUsernameBtn").style.display = "none";
-document.getElementById("editUNLowerHalf").style.display = "none";
-
-document.getElementById("newPasswordContainer").style.display ="none";
-document.getElementById("savePasswordBtn").style.display="none";
-document.getElementById("editpasswordbtn").style.display="block";
-
-document.getElementById("deleteAccountCheckBox").checked = false;
-document.getElementById("deleteMsgAndConfirmSect").style.display="none";
-
-}//end of editEmail()
-
-
-//display to edit password---------------------------
-function editpassword(){
-document.getElementById("editpasswordbtn").style.display ="none";
-document.getElementById("savePasswordBtn").style.display ="block";
-document.getElementById("newPasswordContainer").style.display ="block";
-document.getElementById("oldPassword").value ="";
-document.getElementById("newPassword").value ="";
-document.getElementById("reEnteredNewPWD").value ="";
-
-document.getElementById("editedusername").style.display = "none";
-document.getElementById("editusernamebtn").style.display = "block";
-document.getElementById("currentUserName").style.display ="block";
-document.getElementById("saveUsernameBtn").style.display = "none";
-document.getElementById("editUNLowerHalf").style.display = "none";
-
-document.getElementById("editedEmail").style.display = "none";
-document.getElementById("editEmailBtn").style.display = "block";
-document.getElementById("currentEmail").style.display ="block";
-document.getElementById("saveEmailBtn").style.display = "none";
-document.getElementById("editEmailLowerHalf").style.display = "none";
-
-document.getElementById("deleteAccountCheckBox").checked = false;
-document.getElementById("deleteMsgAndConfirmSect").style.display="none";
-}//end of editpassword()
-
-function deleteAcct(){
-var check = document.getElementById("deleteAccountCheckBox").checked;
-
-if(check == true){
-document.getElementById("deleteMsgAndConfirmSect").style.display="block";
-document.getElementById("deleteAcctuserPW").value ="";
-
-document.getElementById("editedusername").style.display = "none";
-document.getElementById("editusernamebtn").style.display = "block";
-document.getElementById("currentUserName").style.display ="block";
-document.getElementById("saveUsernameBtn").style.display = "none";
-document.getElementById("editUNLowerHalf").style.display = "none";
-
-document.getElementById("editedEmail").style.display = "none";
-document.getElementById("editEmailBtn").style.display = "block";
-document.getElementById("currentEmail").style.display ="block";
-document.getElementById("saveEmailBtn").style.display = "none";
-document.getElementById("editEmailLowerHalf").style.display = "none";
-
-document.getElementById("editpasswordbtn").style.display ="block";
-document.getElementById("savePasswordBtn").style.display ="none";
-document.getElementById("newPasswordContainer").style.display ="none";
-}
-else{
-document.getElementById("deleteMsgAndConfirmSect").style.display="none";}
-}//end of deleteAcct()
-
-//==========================MY RECIPES PROMPT BOX===================================//
-//display myRecipes prompt box-------------------------------------------------------------
-function myRecipesPromptBox(){
-document.getElementById("myRecipesModal").style.display ="block";
-}//end of myRecipesPromptBox()
-
-//close myRecipes prompt box-------------------------------------------------------------
-function closemyRecipes(){
-document.getElementById("myRecipesModal").style.display ="none";
-}//end of closemyRecipes()
-
-//========================NEW RECIPE PROMPT BOX===========================================//      
-//display new recipe form--------------------------------------------------------------------
-function newRecipe(){
-document.getElementById("newRecipeModal").style.display = "block";
-document.getElementById("myRecipesModal").style.display ="none";
-}//end of newRecipe()
-
-//return to My Recipies prompt box, leave this function to enable users to reference other recipies while buliding the one they want----------------------------------------
-function newRecipeModalBackBtn(){
-    document.getElementById("newRecipeModal").style.display = "none";
-    document.getElementById("myRecipesModal").style.display ="block";  
-}
-
-//========================RECIPE PROMPT BOX===========================================//      
-//display delete recipe confirmation prompt box--------------------------
-function drcModal(){
-    document.getElementById("recipeModal").style.display ="none";
-    document.getElementById("drcModal").style.display ="block";
-}
-//cancel delete request by returning to recipe prompt box----------------
-function canceldrc(){
-    document.getElementById("recipeModal").style.display ="block";
-    document.getElementById("drcModal").style.display ="none";
-}
-
-//==========================MESSAGE PROMPT BOX====================================//
-//close message prompt box-------------------------------------------------------------
-function closeMessage(){
-document.getElementById("messageModal").style.display ="none";
-}//end of closeMessage()
-
-function returnToNewRecipePrompt(){
-document.getElementById("messageModal").style.display ="none";
-document.getElementById("newRecipeModal").style.display ="block";
-
 }
 </script>
 
