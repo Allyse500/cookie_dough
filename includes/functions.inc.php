@@ -669,6 +669,30 @@ function deleteAcct($connection, $pwd, $currentEmail){
         
             }//end of deleteRecipe2()
             deleteRecipe2($connection, $id);//call the function
+
+            function deleteAllFromPublicRecipe($connection, $id){//deleting public recipe from user edit recipe prompt
+                $sql = "DELETE FROM `publicrecipes` WHERE `publicRecipesUserID` = '". $user ."';";
+                $stmt = mysqli_stmt_init($connection);
+                                        
+                //if there are any errors in the sql statement written
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header("location: ../index.php?error=stmtFailed");
+                    error_log("statement failed at deletePublicRecipe()...");
+                    exit();
+                }
+                //execute update request--------------------------
+                $updateResult = mysqli_query($connection, $sql);
+                if ($updateResult) {
+                    error_log("Public recipe deleted successfully");
+                } else {
+                    error_log("Error updating record: " . mysqli_error($connection));
+                    header("location: ../index.php?error=notUptated");
+                    exit();
+                }
+               error_log("all recipes deleted from public recipes db...");
+            }//end of deleteAllFromPublicRecipe()            
+
+            deleteAllFromPublicRecipe($connection, $id);
             //delete user account---------------------------------
             
             function deleteUser($connection,  $id) {
@@ -685,7 +709,12 @@ function deleteAcct($connection, $pwd, $currentEmail){
                 //execute update request--------------------------
                 $updateResult = mysqli_query($connection, $sql);
                 if ($updateResult) {
-                    error_log("Record updated successfully");
+                    error_log("Record updated successfully for delete");
+                    session_start();
+                    session_unset();
+                    session_destroy();
+                    header("location: ../index.php?success=acctDeleted");
+                    exit();
                 } else {
                     error_log("Error updating record: " . mysqli_error($connection));
                     header("location: ../user.php?error=notUptated");
@@ -699,8 +728,6 @@ function deleteAcct($connection, $pwd, $currentEmail){
             deleteUser($connection, $id);//call the function
             
             //send user to index page and logout-------------------
-            header("location: ../index.php?success=acctDeleted");
-            exit();
         }//end of else if($checkPW === true)
     }//end of else if($currentUser)
 }//end of deleteAcct()
@@ -1319,7 +1346,7 @@ function updatePublicRecipe($connection, $title, $ingredients, $preparation, $us
         header("location: ../user.php?error=notUptated");
         exit();
     }
-    //close sql statement-----------------------------
+    //close sql statement-----------------------------**removed this so it may be used as internal function
 //     mysqli_close($connection);
         
 // //send user to index page and logout-------------------
@@ -1376,4 +1403,3 @@ function updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $
      mysqli_stmt_close($stmt);
      error_log("no error located from updatePublicRecipeStatusTrue()...");
  }//end of updatePublicRecipeStatusTrue()
-

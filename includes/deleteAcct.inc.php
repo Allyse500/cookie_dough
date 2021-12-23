@@ -19,7 +19,6 @@ if(isset($_POST["deleteAcctBtn"])){
         header("location: ../user.php?error=emptyInput");
         exit();
     }
-    
     deleteAcct($connection, $pwd, $currentEmail);
 }
 else {
