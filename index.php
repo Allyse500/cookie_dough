@@ -25,7 +25,19 @@ $recipeSearchResult = $_SESSION["recipeSearchArray"];
 <div id="navbar">
     <div id="headerGrid">
         <div id="homeTitle">Home</div>
-        <form id="searchBar" action="includes/search.inc.php" method="POST"><label id="searchLabel" for ="search">Search: </label><input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name"><button id="searchButton" name="searchButton">Search</button></form>
+        <form id="searchBar" action="includes/search.inc.php" method="POST">
+            <label id="searchLabel" for ="search">Search: </label>
+            <input id="search" type = "text" name="searchInput" placeholder ="Enter recipe/chef name">
+            <button id="searchButton" name="searchButton">Search</button>
+            <div class="dropdown">
+                <div onclick="dropDownNav()" class="dropbtn">&equiv;</div>
+                <div id="myDropdown" class="dropdown-content">
+                    <div class="navOpt" onclick="aboutPromptBox()">About</div>
+                    <div class="navOpt" onclick="signupPromptBox()">Sign Up</div>
+                    <div class="navOpt" onclick="loginPromptBox()">Log In</div>
+                </div><!--end of id="myDropdown"-->
+            </div><!--end of class="dropdown"-->
+        </form><!--end of id="searchBar"-->
         <div id="buttonsGrid">
           <div id="aboutBtn" class="homeButtons" onclick="aboutPromptBox()">About</div>
           <div id="signUpBtn" class="homeButtons" onclick="signupPromptBox()">Sign Up</div>
@@ -119,7 +131,25 @@ if(isset($_GET["recipeDocument"])){
 
 <!--========================ALL JAVASCRIPT FUNCTIONS BELOW===========================================-->
 <script>
-    
+//==========================NAVBAR===================================================//
+function dropDownNav() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 //===============================PUBLIC RECIPES PROMPT BOX==================================
 function closePublicRecipes(){
 document.getElementById("publicRecipesModal").style.display="none";
