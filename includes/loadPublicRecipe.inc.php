@@ -11,12 +11,12 @@ if(isset($_POST["loadRecipe"])){
     require_once 'functions.inc.php';
 
     //locate recipe----------------------------------------------------
-    $loadedRecipe = loadPublicRecipe2($connection, $recipeNameSelected);
+    $loadedRecipe = loadPublicRecipe($connection, $recipeNameSelected);
 
     if(!$loadedRecipe){
         //check for recipe array-----------------------------
         error_log("no recipes located from loadRecipe()...");
-        header("location: ../user.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+        header("location: ../index.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
         exit();
     }
     else if($loadedRecipe){
@@ -28,12 +28,11 @@ if(isset($_POST["loadRecipe"])){
         $_SESSION["recipeName"] = $loadedRecipe["publicRecipesTitle"];
         $_SESSION["loadedIngredients"] = $loadedRecipe["publicRecipesIngredients"];
         $_SESSION["loadedPreparation"] = $loadedRecipe["publicRecipesPreparation"];
-        header("location: ../user.php?recipeDocument");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+        header("location: ../index.php?recipeDocument");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
         exit();
     }
-
 }
 else {
-    header("location: ../user.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
+    header("location: ../index.php");//send user back to user.php if attempted to enter editEmail.inc.php link without using submit btn
     exit();
 }

@@ -46,6 +46,13 @@ if(isset($_GET["searchResult"])){
 }
 ?>
 
+<!--==========================RECIPE DOC 2======================================-->
+<?php
+if(isset($_GET["recipeDocument"])){
+    include_once 'recipeDoc.php';
+}
+?>
+
 <!--=======================ABOUT===============================================-->
 <div id="aboutModal">
     <div id="aboutContainer">
@@ -116,7 +123,11 @@ if(isset($_GET["searchResult"])){
 //===============================PUBLIC RECIPES PROMPT BOX==================================
 function closePublicRecipes(){
 document.getElementById("publicRecipesModal").style.display="none";
-}     
+}
+//===============================RECIPE DOC 2===========================================//
+function closeRead(){
+document.getElementById("documentModal").style.display="none";
+}
 //==========================ABOUT PROMPT BOX====================================//
 //display about prompt box-------------------------------------------------------------
 function aboutPromptBox(){

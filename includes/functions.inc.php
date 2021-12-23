@@ -943,6 +943,41 @@ function loadPublicRecipe($connection, $recipeNameSelected){
 
 }//end of loadPublicRecipe()
 
+function loadPublicRecipe2($connection, $recipeNameSelected){
+    $sql = "SELECT * FROM publicrecipes WHERE publicRecipeID = ?;";
+    error_log("recipe name selected: " . $recipeNameSelected);
+    $stmt = mysqli_stmt_init($connection);
+
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+    header("location: ../user.php?error=stmtFailed");
+    exit();
+    }
+
+    //bind the input variables to the stmt function--------------
+    mysqli_stmt_bind_param($stmt, "i", $recipeNameSelected);
+
+    //execute statement----------------
+    mysqli_stmt_execute($stmt);
+
+    //get result of prepared statement--------------------
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if($row = mysqli_fetch_assoc($resultData)){//if there is data in database with this user ID (also set located user as variable)
+
+        return $row;//return all info of user located
+    }
+    else{//no recipes were located with that user's ID
+        $result = false;
+        return $result;
+    }
+
+//close sql statement-------------------------
+    mysqli_stmt_close($stmt);
+
+}//end of loadPublicRecipe2()
+
+
 //=======================LOAD RECIPE ==============================================
 function loadRecipe($connection, $user, $recipeNameSelected){
     $sql = "SELECT * FROM recipes WHERE recipesUser = ? AND recipesTitle = ?;";
