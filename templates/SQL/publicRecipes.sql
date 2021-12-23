@@ -5,6 +5,7 @@ publicRecipesUserID INT(11) NOT NULL,
 publicRecipesUserName VARCHAR(255) NOT NULL,
 publicRecipesTitle VARCHAR(255) NOT NULL,
 publicRecipesIngredients TEXT NOT NULL,
-publicRecipesPreparation TEXT NOT NULL
+publicRecipesPreparation TEXT NOT NULL,
+public TINYINT(1)
 
 );

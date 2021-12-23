@@ -169,10 +169,13 @@ function getRecipes($connection, $id) {
     mysqli_stmt_bind_param($stmt, "i", $id);
 
 //execute statement----------------
-    mysqli_stmt_execute($stmt);
+    $execute = mysqli_stmt_execute($stmt);
 
+    error_log("execute type from my recipes: " . $execute);
 //get result of prepared statement--------------------
     $resultData = mysqli_stmt_get_result($stmt);
+
+    error_log("resultData variable type from my recipes: ". gettype($resultData));
 
     if($row = mysqli_fetch_all($resultData, MYSQLI_ASSOC)){//if there is data in database with this user ID (also set located user as variable)
         error_log("row variable: " . gettype($row));
@@ -313,7 +316,6 @@ function editUsername($connection, $name, $pwd, $currentName){
             
             //update user acct with requested username--------------
             function changeUN($connection, $name, $id) {
-                //$sql = "UPDATE `users` SET `usersName` = '?' WHERE `usersID` = '?';";
                 $sql = "UPDATE `users` SET `usersName` = '". $name ."' WHERE `users`.`usersID` = '". $id."';";
     
                 $stmt = mysqli_stmt_init($connection);
@@ -907,19 +909,23 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
     
     if(!$existingRecipe){//if recipe name not located under user's ID whether recipe name same or not------------
         if(!$postToPublic){
+            $postToPublicString = "private";
             error_log("functions same title: user does not want this recipe in public db");
             //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
             $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
             //-------------------REMOVE RECIPE IF EXISTS-----------------------------------------------//
-            if(!$existingPublicRecipe){//no action--------
+            if(!$existingPublicRecipe){//no action, note as private--------
                 error_log("remove recipe request: recipe not in public db...");
+                updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status false
             }
             else if($existingPublicRecipe){//remove recipe from public DB-------------
                 error_log("remove recipe request: recipe located in public db...");
-                deletePublicRecipe($connection, $user, $currentTitle);
+                deletePublicRecipe($connection, $user, $currentTitle);//call fuction to delete recipe from public
+                updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status false
             }
         }
         else if($postToPublic){
+            $postToPublicString ="public";
             error_log("functions same title: user does want this recipe in the public db");
             //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
             $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
@@ -928,16 +934,17 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
             if(!$existingPublicRecipe){//insert new recipe to public db------------
                 error_log("post recipe request: recipe not in public db...");
                 newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
+                updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status true
             }
             else if($existingPublicRecipe){//update recipe on public db-------------
                 error_log("update recipe request: recipe located in public db...");
-                updatePublicRecipe($connection, $title, $ingredients, $preparation, $user, $chef);//call insert new recipe function
+                updatePublicRecipe($connection, $title, $ingredients, $preparation, $user, $chef);//call update recipe function
+                updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status true
             }
         }
 
         //prepare new recipe entry with user's id--------------
         function updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation) {
-            //$sql = "INSERT INTO `recipes`(`recipesUser`, `recipesTitle`, `recipesIngredients`, `recipesPreparation`) VALUES ('" . $user . "','" . $title ."','" . $ingredients . "','" . $preparation . "');";
             $sql = "UPDATE `recipes` SET `recipesTitle` = '". $title ."', `recipesIngredients` ='". $ingredients ."', `recipesPreparation` ='". $preparation . "' WHERE `recipesUser` = '". $user."' AND `recipesTitle` = '". $currentTitle . "';";
             $stmt = mysqli_stmt_init($connection);
             //error_log("make new recipe with these variables: " . $user . ", " . $title . ", " . $currentTitle . ", " . $ingredients . ", " . $preparation);                    
@@ -966,13 +973,6 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
         }//end of updateRecipeWithNewTitle()
 
         updateRecipeWithNewTitle($connection, $user, $title, $currentTitle, $ingredients, $preparation);//call the function
-        //-----------------------POST TO/UPDATE/REMOVE FROM PUBLIC SECTION--------------------------------
-        if(!$postToPublic){
-            error_log("functions New Title: user does not want this recipe in public db");
-        }
-        else if($postToPublic){
-            error_log("functions New Title: user does want this recipe in the public db");
-        }
 
         //send user to user's profile page-------------------
         header("location: ../user.php?success=recipeUpdated");
@@ -984,19 +984,23 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
         if($sameTitle == true){
             //-----------------------POST TO/UPDATE/REMOVE FROM PUBLIC SECTION------------------------------------
             if(!$postToPublic){
+                $postToPublicString = "private";
                 error_log("functions same title: user does not want this recipe in public db");
                 //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
                 $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
                 //-------------------REMOVE RECIPE IF EXISTS-----------------------------------------------//
                 if(!$existingPublicRecipe){//no action--------
                     error_log("remove recipe request: recipe not in public db...");
+                    updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status false
                 }
                 else if($existingPublicRecipe){//remove recipe from public DB-------------
                     error_log("remove recipe request: recipe located in public db...");
-                    deletePublicRecipe($connection, $user, $currentTitle);
+                    deletePublicRecipe($connection, $user, $currentTitle);//call fuction to delete recipe
+                    updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status false
                 }
             }
             else if($postToPublic){
+                $postToPublicString = "public";
                 error_log("functions same title: user does want this recipe in the public db");
                 //-------------------QUERY FOR USER'S RECIPE IN PUBLIC RECIPES DB-------------------------//
                 $existingPublicRecipe = publicRecipeAlreadyExists2($connection, $currentTitle, $chef);
@@ -1005,10 +1009,14 @@ function updateRecipe($connection, $user, $title, $currentTitle, $ingredients, $
                 if(!$existingPublicRecipe){//insert new recipe to public db------------
                     error_log("post recipe request: recipe not in public db...");
                     newPublicRecipe($connection, $user, $chef, $title, $ingredients, $preparation);//call insert new recipe function
+                    updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status true
                 }
                 else if($existingPublicRecipe){//update recipe on public db-------------
                     error_log("update recipe request: recipe located in public db...");
-                    updatePublicRecipe($connection, $title, $ingredients, $preparation, $user, $chef);//call insert new recipe function
+                    error_log("post to public type: " . gettype($postToPublicString));
+                    error_log("post to public type: " . $postToPublicString);
+                    updatePublicRecipe($connection, $title, $ingredients, $preparation, $user, $chef);//call update recipe function
+                    updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle);// call fuction to make recipe public status true
                 }
             }
 
@@ -1317,3 +1325,53 @@ function updatePublicRecipe($connection, $title, $ingredients, $preparation, $us
 // exit();
 
 }//end of deletePublicRecipe()
+
+//--------QUERY FOR USER'S RECIPE WITH ATTEMPTED TITLE, NOTE PUBLIC AS FALSE-----------------
+function updatePublicRecipeStatusFalse($connection, $postToPublicString, $user, $currentTitle) {
+    $sql = "UPDATE recipes SET public = ? WHERE recipesUser = ? AND recipesTitle = ?;";
+    $stmt = mysqli_stmt_init($connection);
+ 
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     error_log("statement failed at updatePublicRecipeStatusFalse()...");
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+     mysqli_stmt_prepare($stmt, $sql);
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "sis", $postToPublicString, $user, $currentTitle);
+     error_log("postToPublicString: ". $postToPublicString);
+    //execute statement----------------
+     mysqli_stmt_execute($stmt);
+ 
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+     error_log("no error located from updatePublicRecipeStatusFalse()...");
+ }//end of updatePublicRecipeStatusFalse()
+
+//--------QUERY FOR USER'S RECIPE WITH ATTEMPTED TITLE, NOTE PUBLIC AS TRUE-----------------
+function updatePublicRecipeStatusTrue($connection, $postToPublicString, $user, $currentTitle) {
+    $sql = "UPDATE recipes SET public = ? WHERE recipesUser = ? AND recipesTitle = ?;";
+    //"UPDATE publicrecipes SET publicRecipesTitle = ?, publicRecipesIngredients = ?, publicRecipesPreparation = ? WHERE publicRecipesUserID = ? AND publicRecipesUserName = ?;";
+    $stmt = mysqli_stmt_init($connection);
+ 
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+     error_log("statement failed at updatePublicRecipeStatusTrue()...");
+     header("location: ../user.php?error=stmtFailed");
+     exit();
+    }
+    //mysqli_stmt_prepare($stmt, $sql);
+    //bind the input variables to the stmt function--------------
+     mysqli_stmt_bind_param($stmt, "sis", $postToPublicString, $user, $currentTitle);
+    error_log("postToPublicString: ". $postToPublicString);
+    //execute statement----------------
+     $execute = mysqli_stmt_execute($stmt);
+        error_log("execute type: " . $execute);
+    
+    //the $resultData and mysqli_fetch_assoc portion was removed, broke page returning false, works fine without--------------------
+    //close sql statement-------------------------
+     mysqli_stmt_close($stmt);
+     error_log("no error located from updatePublicRecipeStatusTrue()...");
+ }//end of updatePublicRecipeStatusTrue()
+
