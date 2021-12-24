@@ -329,9 +329,10 @@ function editUsername($connection, $name, $pwd, $currentName){
                 //execute update request--------------------------
                 $updateResult = mysqli_query($connection, $sql);
                 if ($updateResult) {
-                    error_log("Record updated successfully");
+                    error_log("Personal record updated successfully");
                     //re-define username for session----------------------
                     $_SESSION["username"] = $name;
+                    changePublicUN($connection, $name, $id);
                 } else {
                     error_log("Error updating record: " . mysqli_error($connection));
                     header("location: ../user.php?error=notUptated");
@@ -357,6 +358,35 @@ function editUsername($connection, $name, $pwd, $currentName){
     }
 
 }//end of editUsername()
+
+//================UPDATE USERNAME IN PUBLIC RECIPE DB IF LOCATED===============//
+//update public accts with requested username--------------
+function changePublicUN($connection, $name, $id) {
+    $sql = "UPDATE `publicrecipes` SET `publicRecipesUserName` = '". $name ."' WHERE `publicRecipes`.`publicRecipesUserID` = '". $id."';";
+
+    $stmt = mysqli_stmt_init($connection);
+                    
+    //if there are any errors in the sql statement written
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../user.php?error=stmtFailed");
+        error_log("statement failed at changePublicUN()...");
+        exit();
+    }
+    //execute update request--------------------------
+    $updateResult = mysqli_query($connection, $sql);
+    if ($updateResult) {
+        error_log("Public record updated successfully");
+        // //re-define username for session----------------------
+        // $_SESSION["username"] = $name;
+    } else {
+        error_log("Error updating record: " . mysqli_error($connection));
+        header("location: ../user.php?error=notUptated");
+        exit();
+    }
+    //close sql statement-----------------------------
+    //mysqli_close($connection);
+
+}//end of changePublicUN()
 
 //=====================EDIT EMAIL PROMPT: ARE ANY FIELDS EMPTY?===========================
 function emptyInputEditEM($email, $pwd) {
