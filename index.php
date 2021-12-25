@@ -71,7 +71,7 @@ if(isset($_GET["recipeDocument"])){
         <div id="aboutSecondaryContainer">
             <div id="aboutTitle">About</div>
             <div id="aboutContents">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: orange; font-weight: bold; font-style: italic;">Cookie Dough</span> provides its users with the ability to search cookie recipes as well as save recipes of their own. This service is currently free to the public.<br><br> Enjoy!<br><br><span style="font-style: italic">-Admin (Allyse D. Johnson)</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: orange; font-weight: bold; font-style: italic;">Cookie Dough</span> provides its users with the ability to search public recipes as well as save recipes of their own. This service is currently free to the public.<br><br> Enjoy!<br><br><span style="font-style: italic">-Admin (Allyse D. Johnson)</span>
             </div>
             <div id="aboutCloseButton" onclick="closeabout()">Close</div>
         </div><!--end of id="aboutSecondaryContainer-->
