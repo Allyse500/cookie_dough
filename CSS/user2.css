@@ -1,0 +1,1175 @@
+#bodyID {
+    background-image: url('../cookieDough.jpg');
+    background-size: 100vw 100vh;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    margin: 0;
+    overflow-x: hidden;
+  }
+/* =================SCROLL BAR BEGIN========================== */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 5px grey; 
+   border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:rgb(199, 130, 2, 0.5); 
+    box-shadow: inset 0 0 5px rgb(199, 130, 2, 0.5);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(199, 130, 2, 0.7);
+    box-shadow: inset 0 0 5px rgb(199, 130, 2, 0.7);
+  }
+  /* ==================SCROLL BAR END========================= */
+
+/* ===================NAVBAR=================================== */
+#navbar{
+margin: 0;
+height: 8vh;
+background-color: rgb(255, 255, 255, .8);
+padding-top: 2vh;
+}
+
+#headerGrid{
+    display: grid;
+    grid-template-columns: 20vw 45vw 35vw;
+    width: 100vw;
+}
+
+#buttonsGrid{
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-gap:0 2.5%;
+    width: 600px;
+    height: 100px;
+    margin-left: 4%;
+    margin-top: .5vh;
+}
+
+#searchLabel{
+    color:rgb(0, 0, 0);
+    /* font-size: 140%; */
+    font-size: 4vh;
+    font-family: Arial, Helvetica, sans-serif; 
+    /* margin-top: 10%; */
+    margin-top: 1vh;
+}
+
+#searchBar{
+    /* margin-left: 30%; */
+    margin-left: 12vw;
+    display: grid;
+    /* grid-template-columns: 20% 50% 20%; */
+    grid-template-columns: 7vw 12vw 6vw;
+    /* width: 400px; */
+    width: 30vw;
+    /* height: 40px; */
+    height: 6vh;
+}
+
+#searchButton{
+    cursor: pointer;
+}
+
+#userTitle{
+    /* font-size: 200%; */
+    font-size: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    width: fit-content;
+}
+
+.homeButtons{
+    /* font-size: 125%; */
+    font-size: 3.5vh;
+    font-family: Arial, Helvetica, sans-serif; 
+    border: 4px double white;
+    border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+    padding: 5%;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin-top: -1.2vh;
+}
+
+#myRecipesBtn{
+    font-size: 100%;
+    font-family: Arial, Helvetica, sans-serif; 
+    border: none;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+.homeButtons:hover, #myRecipesBtn:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+#accountBtn{
+    transform: translateX(45%);
+}
+
+.dropdown{
+  display:none;
+}
+
+@media only screen and (max-width: 1270px) {
+#headerGrid{
+    display: grid;
+    grid-template-columns: 15vw 45vw 35vw;
+    width: 100vw;
+}
+
+  #buttonsGrid {
+    display:none;
+  }
+
+  #searchBar{
+    /* margin-left: 30%; */
+    display: grid;
+    grid-template-columns: 15% 30% 15% 15%;
+    /* width: 600px;
+    height: 30px; */
+    width: 500px;
+    /* width: 75vw; */
+    /* height: 40px; */
+    height: 6vh;
+}
+.dropbtn {
+    color: white;
+    /* font-size: 250%; */
+    font-size: 5vh;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid white 1px;
+    cursor: pointer;
+    background-color: black;
+    border-radius: 10px;
+    padding-left:10px;
+    padding-right:10px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(60, 60, 60);
+    color: white;
+  }
+  
+  .dropdown {
+    /* position: relative; */
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .navOpt{
+  padding: 4%;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  background: black;
+  color: white;
+  cursor: pointer;
+  }
+  
+  .navOpt:hover{
+  background-color: rgb(60, 60, 60);
+  }
+  
+  
+  .show {display: block;}
+
+  #upperNavGrid{
+    display:grid;
+    /* grid-template-columns: 60% 30%; */
+    grid-template-columns: 72vw 20vw;
+    /* width: 800px; */
+    /* width: 500px; */
+    width: 120vw;
+    margin-left: -25%;
+}
+
+.navDropBtn{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.navDropBtn:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+/* .navMyRec{
+    padding: 4%;
+    background-color: rgb(0, 0, 0);
+} */
+
+}/*------end of media specific sytling---------------*/
+
+
+
+/*=========================CENTRAL PAGE TITLE=============================*/
+
+#centralPageTitle{
+font-size: 25vh;
+color: rgb(88, 52, 23);
+font-weight: bold;
+font-style: italic;
+margin-top: 10%;
+margin-left: 15vw;
+display: block;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+
+/*=========================PUBLIC RECIPES PROMPT BOX===============================*/
+#publicRecipesModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#publicRecipesListContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#publicRecipesListSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#publicRecipesListTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+ #publicRecipesCloseButton{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+    margin-left: 84%;
+    width: 15%;
+  }
+
+#numLoggedPublicRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#publicRecipesCloseButton:hover {
+    background-color:rgb(60, 60, 60);
+  }
+
+#publicRecipesInputContents{
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 135px;
+    overflow-y: auto;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(255, 255, 255, .2);
+}
+
+/* .recipeOpt{
+    text-align: center;
+    padding: 2%;
+    border-radius: 4px;
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.recipeOpt:hover{
+    background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+} */
+
+.chefName{
+    text-align: right;
+}
+
+/*==========================RECIPE DOC 2======================================*/
+
+#documentModal{
+    display: block;
+    position: fixed; 
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  
+  #documentGrid{
+      display: grid;
+      grid-template-columns: 45% 2%;
+      width: 900px;
+      margin-left: 33.5%;
+      height: fit-content;
+  }  
+
+#document{
+height: 450px;
+width: 350px;
+background-color: rgba(255, 255, 255, .9);
+border-radius: 10px;
+margin-left: auto;
+margin-right: auto;
+display: block;
+padding: 5%;
+box-shadow: 1px 1px 20px 1px grey inset;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+#documentContents{
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: normal;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.recipeDocLabel{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    color: green;
+}
+
+.recipeDocTitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 140%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+#closeRead{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    width: fit-content;
+    height: fit-content;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#closeRead:hover{
+    background-color: rgb(88, 52, 23);
+}
+
+.docContents{
+    margin-bottom: 5%;
+}
+
+/*=========================ACCOUNT PROMPT BOX===============================*/
+#accountModal{
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#accountContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#accountSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#accountTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+ #accountCloseButton{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+    margin-left: 85%;
+  }
+
+#accountCloseButton:hover {
+    background-color:rgb(60, 60, 60);
+  }
+  
+#accountContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+margin-bottom: 5%;
+}
+
+/*--------------Edit Acct Info---------------------*/
+.editUserAcctGrid{
+    display: grid;
+    grid-template-columns: 25% 50% 16%;
+    grid-gap: 10% 2%;
+    }
+    
+    #editpasswordbtn, #editusernamebtn, #saveUsernameBtn, #savePasswordBtn, #editEmailBtn, #saveEmailBtn{
+       cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 1px solid white;
+       color: white;
+   }
+    
+    
+   #editusernamebtn, #editpasswordbtn, #editEmailBtn{
+       text-align: center;
+       font-family: arial;
+       font-size: 85%;
+       padding-top: 2%;
+       padding-bottom: 3%;
+   }
+   
+   #saveUsernameBtn, #savePasswordBtn, #saveEmailBtn{
+   display: none;
+   }
+
+   #saveUsernameBtn{
+    height: 90%;
+   }
+
+   #saveEmailBtn{
+    height: 85%;
+   }
+
+   #editpasswordbtn:hover, #editusernamebtn:hover, #saveUsernameBtn:hover, #savePasswordBtn:hover, #editEmailBtn:hover, #saveEmailBtn:hover{
+       background-color: rgb(60, 60, 60);
+   }
+   
+   #editedusername, #editedEmail{
+   display:none;
+   }
+   
+   .userInput{
+   border-radius: 10px;
+   padding: 2px;
+   }
+   
+   .editAcctForm{
+   margin-top: 2%;
+   }
+   
+   #newPasswordContainer{
+   display: none;
+   margin-left: 22.5%;
+   }
+   
+   .inputSpace{
+   margin-bottom: 2%; 
+   }
+   
+   #oldPasswordLabel{
+   margin-left: 17%;
+   }
+   
+   #newPasswordLabel{
+   margin-left: 15%;
+   }
+   
+   #reEnteredNewPWDLabel{
+   margin-left: 2%;
+   }
+   
+   /*------Edit Account: Username Lower Half----------------*/
+   #uNeditStatusMsg{
+   padding-top: 4%;
+   padding-bottom: 4%;
+   }
+   
+   #editUNLowerHalf{
+   display: none;
+   }
+   
+/*------Edit Account: Email Lower Half----------------*/
+    #eMeditStatusMsg{
+    padding-top: 4%;
+    padding-bottom: 4%;
+    }
+    
+    #editEmailLowerHalf{
+    display: none;
+    }
+
+   /*-------Edit Account: Delete Account--------------*/
+   #orNote{
+   padding-top: 4%;
+   padding-bottom: 4%;
+   text-align: center;
+   font-weight: bold;
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   }
+   
+   #deleteAcctGrid{
+   display: grid;
+   grid-template-columns: 10% 70%
+   }
+   
+   #deleteAcctForm{
+   display: grid;
+   grid-template-columns: 60% 20%;
+   grid-gap: 0 5%;
+   }
+   
+   #deleteAcctBtn{
+   cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 1px solid white;
+       width: 80%;
+       height: 75%;
+       color: white;
+   }
+   
+   #deleteAcctBtn:hover{
+   background-color: orange;
+   }
+   
+   #deleteMsgAndConfirmSect{
+   display: none;
+   }
+
+   .editAcctFieldLabel{
+       color: orange;
+       font-weight: bold;
+   }
+
+/*=========================MY RECIPES PROMPT BOX===============================*/
+#myRecipesModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#myRecipesListContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#myRecipesListSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#myRecipesListTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+#myRecipesBtnsGrid{
+    display: grid;
+    grid-template-columns: 25% 30%;
+    grid-gap: 0% 5%;
+    width: 200px;
+    margin-left: 69%;
+    }
+
+ #myRecipesCloseButton, #newRecipe{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 85%;
+	text-align: center;
+    border: white 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+  }
+
+#numLoggedRecipesMsg{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+#myRecipesCloseButton:hover, #newRecipe:hover {
+    background-color:rgb(60, 60, 60);
+  }
+
+#myRecipesInputContents{
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 135px;
+    overflow-y: auto;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(255, 255, 255, .2);
+}
+
+.recipeOpt{
+    text-align: center;
+    border-radius: 4px;
+    cursor:pointer;
+    font-family: Arial, Helvetica, sans-serif; 
+    margin-left:auto;
+    margin-right: auto;
+    display:block;
+    outline:none;
+}
+
+.recipeOpt:hover{
+    background-color: rgb(255, 255, 255, .5);
+    color: rgb(199, 130, 2);
+}
+
+.recipeOptBtn{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor:pointer;
+    padding: 2%;
+    width:100%;
+    font-size: 105%;
+}
+
+.recipeOptBtn:hover{
+    color: rgb(199, 130, 2);
+}
+
+  /*=========================NEW RECIPE PROMPT BOX===============================*/
+#newRecipeModal{
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#newRecipeContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 280px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#newRecipeSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 4%;
+height: fit-content;
+}
+
+#newRecipeHeaderGrid{
+    display: grid;
+    grid-template-columns: 12% 83%;
+}
+
+#newRecipeModalBackBtn{
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    height: fit-content;
+}
+
+#newRecipeModalBackBtn:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+#newRecipeContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+}
+
+#newRecipeFormTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: orange;
+}
+
+#newRecipeTitle{
+   border-radius: 10px;
+   width: 96.5%; 
+   margin-bottom: 3%;
+}
+
+.newRecipeInputs{
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.textarea{
+    resize: none;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.newRecipeLabel{
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+font-weight: bold;
+margin-bottom: 1%;
+}
+
+#newRecipeBtnsGrid{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 0 5%;
+    width:80%;
+    margin-left: 10%;
+}
+
+#newRecipeCancelButton{
+    margin-left: -7%;
+}
+
+.newRecipeBtn{
+    cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 1px solid white;
+       width: 100%;
+       color: white;
+       text-align: center;
+       font-family: Arial, Helvetica, sans-serif;
+}
+
+.newRecipeBtnDiv{
+    font-size: 85%;
+    padding-top: 1.5%;
+}
+
+.newRecipeBtn:hover{
+       background-color: rgb(60, 60, 60);
+}
+
+/*=========================RECIPE PROMPT BOX===============================*/
+#recipeModal{
+  display: block;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#recipeContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 280px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#recipeSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 4%;
+height: fit-content;
+}
+
+#recipeHeaderGrid{
+    display: grid;
+    grid-template-columns: 12% 63% 25%;
+}
+
+#recipeModalBackBtn{
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    height: fit-content;
+}
+
+#recipeModalBackBtn:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+#recipeContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+}
+
+#recipeFormTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+margin-left: 15%;
+color: orange;
+}
+
+#recipeTitle{
+   border-radius: 10px;
+   width: 96.5%; 
+   margin-bottom: 3%;
+}
+
+.recipeInputs{
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.textarea{
+    resize: none;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.recipeLabel{
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+font-weight: bold;
+margin-bottom: 1%;
+}
+
+#recipeBtnsGrid{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 0 5%;
+    width:80%;
+    margin-left: 10%;
+}
+
+#recipeCloseButton{
+    margin-left: -7%;
+}
+
+.recipeBtn{
+    cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 1px solid white;
+       width: 100%;
+       color: white;
+       text-align: center;
+       font-family: Arial, Helvetica, sans-serif;
+}
+
+.recipeBtnDiv{
+    font-size: 85%;
+    padding-top: 1.5%;
+}
+
+.recipeBtn:hover{
+       background-color: rgb(60, 60, 60);
+}
+
+.publicCheckBoxLabel{
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#makePublic{
+    cursor: pointer;
+}
+
+/*==================DELETE RECIPE CONFIRMATION PROMPT BOX===================*/
+#drcModal{
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#drcContainer{
+ margin-left: auto;
+ margin-right: auto;
+ width: 400px;
+ height: fit-content;
+ background-color: rgba(0, 0, 0, .5);
+ border: 5px double rgb(80, 38, 22);
+ border-radius:7px;
+ padding: .75%;
+}
+
+#drcSecondaryContainer{
+background-color: rgba(145, 88, 41, 0.75);
+margin-left: auto;
+margin-right: auto;
+padding: 2%;
+}
+
+#drcTitle{
+font-style: italic;
+font-weight: bold;
+font-size: 200%;
+font-family: Arial, Helvetica, sans-serif; 
+text-align: center;
+color: white;
+}
+
+#drcContents{
+padding-left: 5%;
+padding-right: 5%;
+margin-top: 5%;
+font-family: Arial, Helvetica, sans-serif;
+color: white;
+margin-bottom: 3%;
+}
+
+#drcNameField{
+    margin-bottom: 1%;
+}
+
+#drcRecipeName{
+    font-weight: bold;
+    color: orange;
+}
+
+#drcDelBtnsGrid{
+    display: grid;
+    grid-template-columns: 30% 30%;
+    grid-gap: 0 5%;
+    width: 50%;
+    margin-left: 32.5%;
+}
+  
+#drcDelBtn:hover{
+background-color: orange;
+}
+
+.drcBtns{
+    cursor: pointer;
+       border-radius: 4px;
+       background-color: rgb(0, 0, 0);
+       border: 1px solid white;
+       width: 100%;
+       color: white;
+       text-align: center;
+       font-family: Arial, Helvetica, sans-serif;
+}
+
+.drcBtnsDiv{
+    font-size: 85%;
+    padding-top: 1.5%;
+}
+
+.drcBtnsDiv:hover{
+    background-color: rgb(60, 60, 60);
+}
+
+/*=========================MESSAGE PROMPT BOX===============================*/
+#messageModal{
+    display: block;
+    position: fixed; 
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  #messageContainer{
+   margin-left: auto;
+   margin-right: auto;
+   width: 400px;
+   height: fit-content;
+   background-color: rgba(0, 0, 0, .5);
+   border: 5px double rgb(80, 38, 22);
+   border-radius:7px;
+   padding: .75%;
+  }
+  
+  #messageSecondaryContainer{
+  background-color: rgba(145, 88, 41, 0.75);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2%;
+  }
+  
+  #messageTitle{
+  font-style: italic;
+  font-weight: bold;
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif; 
+  text-align: center;
+  color: orange;
+  }
+  
+   #messageCloseButton, #messageCloseButton2{
+      background-color: rgb(0, 0, 0);
+      color: white;
+      font-family: Arial, Helvetica, sans-serif; 
+      font-size: 85%;
+        text-align: center;
+      border: white 1px solid;
+      border-radius: 5px;
+      cursor: pointer;
+      padding-top: 1px;
+      margin-left: 85%;
+    }
+  
+  #messageCloseButton:hover, #messageCloseButton2:hover{
+      background-color:rgb(60, 60, 60);
+    }
+    
+  #messageContents{
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin-bottom: 5%;
+  }
+  

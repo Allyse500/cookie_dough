@@ -17,6 +17,7 @@ $tempPrep = $_SESSION["temporaryPreparation"];
 
     <title>Cookie Dough</title>
     <link rel="stylesheet" href="CSS/user.css">
+    <link rel="stylesheet" href="CSS/user2.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
