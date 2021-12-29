@@ -116,6 +116,8 @@ padding-top: 2vh;
   display:none;
 }
 
+
+/*=================SPECIFY CSS AT 1270 PX=============================*/
 @media only screen and (max-width: 1270px) {
 #headerGrid{
     display: grid;
@@ -702,6 +704,9 @@ margin-left: 66%;
 margin-left: 27.5%;
 margin-top: 5%;
 }
+
+
+/*=================SPECIFY CSS AT 500 PX=============================*/
 
 @media only screen and (max-width: 800px) {
   #bodyID {

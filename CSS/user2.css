@@ -125,6 +125,9 @@ padding-top: 2vh;
   display:none;
 }
 
+
+/*=================SPECIFY CSS AT 1270 PX=============================*/
+
 @media only screen and (max-width: 1270px) {
 #headerGrid{
     display: grid;
@@ -1172,4 +1175,24 @@ background-color: orange;
   color: white;
   margin-bottom: 5%;
   }
+
+/*=================SPECIFY CSS AT 500 PX=============================*/
   
+  @media only screen and (max-width: 800px) {
+    #bodyID {
+      background-image: url('../cookieDough.jpg');
+      background-size: 200vw 200vh;
+      background-position: 0% 0%;
+      background-repeat: no-repeat;
+      margin: 0;
+      overflow-x: hidden;
+    }
+  
+    #navbar{
+      margin: 0;
+      height: 8vh;
+      width: 200vw;
+      background-color: rgb(255, 255, 255, .8);
+      padding-top: 2vh;
+    }
+  }
