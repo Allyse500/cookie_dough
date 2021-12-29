@@ -1198,14 +1198,13 @@ background-color: orange;
 
     #headerGrid{
         display: grid;
-        grid-template-columns: 35vw 65vw;
-        width: 100vw;
+        grid-template-columns: 30vw 70vw;
+        width: 120vw;
     }
 
-    .dropdown {
-        /* position: relative; */
+    /* .dropdown {
         display: inline-block;
         margin-left: 23.3vw;
-      }
+      } */
     
   }
