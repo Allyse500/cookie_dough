@@ -712,4 +712,12 @@ margin-top: 5%;
     margin: 0;
     overflow-x: hidden;
   }
+
+  #navbar{
+    margin: 0;
+    height: 8vh;
+    width: 200vw;
+    background-color: rgb(255, 255, 255, .8);
+    padding-top: 2vh;
+  }
 }
