@@ -702,3 +702,14 @@ margin-left: 66%;
 margin-left: 27.5%;
 margin-top: 5%;
 }
+
+@media only screen and (max-width: 500px) {
+  #bodyID {
+    background-image: url('../cookieDough.jpg');
+    background-size: cover;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    margin: 0;
+    overflow-x: hidden;
+  }
+}
