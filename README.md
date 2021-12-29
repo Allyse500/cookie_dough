@@ -75,7 +75,7 @@ If you would like to update your account (edit username, password or email), you
 #### Functions for Smaller Screen Size
 When the screen reaches 1270px, the three buttons listed on the far right of the home or user page are hidden and alternative buttons are displayed from a drop down button grouped with the display of the search bar. Aside from the physical look, the function of each button is the same as the former buttons they are titled after (About, Sign Up, Log In, Account, My Recipes, and Log Out).
 ## Credits
-I've searched many different pages for trouble shooting including my own background knowledge. However, below are the main sources I used to get started for what I did not know.
+I've searched many different pages for trouble shooting. Below are the main sources I used to get started for what I did not know.
 
 I used this video to help me start to understand PHP:
 https://www.youtube.com/watch?v=gCo6JqGMi30&t=2485s

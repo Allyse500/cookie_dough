@@ -705,7 +705,7 @@ margin-top: 5%;
   .show {display: block;}
 }
 
-/*=================SPECIFY CSS AT 500 PX=============================*/
+/*=================SPECIFY CSS AT 800 PX=============================*/
 
 @media only screen and (max-width: 800px) {
   #bodyID {
