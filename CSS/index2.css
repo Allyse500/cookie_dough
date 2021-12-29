@@ -703,10 +703,10 @@ margin-left: 27.5%;
 margin-top: 5%;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   #bodyID {
     background-image: url('../cookieDough.jpg');
-    background-size: cover;
+    background-size: 200vw 200vh;
     background-position: 0% 0%;
     background-repeat: no-repeat;
     margin: 0;
