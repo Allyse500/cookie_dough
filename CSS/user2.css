@@ -1176,7 +1176,7 @@ background-color: orange;
   margin-bottom: 5%;
   }
 
-/*=================SPECIFY CSS AT 500 PX=============================*/
+/*=================SPECIFY CSS AT 800 PX=============================*/
   
   @media only screen and (max-width: 800px) {
     #bodyID {
@@ -1202,9 +1202,16 @@ background-color: orange;
         width: 120vw;
     }
 
-    /* .dropdown {
+    .dropdown {
         display: inline-block;
         margin-left: 23.3vw;
-      } */
+      }
     
+  }
+/*=================SPECIFY CSS AT 500 PX=============================*/
+  @media only screen and (max-width: 500px) {
+    .dropdown {
+        display: inline-block;
+        margin-left: -10vw;
+      }
   }
