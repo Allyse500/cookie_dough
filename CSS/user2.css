@@ -1201,4 +1201,11 @@ background-color: orange;
         grid-template-columns: 35vw 65vw;
         width: 100vw;
     }
+
+    .dropdown {
+        /* position: relative; */
+        display: inline-block;
+        margin-left: 4vw;
+      }
+    
   }
