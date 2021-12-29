@@ -1195,4 +1195,10 @@ background-color: orange;
       background-color: rgb(255, 255, 255, .8);
       padding-top: 2vh;
     }
+
+    #headerGrid{
+        display: grid;
+        grid-template-columns: 35vw 65vw;
+        width: 100vw;
+    }
   }
