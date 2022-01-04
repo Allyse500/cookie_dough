@@ -4,9 +4,9 @@
 if(isset($_POST["saveRecipe"])){
 
     //make super global variables from submitted form data
-    $title = $_POST["recipeName"];
-    $ingredients = $_POST["recipeIngredients"];
-    $preparation = $_POST["recipePreparation"];
+    $title = trim($_POST["recipeName"]);
+    $ingredients = trim($_POST["recipeIngredients"]);
+    $preparation = trim($_POST["recipePreparation"]);
     $postToPublic = $_POST["makePublic"];
 
     error_log("type of input from post to public checkbox: " . gettype($postToPublic));

@@ -21,7 +21,7 @@ $tempPreparation = $_SESSION["temporaryPreparation"];
                 <label for="recipeTitle" class="recipeLabel">Title: </label>
                 <input id="recipeTitle" type="text" name="recipeName" value="<?php if(isset($_GET["recipe"])){echo $recipeTitle;} else if(isset($_GET["recipeBack"])){echo $tempTitle;} ?>">
                 <div id="ingredientsTitle" class="recipeLabel">Ingredients:</div>
-                <textarea id="ingredients" name="recipeIngredients" class="recipeInputs textarea" rows="7" cols="32">
+                <textarea id="ingredients" name="recipeIngredients" class="recipeInputs textarea" rows="7" cols="32" onclick="getValue()">
                     <?php
                         if(isset($_GET["recipe"])){
                             echo $ingredients;
@@ -32,7 +32,7 @@ $tempPreparation = $_SESSION["temporaryPreparation"];
                     ?>
                 </textarea>
                 <div id="preparationTitle" class="recipeLabel">Preparation:</div>
-                <textarea id="preparation" name="recipePreparation" class="recipeInputs textarea" rows="8" cols="32">
+                <textarea id="preparation" name="recipePreparation" class="recipeInputs textarea" rows="8" cols="32" onclick="getValue2()">
                     <?php
                         if(isset($_GET["recipe"])){
                             echo $preparation;
@@ -66,3 +66,29 @@ $tempPreparation = $_SESSION["temporaryPreparation"];
         </div><!--end of id="drcSecondaryContainer-->
     </div><!--end of id="drcContainer"-->
 </div><!--end of id="drcModal"-->
+
+<script>
+function getValue(){
+//get value for non-trimmed content
+var value = document.getElementById("ingredients").value;
+console.log("ingvalue variable: '" + value + "'");
+//trim the content
+var newValue = value.trim();
+//replace current content with trimmed content
+document.getElementById("ingredients").value = newValue;
+}
+
+setTimeout(getValue, 0);
+
+function getValue2(){
+//get value for non-trimmed content
+var value = document.getElementById("preparation").value;
+console.log("prepvalue variable: '" + value + "'");
+//trim the content
+var newValue = value.trim();
+//replace current content with trimmed content
+document.getElementById("preparation").value = newValue;
+}
+
+setTimeout(getValue2, 0);
+</script>

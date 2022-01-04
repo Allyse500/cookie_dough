@@ -57,22 +57,16 @@ padding-top: 2vh;
 
 #searchLabel{
     color:rgb(0, 0, 0);
-    /* font-size: 140%; */
     font-size: 4vh;
-    font-family: Arial, Helvetica, sans-serif; 
-    /* margin-top: 10%; */
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 1vh;
 }
 
 #searchBar{
-    /* margin-left: 30%; */
     margin-left: 12vw;
     display: grid;
-    /* grid-template-columns: 20% 50% 20%; */
     grid-template-columns: 7vw 12vw 6vw;
-    /* width: 400px; */
     width: 30vw;
-    /* height: 40px; */
     height: 6vh;
 }
 
@@ -81,14 +75,12 @@ padding-top: 2vh;
 }
 
 #userTitle{
-    /* font-size: 200%; */
     font-size: 5vh;
     font-family: Arial, Helvetica, sans-serif;
     width: fit-content;
 }
 
 .homeButtons{
-    /* font-size: 125%; */
     font-size: 3.5vh;
     font-family: Arial, Helvetica, sans-serif; 
     border: 4px double white;

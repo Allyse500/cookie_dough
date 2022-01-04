@@ -1,6 +1,6 @@
 # COOKIE DOUGH
 ## Introduction
-This is my first attempt of a full application in PHP, MySQLi (procedural). I prepared this project in attempt to break into the PHP language. I have prepared it so its contents and functions will adjust to media size. If I were to work to improve this further, possibly for publishing, some things I would do are find a way to remove the spaces granted from the insert of the PHP variables to the textareas, prepare a stronger login system, enable password reset for forgotten passwords, and submit an indicator for publicly listed entries to display when opening the 'My Recipes' prompt box.
+This is my first attempt of a full application in PHP, MySQLi (procedural). I prepared this project in attempt to break into the PHP language. I have prepared it so its contents and functions will adjust to media size. If I were to work to improve this further, possibly for publishing, some things I would do are prepare a stronger login system, enable password reset for forgotten passwords, and submit an indicator for publicly listed entries to display when opening the 'My Recipes' prompt box.
 
 ## Installation
 *For all downloads, get the latest version relative to your computer type as applicable
