@@ -10,7 +10,7 @@ if(isset($_POST["saveRecipe"])){
     $postToPublic = $_POST["makePublic"];
 
     error_log("type of input from post to public checkbox: " . gettype($postToPublic));
-
+    error_log("ingredients variable: " . $ingredients);
     if(!$postToPublic){
         error_log("user does not want this recipe in public recipe db");
     }

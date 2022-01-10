@@ -159,7 +159,7 @@ if(isset($_GET["myRecipes"])){
                 </div><!--end of id="newRecipeHeaderGrid"-->
                 <label for="newRecipeTitle" class="newRecipeLabel">Title: </label><input id="newRecipeTitle" type="text" name="newRecipeTitle" value="<?php if(!$tempTitle){echo "";} else if($tempTitle){echo $tempTitle;} ?>">
                 <div id="newIngredientsTitle" class="newRecipeLabel">Ingredients:</div>
-                <textarea id="newIngredients" class="newRecipeInputs textarea" rows="7" cols="32" name="newIngredients">
+                <textarea id="newIngredients" class="newRecipeInputs textarea" rows="7" cols="32" name="newIngredients" onclick="removeSpaces()">
                     <?php
                         if(!$tempIng){
                             echo "";
@@ -170,7 +170,7 @@ if(isset($_GET["myRecipes"])){
                     ?>
                 </textarea>
                 <div id="newPreparationTitle" class="newRecipeLabel">Preparation:</div>
-                <textarea id="newPreparation" class="newRecipeInputs textarea" rows="8" cols="32" name="newPreparation">
+                <textarea id="newPreparation" class="newRecipeInputs textarea" rows="8" cols="32" name="newPreparation" onclick="removeSpaces2()">
                     <?php
 
                         if(!$tempPrep){
@@ -232,6 +232,32 @@ window.onclick = function(event) {
     }
   }
 }
+
+//=========================NEW RECIPE PROMPT BOX==========================
+function removeSpaces(){
+//get value for non-trimmed content
+var value = document.getElementById("newIngredients").value;
+console.log("newIngredients variable: '" + value + "'");
+//trim the content
+var newValue = value.trim();
+//replace current content with trimmed content
+document.getElementById("newIngredients").value = newValue;
+}
+
+setTimeout(removeSpaces, 0);
+
+function removeSpaces2(){
+//get value for non-trimmed content
+var value = document.getElementById("newPreparation").value;
+console.log("newPreparation variable: '" + value + "'");
+//trim the content
+var newValue = value.trim();
+//replace current content with trimmed content
+document.getElementById("newPreparation").value = newValue;
+}
+
+setTimeout(removeSpaces2, 0);
+
 </script>
 
 </body>
